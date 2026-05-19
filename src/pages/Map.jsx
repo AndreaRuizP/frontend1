@@ -109,42 +109,43 @@ export default function Map() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col lg:flex-row">
+    <div className="min-h-screen bg-white dark:bg-slate-950 flex flex-col lg:flex-row transition-colors duration-300">
       <Sidebar />
 
       <div className="flex-1 flex flex-col lg:ml-64">
-        <div className="flex justify-between items-center pt-3 px-0 lg:hidden">
+        <div className="flex justify-between items-center pt-3 px-4 lg:hidden">
           <UserHeader onMenu={() => setMenuOpen(true)} />
         </div>
-        <div className="hidden lg:flex items-center justify-end px-6 py-4 border-b border-[#E0E5EB]">
-          <UserHeader onMenu={() => setMenuOpen(true)} showMenu={false} showDarkMode={false} />
+        
+        <div className="hidden lg:flex items-center justify-end px-4 lg:px-8 pt-4 pb-2">
+          <UserHeader onMenu={() => setMenuOpen(true)} showMenu={false} showDarkMode={true} />
         </div>
 
         <HamburgerMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
 
         <main className="w-full max-w-md lg:max-w-6xl mx-auto px-4 lg:px-8 pt-4 lg:pt-6 pb-6 flex-1">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-4">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-5">
             <div>
-              <div className="font-bold text-[#141B21]" style={{ fontSize: 22 }}>
+              <div className="font-bold text-[#141B21] dark:text-slate-100" style={{ fontSize: 22 }}>
                 Contenedores Cercanos
               </div>
-              <div className="text-xs text-[#7D8797]" style={{ fontSize: 15 }}>
+              <div className="text-xs text-[#7D8797] dark:text-slate-400 mt-0.5" style={{ fontSize: 14 }}>
                 Basado en tu ubicación actual
               </div>
             </div>
             <div className="flex justify-start lg:justify-end">
               <Link
                 to="/scan"
-                className="flex items-center gap-2 border border-[#ddd] px-4 py-2 rounded-xl bg-green-600 font-semibold active:bg-gray-50 transition text-white"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 dark:bg-emerald-500 font-bold hover:bg-emerald-700 dark:hover:bg-emerald-600 transition text-white shadow-sm shadow-emerald-600/10"
                 style={{ minHeight: 44 }}
               >
-                <i className="bi bi-qr-code-scan" style={{ fontSize: 20, color: "#ffffff" }}></i>
-                Escanear QR
+                <i className="bi bi-qr-code-scan" style={{ fontSize: 18, color: "#ffffff" }}></i>
+                Escaneear QR
               </Link>
             </div>
           </div>
 
-          <div className="rounded-xl overflow-hidden w-full mb-4 border border-[#E0E5EB] shadow h-[210px] lg:h-[340px]">
+          <div className="rounded-2xl overflow-hidden w-full mb-5 border border-[#E0E5EB] dark:border-slate-800 shadow-sm h-[210px] lg:h-[360px] dark:invert-[90%] dark:hue-rotate-180 transition-all duration-300">
             <MapContainer
               center={[11.241210, -74.211022]}
               zoom={13}
@@ -158,17 +159,17 @@ export default function Map() {
               {contenedores.map((c, i) => (
                 <Marker position={[c.lat, c.lng]} key={i}>
                   <Popup>
-                    <b>{c.nombre}</b><br />
-                    {c.direccion}
+                    <b className="text-slate-900">{c.nombre}</b><br />
+                    <span className="text-slate-700">{c.direccion}</span>
                   </Popup>
                 </Marker>
               ))}
             </MapContainer>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-5">
             <div className="relative">
-              <span className="absolute left-3 top-2.5 text-gray-400">
+              <span className="absolute left-3 top-2.5 text-gray-400 dark:text-slate-500">
                 <i className="fi fi-rr-search"></i>
               </span>
               <input
@@ -176,66 +177,66 @@ export default function Map() {
                 value={search}
                 onChange={handleSearch}
                 placeholder="Buscar contenedor"
-                className="w-full pl-9 pr-3 py-2 bg-[#F7FAFC] border border-[#E0E5EB] rounded-xl text-[16px] focus:outline-none"
+                className="w-full pl-9 pr-3 py-2 bg-[#F7FAFC] dark:bg-slate-900 border border-[#E0E5EB] dark:border-slate-800 rounded-xl text-[16px] text-slate-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent transition-all"
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 pb-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 pb-4">
             {contenedoresPagina.length > 0 ? contenedoresPagina.map((c, i) => (
               <div
                 key={i}
-                className="bg-white rounded-2xl border border-[#E0E5EB] flex justify-between items-center px-6 py-5 shadow-sm"
-                style={{ boxShadow: "0 2px 8px 0 #f1f4f9" }}
+                className="bg-white dark:bg-slate-900 rounded-2xl border border-[#E0E5EB] dark:border-slate-800 flex justify-between items-center px-5 py-4 shadow-sm transition-colors duration-300"
               >
                 <div className="flex-1 min-w-0">
-                  <div className="font-semibold text-[#222] text-[17px] truncate">{c.nombre}</div>
-                  <div className="text-[#7D8797] text-[14px] truncate">{c.direccion}</div>
-                  <div className="flex gap-2 mt-1 flex-wrap">
-                    <span className="rounded-full bg-[#F1F5F9] text-[#364152] border border-[#E0E5EB] text-xs px-3 py-0.5 font-medium">{c.tipo}</span>
+                  <div className="font-bold text-[#222] dark:text-slate-200 text-[16px] truncate">{c.nombre}</div>
+                  <div className="text-[#7D8797] dark:text-slate-400 text-[13px] truncate mt-0.5">{c.direccion}</div>
+                  <div className="flex gap-2 mt-2 flex-wrap">
+                    <span className="rounded-full bg-[#F1F5F9] dark:bg-slate-800 text-[#364152] dark:text-slate-300 border border-[#E0E5EB] dark:border-slate-700 text-xs px-2.5 py-0.5 font-medium">{c.tipo}</span>
                   </div>
                 </div>
-                <div className="flex flex-col items-end ml-6 shrink-0">
-                  <span className={`inline-block font-bold px-3 py-1 rounded-lg text-xs mb-2
-                ${c.estado === "Disponible"
-                    ? "bg-[#12B76A] text-white"
-                    : "bg-[#F04438] text-white"}`}
-                    style={{ minWidth: 80, textAlign: "center" }}
+                
+                <div className="flex flex-col items-end ml-4 shrink-0">
+                  <span className={`inline-block font-bold px-2.5 py-1 rounded-xl text-xs mb-2 text-white text-center shadow-sm
+                  ${c.estado === "Disponible"
+                      ? "bg-emerald-600 dark:bg-emerald-500"
+                      : "bg-red-500 dark:bg-red-600"}`}
+                    style={{ minWidth: 84 }}
                   >
                     {c.estado}
                   </span>
-                  <div className="flex items-center gap-1 text-sm text-[#818181]">
-                    <i className="fi fi-rr-marker" />
-                    <span style={{ fontSize: 15 }}>{c.km} km</span>
+                  <div className="flex items-center gap-1 text-xs font-medium text-gray-500 dark:text-slate-400">
+                    <i className="fi fi-rr-marker text-emerald-600 dark:text-emerald-400" />
+                    <span>{c.km} km</span>
                   </div>
                 </div>
               </div>
             )) : (
-              <div className="text-center text-gray-400 py-8 lg:col-span-2">Sin resultados</div>
+              <div className="text-center text-gray-400 dark:text-slate-500 py-8 lg:col-span-2">Sin resultados</div>
             )}
           </div>
 
           {totalPages > 1 && (
-            <div className="flex justify-center items-center gap-2 mb-6">
+            <div className="flex justify-center items-center gap-3 mb-6 mt-2">
               <button
                 disabled={page === 1}
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 className={`px-3 py-1 rounded-lg border text-base font-bold transition
-              ${page === 1
-                    ? "bg-gray-100 text-gray-300 border-gray-200 cursor-not-allowed"
-                    : "bg-white text-[#141B21] border-[#E0E5EB] hover:bg-[#F7FAFC]"
+                ${page === 1
+                    ? "bg-gray-100 dark:bg-slate-800 text-gray-300 dark:text-slate-600 border-gray-200 dark:border-slate-700 cursor-not-allowed"
+                    : "bg-white dark:bg-slate-900 text-[#141B21] dark:text-slate-200 border-[#E0E5EB] dark:border-slate-800 hover:bg-[#F7FAFC] dark:hover:bg-slate-800"
                   }`}
-              >&lt;</button>
-              <span className="text-sm text-gray-700">{page} / {totalPages}</span>
+              >{"<"}</button>
+              <span className="text-sm font-medium text-gray-600 dark:text-slate-400">{page} / {totalPages}</span>
               <button
                 disabled={page === totalPages}
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                 className={`px-3 py-1 rounded-lg border text-base font-bold transition
-              ${page === totalPages
-                    ? "bg-gray-100 text-gray-300 border-gray-200 cursor-not-allowed"
-                    : "bg-white text-[#141B21] border-[#E0E5EB] hover:bg-[#F7FAFC]"
+                ${page === totalPages
+                    ? "bg-gray-100 dark:bg-slate-800 text-gray-300 dark:text-slate-600 border-gray-200 dark:border-slate-700 cursor-not-allowed"
+                    : "bg-white dark:bg-slate-900 text-[#141B21] dark:text-slate-200 border-[#E0E5EB] dark:border-slate-800 hover:bg-[#F7FAFC] dark:hover:bg-slate-800"
                   }`}
-              >&gt;</button>
+              >{">"}</button>
             </div>
           )}
         </main>

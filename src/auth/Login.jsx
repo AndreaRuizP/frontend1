@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { validateEmail, sanitizeInput, authStorage } from "../utils/security";
+import { ThemeContext } from "../context/ThemeContext";
 
 const HojaIcon = ({ className, style }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className} style={style}>
@@ -13,6 +14,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const { darkMode } = useContext(ThemeContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -35,27 +37,26 @@ export default function Login() {
     }
 
     setErrors({});
-    // En producción el rol llega desde el servidor; aquí se simula por email
     const role = cleanEmail === "admin@cleanpoints.com" ? "admin" : "user";
     authStorage.setSession("mock-jwt-token", { email: cleanEmail, role });
     navigate(role === "admin" ? "/admin" : "/dashboard");
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-50 via-white to-emerald-50 px-4 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 px-4 relative overflow-hidden transition-colors duration-300">
       
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div style={{animation: "float1 8s ease-in-out infinite"}} className="absolute top-10 left-10 w-32 h-32 bg-green-200 rounded-full opacity-30 blur-2xl" />
-        <div style={{animation: "float2 10s ease-in-out infinite"}} className="absolute bottom-16 right-10 w-48 h-48 bg-emerald-300 rounded-full opacity-20 blur-3xl" />
-        <div style={{animation: "float3 12s ease-in-out infinite"}} className="absolute top-1/2 left-1/4 w-24 h-24 bg-lime-200 rounded-full opacity-25 blur-2xl" />
-        <div style={{animation: "float1 9s ease-in-out infinite reverse"}} className="absolute top-1/4 right-1/4 w-20 h-20 bg-teal-200 rounded-full opacity-30 blur-xl" />
+        <div style={{animation: "float1 8s ease-in-out infinite"}} className="absolute top-10 left-10 w-32 h-32 bg-green-200 dark:bg-green-900 rounded-full opacity-30 dark:opacity-10 blur-2xl" />
+        <div style={{animation: "float2 10s ease-in-out infinite"}} className="absolute bottom-16 right-10 w-48 h-48 bg-emerald-300 dark:bg-emerald-900 rounded-full opacity-20 dark:opacity-10 blur-3xl" />
+        <div style={{animation: "float3 12s ease-in-out infinite"}} className="absolute top-1/2 left-1/4 w-24 h-24 bg-lime-200 dark:bg-lime-900 rounded-full opacity-25 dark:opacity-10 blur-2xl" />
+        <div style={{animation: "float1 9s ease-in-out infinite reverse"}} className="absolute top-1/4 right-1/4 w-20 h-20 bg-teal-200 dark:bg-teal-900 rounded-full opacity-30 dark:opacity-10 blur-xl" />
 
-        <HojaIcon className="absolute top-16 right-20 w-12 h-12 text-green-400 opacity-40" style={{animation: "floatIcon 7s ease-in-out infinite"}} />
-        <HojaIcon className="absolute bottom-24 left-16 w-10 h-10 text-emerald-500 opacity-35" style={{animation: "floatIcon 9s ease-in-out infinite 2s"}} />
-        <HojaIcon className="absolute top-1/3 left-8 w-8 h-8 text-green-300 opacity-40" style={{animation: "floatIcon 11s ease-in-out infinite 1s"}} />
-        <HojaIcon className="absolute bottom-32 right-1/4 w-14 h-14 text-teal-400 opacity-25" style={{animation: "floatIcon 8s ease-in-out infinite 3s"}} />
-        <HojaIcon className="absolute top-10 left-1/2 w-7 h-7 text-lime-500 opacity-30" style={{animation: "floatIcon 10s ease-in-out infinite 0.5s"}} />
-        <HojaIcon className="absolute bottom-10 left-1/3 w-9 h-9 text-green-400 opacity-35" style={{animation: "floatIcon 6s ease-in-out infinite 1.5s"}} />
+        <HojaIcon className="absolute top-16 right-20 w-12 h-12 text-green-400 dark:text-green-600 opacity-40 dark:opacity-20" style={{animation: "floatIcon 7s ease-in-out infinite"}} />
+        <HojaIcon className="absolute bottom-24 left-16 w-10 h-10 text-emerald-500 dark:text-emerald-600 opacity-35 dark:opacity-20" style={{animation: "floatIcon 9s ease-in-out infinite 2s"}} />
+        <HojaIcon className="absolute top-1/3 left-8 w-8 h-8 text-green-300 dark:text-green-500 opacity-40 dark:opacity-20" style={{animation: "floatIcon 11s ease-in-out infinite 1s"}} />
+        <HojaIcon className="absolute bottom-32 right-1/4 w-14 h-14 text-teal-400 dark:text-teal-600 opacity-25 dark:opacity-15" style={{animation: "floatIcon 8s ease-in-out infinite 3s"}} />
+        <HojaIcon className="absolute top-10 left-1/2 w-7 h-7 text-lime-500 dark:text-lime-600 opacity-30 dark:opacity-15" style={{animation: "floatIcon 10s ease-in-out infinite 0.5s"}} />
+        <HojaIcon className="absolute bottom-10 left-1/3 w-9 h-9 text-green-400 dark:text-green-600 opacity-35 dark:opacity-20" style={{animation: "floatIcon 6s ease-in-out infinite 1.5s"}} />
         {[
           { top: "15%", left: "55%", size: 6, delay: "0s", dur: "5s" },
           { top: "70%", left: "20%", size: 4, delay: "1s", dur: "6s" },
@@ -72,27 +73,27 @@ export default function Login() {
               height: dot.size,
               animation: `floatIcon ${dot.dur} ease-in-out infinite ${dot.delay}`,
             }}
-            className="absolute bg-green-400 rounded-full opacity-30"
+            className="absolute bg-green-400 dark:bg-green-600 rounded-full opacity-30 dark:opacity-15"
           />
         ))}
       </div>
 
       <form
-        className="bg-white max-w-sm w-full rounded-xl p-8 shadow border border-[#E0E5EB] relative z-10"
+        className="bg-white dark:bg-slate-900 max-w-sm w-full rounded-xl p-8 shadow dark:shadow-2xl border border-[#E0E5EB] dark:border-slate-800 relative z-10 transition-colors duration-300"
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-2xl font-bold text-center text-green-600 mb-1">
+        <h1 className="text-2xl font-bold text-center text-green-600 dark:text-green-500 mb-1">
           CleanPoints
         </h1>
-        <p className="text-center text-[#7D8797] text-sm mb-8">
+        <p className="text-center text-[#7D8797] dark:text-slate-400 text-sm mb-8">
           Inicia sesión para continuar
         </p>
-        <label className="block text-black text-sm mb-1" htmlFor="email">
+        <label className="block text-black dark:text-slate-200 text-sm mb-1" htmlFor="email">
           Correo electrónico
         </label>
         <input
-          className={`w-full px-4 py-2 border rounded-lg bg-[#F9FAFB] focus:outline-none focus:ring-2 focus:ring-green-400 text-base placeholder-[#ADB5BD] ${errors.email ? "border-red-400 mb-1" : "border-[#E0E5EB] mb-4"}`}
+          className={`w-full px-4 py-2 border rounded-lg bg-[#F9FAFB] dark:bg-slate-950 text-base text-black dark:text-white placeholder-[#ADB5BD] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent ${errors.email ? "border-red-400 mb-1" : "border-[#E0E5EB] dark:border-slate-800 mb-4"}`}
           id="email"
           type="email"
           autoComplete="username"
@@ -103,13 +104,13 @@ export default function Login() {
           aria-invalid={!!errors.email}
         />
         {errors.email && (
-          <p id="email-error" role="alert" className="text-red-500 text-xs mb-3">{errors.email}</p>
+          <p id="email-error" role="alert" className="text-red-500 dark:text-red-400 text-xs mb-3">{errors.email}</p>
         )}
-        <label className="block text-black text-sm mb-1" htmlFor="password">
+        <label className="block text-black dark:text-slate-200 text-sm mb-1" htmlFor="password">
           Contraseña
         </label>
         <input
-          className={`w-full px-4 py-2 border rounded-lg bg-[#F9FAFB] focus:outline-none focus:ring-2 focus:ring-green-400 text-base ${errors.password ? "border-red-400 mb-1" : "border-[#E0E5EB] mb-6"}`}
+          className={`w-full px-4 py-2 border rounded-lg bg-[#F9FAFB] dark:bg-slate-950 text-base text-black dark:text-white placeholder-[#ADB5BD] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent ${errors.password ? "border-red-400 mb-1" : "border-[#E0E5EB] dark:border-slate-800 mb-6"}`}
           id="password"
           type="password"
           autoComplete="current-password"
@@ -120,17 +121,17 @@ export default function Login() {
           aria-invalid={!!errors.password}
         />
         {errors.password && (
-          <p id="password-error" role="alert" className="text-red-500 text-xs mb-4">{errors.password}</p>
+          <p id="password-error" role="alert" className="text-red-500 dark:text-red-400 text-xs mb-4">{errors.password}</p>
         )}
         <button
           type="submit"
-          className="w-full h-11 bg-green-600 text-white font-semibold rounded-lg transition hover:bg-green-700 mb-2"
+          className="w-full h-11 bg-green-600 dark:bg-green-600 text-white font-semibold rounded-lg transition hover:bg-green-700 dark:hover:bg-green-700 mb-2"
         >
           Iniciar Sesión
         </button>
-        <div className="text-center text-sm">
+        <div className="text-center text-sm text-slate-600 dark:text-slate-400">
           ¿No tienes cuenta?{" "}
-          <Link to="/register" className="text-green-600 font-semibold hover:underline">
+          <Link to="/register" className="text-green-600 dark:text-green-500 font-semibold hover:underline">
             Regístrate aquí
           </Link>
         </div>

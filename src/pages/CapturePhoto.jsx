@@ -38,18 +38,18 @@ function ContainerInfoCard({ info }) {
     if (!rows.length) return null;
 
     return (
-        <div className="bg-white rounded-3xl shadow-sm border border-[#E0E5EB] p-5 lg:p-6">
-            <div className="flex items-center gap-2 mb-3">
-                <div className="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center shrink-0">
-                    <i className="bi bi-geo-alt-fill text-green-600 text-sm"></i>
+        <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-[#E0E5EB] dark:border-slate-800 p-5 lg:p-6 transition-colors duration-300">
+            <div className="flex items-center gap-2 mb-4">
+                <div className="w-7 h-7 rounded-lg bg-green-100 dark:bg-green-950/60 flex items-center justify-center shrink-0">
+                    <i className="bi bi-geo-alt-fill text-green-600 dark:text-green-400 text-sm"></i>
                 </div>
-                <p className="font-bold text-[#141B21] text-sm">Información del contenedor</p>
+                <p className="font-bold text-[#141B21] dark:text-slate-100 text-sm">Información del contenedor</p>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2.5">
                 {rows.map(({ label, value, mono }) => (
-                    <div key={label} className="flex gap-2">
-                        <span className="text-xs font-semibold text-[#6B7280] w-24 shrink-0">{label}:</span>
-                        <span className={`text-xs text-[#141B21] ${mono ? "font-mono" : ""}`}>{value}</span>
+                    <div key={label} className="flex gap-2 items-baseline">
+                        <span className="text-xs font-semibold text-[#6B7280] dark:text-slate-400 w-24 shrink-0">{label}:</span>
+                        <span className={`text-xs text-[#141B21] dark:text-slate-200 ${mono ? "font-mono bg-gray-50 dark:bg-slate-800 px-1.5 py-0.5 rounded text-red-500 dark:text-emerald-400" : ""}`}>{value}</span>
                     </div>
                 ))}
             </div>
@@ -82,15 +82,16 @@ export default function CapturePhoto() {
     };
 
     return (
-        <div className="min-h-screen bg-white flex flex-col lg:flex-row">
+        <div className="min-h-screen bg-white dark:bg-slate-950 flex flex-col lg:flex-row transition-colors duration-300">
             <Sidebar />
 
             <div className="flex-1 flex flex-col lg:ml-64">
-                <div className="flex justify-between items-center pt-3 px-0 lg:hidden">
+                <div className="flex justify-between items-center pt-3 px-4 lg:hidden">
                     <UserHeader onMenu={() => setMenuOpen(true)} />
                 </div>
-                <div className="hidden lg:flex items-center justify-end px-6 py-4 border-b border-[#E0E5EB] bg-white/80 backdrop-blur">
-                    <UserHeader onMenu={() => setMenuOpen(true)} showMenu={false} showDarkMode={false} />
+                
+                <div className="hidden lg:flex items-center justify-end px-4 lg:px-8 pt-4 pb-2">
+                    <UserHeader onMenu={() => setMenuOpen(true)} showMenu={false} showDarkMode={true} />
                 </div>
 
                 <HamburgerMenu open={menuOpen} onClose={() => setMenuOpen(false)} />

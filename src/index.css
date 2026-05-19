@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 .scrollbar-hide {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -11,10 +18,10 @@
 }
 
 /* Transiciones suaves */
-* {
-  transition-property: color, background-color, border-color;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+body {
+  transition-property: background-color, color;
   transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
 }
 
 /* Configuración de color-scheme */

@@ -15,14 +15,14 @@ export default function NotificationToast({ message, type = "success", duration 
     const getStyles = (type) => {
         switch (type) {
             case "success":
-                return "bg-emerald-50 border-emerald-200 text-emerald-700";
+                return "bg-emerald-50 dark:bg-slate-900 border-emerald-200 dark:border-emerald-900/50 text-emerald-700 dark:text-emerald-400";
             case "error":
-                return "bg-red-50 border-red-200 text-red-700";
+                return "bg-red-50 dark:bg-slate-900 border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400";
             case "warning":
-                return "bg-yellow-50 border-yellow-200 text-yellow-700";
+                return "bg-yellow-50 dark:bg-slate-900 border-yellow-200 dark:border-yellow-900/50 text-yellow-700 dark:text-yellow-400";
             case "info":
             default:
-                return "bg-blue-50 border-blue-200 text-blue-700";
+                return "bg-blue-50 dark:bg-slate-900 border-blue-200 dark:border-sky-900/50 text-blue-700 dark:text-sky-400";
         }
     };
 
@@ -43,15 +43,18 @@ export default function NotificationToast({ message, type = "success", duration 
     if (!isVisible) return null;
 
     return (
-        <div className={`fixed bottom-4 left-4 max-w-sm px-4 py-3 rounded-lg border ${getStyles(type)} shadow-lg flex items-center gap-3 animate-fade-in`}>
-            <i className={`bi ${getIcon(type)} text-lg`}></i>
-            <p className="font-medium text-sm">{message}</p>
+        <div 
+            className={`fixed bottom-4 left-4 max-w-sm px-4 py-3.5 rounded-xl border ${getStyles(type)} shadow-lg dark:shadow-black/40 flex items-center gap-3 z-[9999] animate-fade-in transition-all duration-300`}
+        >
+            <i className={`bi ${getIcon(type)} text-lg shrink-0`}></i>
+            <p className="font-bold text-sm leading-snug">{message}</p>
             <button
                 onClick={() => {
                     setIsVisible(false);
                     onClose?.();
                 }}
-                className="ml-auto text-lg hover:opacity-70 transition"
+                className="ml-auto text-xs opacity-50 hover:opacity-100 transition shrink-0 p-1"
+                aria-label="Cerrar aviso"
             >
                 <i className="bi bi-x-lg"></i>
             </button>

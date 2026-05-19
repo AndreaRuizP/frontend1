@@ -15,19 +15,12 @@ export function ThemeProvider({ children }) {
   });
 
   useEffect(() => {
-    try {
-      localStorage.setItem("darkMode", JSON.stringify(darkMode));
-      
       if (darkMode) {
-        document.documentElement.classList.add("dark");
-        document.documentElement.style.colorScheme = "dark";
+          document.documentElement.classList.add("dark");
       } else {
-        document.documentElement.classList.remove("dark");
-        document.documentElement.style.colorScheme = "light";
+          document.documentElement.classList.remove("dark");
       }
-    } catch (e) {
-      console.error("Error al guardar preferencia de tema:", e);
-    }
+      localStorage.setItem("darkMode", JSON.stringify(darkMode));
   }, [darkMode]);
 
   const toggleDarkMode = () => setDarkMode(prev => !prev);
