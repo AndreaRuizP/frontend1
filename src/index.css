@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Transiciones suaves */
+* {
+  transition-property: color, background-color, border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Configuración de color-scheme */
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* Variables CSS para tema */
+html {
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f9fafb;
+  --color-bg-tertiary: #f3f4f6;
+  --color-text: #141b21;
+  --color-text-secondary: #6b7280;
+  --color-border: #e0e5eb;
+}
+
+html.dark {
+  --color-bg: #0f172a;
+  --color-bg-secondary: #1e293b;
+  --color-bg-tertiary: #334155;
+  --color-text: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-border: #475569;
+}
+
+.icon-click {
+    display: inline-block;
+    transform-origin: center;
+    animation: clickTap 1.15s ease-in-out infinite;
+    filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.08));
+}
+
+@keyframes clickTap {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    22% {
+        transform: translateY(1px) scale(0.88);
+    }
+
+    42% {
+        transform: translateY(-1px) scale(1.07);
+    }
+
+    58% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes float1 {
+
+    0%,
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+
+    50% {
+        transform: translateY(-20px) scale(1.05);
+    }
+}
+
+@keyframes float2 {
+
+    0%,
+    100% {
+        transform: translateY(0px) translateX(0px);
+    }
+
+    33% {
+        transform: translateY(-15px) translateX(10px);
+    }
+
+    66% {
+        transform: translateY(10px) translateX(-8px);
+    }
+}
+
+@keyframes float3 {
+
+    0%,
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+
+    50% {
+        transform: translateY(18px) scale(0.95);
+    }
+}
+
+@keyframes floatIcon {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-14px) rotate(12deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Overrides para html5-qrcode */
+#html5-qr-reader {
+    border: none !important;
+    padding: 0 !important;
+}
+#html5-qr-reader video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 0 !important;
+}
+#html5-qr-reader__scan_region {
+    min-height: unset !important;
+}
+#html5-qr-reader__dashboard {
+    display: none !important;
+}
