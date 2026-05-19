@@ -7,6 +7,7 @@ import ContainersList from "../components/admin/ContainersList";
 import ChallengesList from "../components/admin/ChallengesList";
 import ProductsList from "../components/admin/ProductsList";
 import { authStorage } from "../utils/security";
+import "../assets/logo.png";
 
 const tabs = [
     { id: "overview", label: "Resumen", icon: "bi-bar-chart" },
@@ -29,7 +30,6 @@ export default function AdminDashboard() {
     return (
         <div className="min-h-screen bg-[#F9FAFB]">
             <div className="bg-white border-b border-[#E0E5EB] sticky top-0 z-50">
-                {/* Top bar: logo + logout */}
                 <div className="flex items-center justify-between py-3 sm:py-4 border-b border-[#E0E5EB] px-4 sm:px-8">
                     <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                         <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-lg flex items-center justify-center shrink-0">
@@ -48,16 +48,12 @@ export default function AdminDashboard() {
                         <span className="hidden sm:inline">Cerrar Sesión</span>
                     </button>
                 </div>
-
-                {/* Page title */}
                 <div className="py-3 sm:py-6 px-4 sm:px-8">
                     <h2 className="text-xl sm:text-3xl font-bold text-[#141B21]">Panel de Administración</h2>
                     <p className="text-[#6B7280] text-xs sm:text-sm mt-0.5 sm:mt-1 hidden sm:block">
                         Gestiona usuarios, contenedores, retos, productos y reportes de CleanPoints
                     </p>
                 </div>
-
-                {/* Tab bar — scroll horizontal táctil */}
                 <div
                     className="scrollbar-hide border-t border-[#E0E5EB]"
                     style={{
