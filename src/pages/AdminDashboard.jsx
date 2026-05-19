@@ -66,7 +66,7 @@ export default function AdminDashboard() {
                 <div className="flex items-center justify-between py-3 sm:py-4 border-b border-[#E0E5EB] px-4 sm:px-8">
                     <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                         <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-lg flex items-center justify-center shrink-0">
-                            <img src="../src/assets/logo.png" alt="" className="w-full h-full object-contain" />
+                            <img src={logo} alt="Logo CleanPoints" className="w-full h-full object-contain" />
                         </div>
                         <h1 className="text-lg sm:text-2xl font-bold text-[#141B21] truncate">CleanPoints</h1>
                         <span className="px-2 sm:px-3 py-0.5 sm:py-1 bg-[#199A61] text-white text-xs font-bold rounded-full shrink-0">
