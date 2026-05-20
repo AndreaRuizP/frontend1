@@ -50,7 +50,7 @@ export default function DashboardHome() {
       <Sidebar />
       <div className="flex-1 flex flex-col lg:ml-64">
         
-        <div className="flex justify-between items-center pt-3 px-0 lg:hidden">
+        <div className="flex justify-between items-center pt-3 px-4 lg:hidden">
           <UserHeader onMenu={() => setMenuOpen(true)} />
         </div>
         
