@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminStats from "../components/admin/AdminStats";
 import UsersList from "../components/admin/UsersList";
-import ReportsList from "../components/admin/ReportsList";
 import ContainersList from "../components/admin/ContainersList";
 import ChallengesList from "../components/admin/ChallengesList";
 import ProductsList from "../components/admin/ProductsList";
@@ -16,7 +15,6 @@ const tabs = [
     { id: "containers",  label: "Contenedores", icon: "bi-trash",      iconActive: "bi-trash-fill" },
     { id: "challenges",  label: "Retos",        icon: "bi-trophy",     iconActive: "bi-trophy-fill" },
     { id: "products",    label: "Marketplace",  icon: "bi-bag",        iconActive: "bi-bag-fill" },
-    { id: "reports",     label: "Reportes",     icon: "bi-flag",       iconActive: "bi-flag-fill" },
 ];
 
 const tabContent = {
@@ -25,7 +23,6 @@ const tabContent = {
     containers: ContainersList,
     challenges: ChallengesList,
     products:   ProductsList,
-    reports:    ReportsList,
 };
 
 export default function AdminDashboard() {
@@ -87,7 +84,7 @@ export default function AdminDashboard() {
                     <div>
                         <h2 className="text-xl sm:text-3xl font-bold text-[#141B21] dark:text-white">Panel de Administración</h2>
                         <p className="text-[#6B7280] dark:text-slate-400 text-xs sm:text-sm mt-0.5 sm:mt-1 hidden sm:block">
-                            Gestiona usuarios, contenedores, retos, productos y reportes de CleanPoints
+                            Gestiona usuarios, contenedores, retos y productos de CleanPoints
                         </p>
                     </div>
                     <span className="sm:hidden text-xs font-semibold text-[#199A61] dark:text-green-400 bg-green-50 dark:bg-green-950/30 px-2 py-1 rounded-full">
