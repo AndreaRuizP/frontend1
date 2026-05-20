@@ -36,8 +36,8 @@ export default function HamburgerMenu({ open, onClose }) {
             >
                 <header className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <span className="text-xl font-black text-slate-800 dark:text-slate-100 tracking-tight">
-                            Clean<span className="text-emerald-600 dark:text-emerald-400">Points</span>
+                        <span className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
+                            CleanPoints
                         </span>
                     </div>
 
