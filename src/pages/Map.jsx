@@ -128,7 +128,7 @@ export default function Map() {
           <UserHeader onMenu={() => setMenuOpen(true)} />
         </div>
         
-        <div className="hidden lg:flex items-center justify-end px-4 lg:px-8 pt-4 pb-2">
+        <div className="hidden lg:flex items-center justify-end px-6 py-4 border-b border-[#E0E5EB] dark:border-slate-800">
           <UserHeader onMenu={() => setMenuOpen(true)} showMenu={false} showDarkMode={true} />
         </div>
 

@@ -41,7 +41,7 @@ export default function Marketplace() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col lg:flex-row transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-slate-950 flex flex-col lg:flex-row transition-colors duration-300">
       <Sidebar />
 
       <div className="flex-1 flex flex-col lg:ml-64">
