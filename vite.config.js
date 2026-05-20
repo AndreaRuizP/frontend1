@@ -8,11 +8,11 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-core':   ['react', 'react-dom', 'react-router-dom'],
-          'maps':         ['leaflet', 'react-leaflet', 'mapbox-gl', 'react-map-gl'],
-          'qr':           ['html5-qrcode', '@yudiel/react-qr-scanner'],
-          'icons':        ['lucide-react', 'react-icons'],
+        manualChunks(id) {
+          if (id.includes('react-dom') || id.includes('react-router-dom')) return 'react-core';
+          if (id.includes('leaflet') || id.includes('mapbox-gl') || id.includes('react-map-gl')) return 'maps';
+          if (id.includes('html5-qrcode') || id.includes('react-qr-scanner')) return 'qr';
+          if (id.includes('lucide-react') || id.includes('react-icons')) return 'icons';
         },
       },
     },
