@@ -72,7 +72,6 @@ export default function Challenge() {
         <main className="w-full max-w-md lg:max-w-6xl mx-auto px-4 lg:px-8 pt-4 lg:pt-6 pb-6 flex-1">
             <div className="bg-white dark:bg-slate-900 rounded-2xl border border-[#E0E5EB] dark:border-slate-800 px-5 py-3.5 mb-4 lg:mb-6 shadow-sm transition-colors duration-300">
               <span className="font-bold text-[#141B21] dark:text-slate-200 flex items-center gap-2" style={{ fontSize: 15 }}>
-                <i className="bi bi-star-fill text-amber-500"></i>
                 Nivel 3: Reciclador Activo
               </span>
             </div>

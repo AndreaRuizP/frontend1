@@ -48,20 +48,20 @@ export default function CameraCapture({ onCapture, onCancel, cameraError, setCam
 
     return (
         <div className="space-y-4 lg:space-y-6">
-            <div className="bg-white rounded-3xl shadow-sm border border-[#E0E5EB] p-5 lg:p-6">
+            <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-[#E0E5EB] dark:border-slate-800 p-5 lg:p-6 transition-colors duration-300">
                 <div className="mb-4">
-                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-green-600">Cámara</p>
-                    <h2 className="text-xl lg:text-2xl font-black text-[#141B21] mt-1">Captura el residuo</h2>
-                    <p className="text-sm lg:text-base text-[#6B7280] mt-2 leading-6">
+                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-green-600 dark:text-green-400">Cámara</p>
+                    <h2 className="text-xl lg:text-2xl font-black text-[#141B21] dark:text-slate-100 mt-1">Captura el residuo</h2>
+                    <p className="text-sm lg:text-base text-[#6B7280] dark:text-slate-400 mt-2 leading-6">
                         Apunta tu cámara al residuo que vas a reciclar para validar la acción.
                     </p>
                 </div>
                 {cameraError ? (
-                    <div className="rounded-2xl border border-red-300 bg-red-50 p-4 mb-4 text-center">
-                        <p className="text-red-700 font-semibold">{cameraError}</p>
+                    <div className="rounded-2xl border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-950/40 p-4 mb-4 text-center">
+                        <p className="text-red-700 dark:text-red-400 font-semibold">{cameraError}</p>
                     </div>
                 ) : (
-                    <div className="rounded-2xl border border-gray-300 overflow-hidden mb-4 bg-black h-64 lg:h-80 flex items-center justify-center relative">
+                    <div className="rounded-2xl border border-gray-300 dark:border-slate-700 overflow-hidden mb-4 bg-black h-64 lg:h-80 flex items-center justify-center relative">
                         <video
                             ref={videoRef}
                             autoPlay
@@ -77,14 +77,14 @@ export default function CameraCapture({ onCapture, onCancel, cameraError, setCam
                             stopCamera();
                             onCancel();
                         }}
-                        className="flex-1 border border-[#D0D7DE] bg-white text-[#374151] font-semibold py-3 rounded-xl hover:bg-gray-50 transition"
+                        className="flex-1 border border-[#D0D7DE] dark:border-slate-700 bg-white dark:bg-slate-800 text-[#374151] dark:text-slate-200 font-semibold py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-700 transition"
                     >
                         Cancelar
                     </button>
                     <button
                         onClick={handleTakePhoto}
                         disabled={cameraError !== null}
-                        className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white font-semibold py-3 rounded-xl transition active:scale-95 flex items-center justify-center gap-2"
+                        className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 dark:disabled:bg-slate-600 text-white font-semibold py-3 rounded-xl transition active:scale-95 flex items-center justify-center gap-2"
                     >
                         <i className="bi bi-camera-fill"></i>
                         Capturar Foto
