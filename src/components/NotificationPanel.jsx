@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 import NotificationItem from "./NotificationItem";
 
 export default function NotificationPanel({
@@ -34,7 +34,7 @@ export default function NotificationPanel({
                 {unreadCount > 0 && (
                     <button
                         onClick={onMarkAllAsRead}
-                        className="text-[11px] sm:text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline text-right leading-tight focus:outline-none"
+                        className="text-[11px] sm:text-xs font-bold text-green-600 dark:text-green-400 hover:underline text-right leading-tight focus:outline-none"
                     >
                         <span className="sm:hidden">Marcar todas</span>
                         <span className="hidden sm:inline">Marcar todas como leídas</span>

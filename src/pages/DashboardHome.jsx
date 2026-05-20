@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Link } from "react-router-dom";
 import HamburgerMenu from "../components/HamburgerMenu";
 import UserHeader from "../components/UserHeader";
@@ -64,27 +64,27 @@ export default function DashboardHome() {
           <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.95fr)] gap-6">
             <section className="space-y-4 lg:space-y-6">
               
-              <div className="rounded-3xl bg-gradient-to-r from-emerald-50 to-green-50 dark:from-slate-900 dark:to-emerald-950/30 border border-emerald-100 dark:border-emerald-900/30 shadow-sm px-5 py-5 lg:px-6 lg:py-6 flex items-center justify-between gap-4">
+              <div className="rounded-3xl bg-gradient-to-r from-green-50 to-green-50 dark:from-slate-900 dark:to-green-950/30 border border-green-100 dark:border-green-900/30 shadow-sm px-5 py-5 lg:px-6 lg:py-6 flex items-center justify-between gap-4">
                 <div>
-                  <p className="text-sm text-[#58716a] dark:text-emerald-400 font-medium">Tu saldo actual</p>
+                  <p className="text-sm text-[#58716a] dark:text-green-400 font-medium">Tu saldo actual</p>
                   <div className="mt-1 flex items-baseline gap-2">
-                    <span className="text-[2.1rem] lg:text-[2.4rem] font-black text-emerald-600 dark:text-emerald-400 leading-none">150</span>
+                    <span className="text-[2.1rem] lg:text-[2.4rem] font-black text-green-600 dark:text-green-400 leading-none">150</span>
                     <span className="text-lg lg:text-xl text-slate-700 dark:text-slate-300 font-semibold">CleanPoints</span>
                   </div>
                   <p className="mt-2 text-sm text-[#6b7280] dark:text-slate-400">350 pts para el nivel 2</p>
                 </div>
-                <span className="shrink-0 rounded-full border border-emerald-200 dark:border-emerald-800 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-bold text-emerald-700 dark:text-emerald-400 shadow-sm">
+                <span className="shrink-0 rounded-full border border-green-200 dark:border-green-800 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-bold text-green-700 dark:text-green-400 shadow-sm">
                   Nivel 1
                 </span>
               </div>
 
               <div className="grid grid-cols-2 lg:grid-cols-2 gap-3 lg:gap-4">
-                <Link to="/map" className="flex flex-col bg-white dark:bg-slate-900 rounded-2xl border border-[#E0E5EB] dark:border-slate-800 shadow-sm items-center py-5 lg:py-6 px-3 lg:px-4 min-h-[104px] lg:min-h-[124px] justify-center transition hover:-translate-y-0.5 hover:shadow-md hover:bg-emerald-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100">
+                <Link to="/map" className="flex flex-col bg-white dark:bg-slate-900 rounded-2xl border border-[#E0E5EB] dark:border-slate-800 shadow-sm items-center py-5 lg:py-6 px-3 lg:px-4 min-h-[104px] lg:min-h-[124px] justify-center transition hover:-translate-y-0.5 hover:shadow-md hover:bg-green-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100">
                   <i className="fi fi-rr-map text-2xl lg:text-4xl mb-2 text-green-600 dark:text-green-400"></i>
                   <span className="text-[15px] lg:text-base font-semibold mb-0 text-center">Contenedores</span>
                   <span className="text-xs text-[#7D8797] dark:text-slate-400 text-center">cercanos</span>
                 </Link>
-                <Link to="/scan" className="flex flex-col bg-white dark:bg-slate-900 rounded-2xl border border-[#E0E5EB] dark:border-slate-800 shadow-sm items-center py-5 lg:py-6 px-3 lg:px-4 min-h-[104px] lg:min-h-[124px] justify-center transition hover:-translate-y-0.5 hover:shadow-md hover:bg-emerald-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100">
+                <Link to="/scan" className="flex flex-col bg-white dark:bg-slate-900 rounded-2xl border border-[#E0E5EB] dark:border-slate-800 shadow-sm items-center py-5 lg:py-6 px-3 lg:px-4 min-h-[104px] lg:min-h-[124px] justify-center transition hover:-translate-y-0.5 hover:shadow-md hover:bg-green-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100">
                   <i className="bi bi-qr-code-scan text-2xl lg:text-4xl mb-2 text-green-600 dark:text-green-400"></i>
                   <span className="text-[15px] lg:text-base font-semibold mb-0 text-center">Escanear QR</span>
                   <span className="text-xs text-[#7D8797] dark:text-slate-400 text-center">Valida acción</span>
@@ -140,7 +140,7 @@ export default function DashboardHome() {
                   className={`mt-4 w-full py-3 rounded-lg text-white font-semibold text-sm transition active:scale-95 ${
                     retoDestacado.progreso > 0
                       ? "bg-green-600 hover:bg-green-700"
-                      : "bg-[#141B21] hover:bg-[#0f172a] dark:bg-emerald-600 dark:hover:bg-emerald-700"
+                      : "bg-[#141B21] hover:bg-[#0f172a] dark:bg-green-600 dark:hover:bg-green-700"
                   }`}
                   style={{ minHeight: 44 }}
                 >

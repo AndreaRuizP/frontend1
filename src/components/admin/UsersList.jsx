@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { sanitizeInput } from "../../utils/security";
 
 const initialUsers = [
@@ -47,7 +47,7 @@ export default function UsersList() {
                                 <p className="font-semibold text-[#141B21] dark:text-white">{user.name}</p>
                                 <p className="text-xs text-[#6B7280] dark:text-slate-400">{user.email}</p>
                             </div>
-                            <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${user.status === "active" ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30" : "bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-slate-400"}`}>
+                            <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${user.status === "active" ? "bg-green-50 text-green-700 dark:bg-green-900/30" : "bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-slate-400"}`}>
                                 {user.status === "active" ? "Activo" : "Inactivo"}
                             </span>
                         </div>
@@ -97,7 +97,7 @@ export default function UsersList() {
                                     <td className="px-6 py-4 font-semibold text-[#141B21] dark:text-white">{user.pointsEarned.toLocaleString()}</td>
                                     <td className="px-6 py-4 text-[#6B7280] dark:text-slate-400">{new Date(user.joinDate).toLocaleDateString("es-ES")}</td>
                                     <td className="px-6 py-4">
-                                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${user.status === "active" ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30" : "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400"}`}>
+                                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${user.status === "active" ? "bg-green-50 text-green-700 dark:bg-green-900/30" : "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400"}`}>
                                             {user.status === "active" ? "Activo" : "Inactivo"}
                                         </span>
                                     </td>
@@ -124,12 +124,12 @@ export default function UsersList() {
                             </button>
                         </div>
                         <div className="flex items-center gap-4 mb-6">
-                            <div className="w-16 h-16 rounded-full bg-[#199A61]/10 dark:bg-emerald-900/30 flex items-center justify-center">
+                            <div className="w-16 h-16 rounded-full bg-[#199A61]/10 dark:bg-green-900/30 flex items-center justify-center">
                                 <i className="bi bi-person text-3xl text-[#199A61]"></i>
                             </div>
                             <div>
                                 <p className="text-lg font-bold text-[#141B21] dark:text-white">{selectedUser.name}</p>
-                                <span className={`px-3 py-1 rounded-full text-xs font-semibold ${selectedUser.status === "active" ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30" : "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400"}`}>
+                                <span className={`px-3 py-1 rounded-full text-xs font-semibold ${selectedUser.status === "active" ? "bg-green-50 text-green-700 dark:bg-green-900/30" : "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400"}`}>
                                     {selectedUser.status === "active" ? "Activo" : "Inactivo"}
                                 </span>
                             </div>

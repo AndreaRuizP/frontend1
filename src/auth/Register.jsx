@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+﻿import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { validateEmail, validatePassword, validateName, sanitizeInput, authStorage } from "../utils/security";
 import { ThemeContext } from "../context/ThemeContext";
@@ -60,18 +60,18 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 px-4 relative overflow-hidden transition-colors duration-300">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 px-4 relative overflow-hidden transition-colors duration-300">
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div style={{animation: "float1 8s ease-in-out infinite"}} className="absolute top-10 left-10 w-32 h-32 bg-green-200 dark:bg-green-900 rounded-full opacity-30 dark:opacity-10 blur-2xl" />
-        <div style={{animation: "float2 10s ease-in-out infinite"}} className="absolute bottom-16 right-10 w-48 h-48 bg-emerald-300 dark:bg-emerald-900 rounded-full opacity-20 dark:opacity-10 blur-3xl" />
-        <div style={{animation: "float3 12s ease-in-out infinite"}} className="absolute top-1/2 left-1/4 w-24 h-24 bg-lime-200 dark:bg-lime-900 rounded-full opacity-25 dark:opacity-10 blur-2xl" />
-        <div style={{animation: "float1 9s ease-in-out infinite reverse"}} className="absolute top-1/4 right-1/4 w-20 h-20 bg-teal-200 dark:bg-teal-900 rounded-full opacity-30 dark:opacity-10 blur-xl" />
+        <div style={{animation: "float2 10s ease-in-out infinite"}} className="absolute bottom-16 right-10 w-48 h-48 bg-green-300 dark:bg-green-900 rounded-full opacity-20 dark:opacity-10 blur-3xl" />
+        <div style={{animation: "float3 12s ease-in-out infinite"}} className="absolute top-1/2 left-1/4 w-24 h-24 bg-green-200 dark:bg-green-900 rounded-full opacity-25 dark:opacity-10 blur-2xl" />
+        <div style={{animation: "float1 9s ease-in-out infinite reverse"}} className="absolute top-1/4 right-1/4 w-20 h-20 bg-green-200 dark:bg-green-900 rounded-full opacity-30 dark:opacity-10 blur-xl" />
 
         <HojaIcon className="absolute top-16 right-20 w-12 h-12 text-green-400 dark:text-green-600 opacity-40 dark:opacity-20" style={{animation: "floatIcon 7s ease-in-out infinite"}} />
-        <HojaIcon className="absolute bottom-24 left-16 w-10 h-10 text-emerald-500 dark:text-emerald-600 opacity-35 dark:opacity-20" style={{animation: "floatIcon 9s ease-in-out infinite 2s"}} />
+        <HojaIcon className="absolute bottom-24 left-16 w-10 h-10 text-green-500 dark:text-green-600 opacity-35 dark:opacity-20" style={{animation: "floatIcon 9s ease-in-out infinite 2s"}} />
         <HojaIcon className="absolute top-1/3 left-8 w-8 h-8 text-green-300 dark:text-green-500 opacity-40 dark:opacity-20" style={{animation: "floatIcon 11s ease-in-out infinite 1s"}} />
-        <HojaIcon className="absolute bottom-32 right-1/4 w-14 h-14 text-teal-400 dark:text-teal-600 opacity-25 dark:opacity-15" style={{animation: "floatIcon 8s ease-in-out infinite 3s"}} />
-        <HojaIcon className="absolute top-10 left-1/2 w-7 h-7 text-lime-500 dark:text-lime-600 opacity-30 dark:opacity-15" style={{animation: "floatIcon 10s ease-in-out infinite 0.5s"}} />
+        <HojaIcon className="absolute bottom-32 right-1/4 w-14 h-14 text-green-400 dark:text-green-600 opacity-25 dark:opacity-15" style={{animation: "floatIcon 8s ease-in-out infinite 3s"}} />
+        <HojaIcon className="absolute top-10 left-1/2 w-7 h-7 text-green-500 dark:text-green-600 opacity-30 dark:opacity-15" style={{animation: "floatIcon 10s ease-in-out infinite 0.5s"}} />
         <HojaIcon className="absolute bottom-10 left-1/3 w-9 h-9 text-green-400 dark:text-green-600 opacity-35 dark:opacity-20" style={{animation: "floatIcon 6s ease-in-out infinite 1.5s"}} />
 
         {[

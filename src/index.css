@@ -2,6 +2,20 @@
 
 @variant dark (&:where(.dark, .dark *));
 
+@theme {
+  --color-green-50:  #ecfdf5;
+  --color-green-100: #d1fae5;
+  --color-green-200: #a7f3d0;
+  --color-green-300: #6ee7b7;
+  --color-green-400: #34d399;
+  --color-green-500: #10b981;
+  --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+  --color-green-800: #047857;
+  --color-green-900: #065f46;
+  --color-green-950: #022c22;
+}
+
 .scrollbar-hide {
   scrollbar-width: none;
   -ms-overflow-style: none;

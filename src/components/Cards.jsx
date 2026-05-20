@@ -1,4 +1,4 @@
-const CARDS = [
+﻿const CARDS = [
   {
     icon: <i className="fi fi-rr-marker text-[#13A3F7] dark:text-[#38bdf8] text-3xl mb-4"></i>,
     title: "Mapa de Contenedores",
@@ -32,7 +32,7 @@ export default function Cards() {
       {CARDS.map((card) => (
         <div
           key={card.title}
-          className="min-h-[180px] bg-white dark:bg-slate-900 border border-[#E0E5EB] dark:border-slate-800 rounded-2xl p-6 flex flex-col items-center text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:hover:shadow-emerald-950/20"
+          className="min-h-[180px] bg-white dark:bg-slate-900 border border-[#E0E5EB] dark:border-slate-800 rounded-2xl p-6 flex flex-col items-center text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:hover:shadow-green-950/20"
         >
           {card.icon}
           <h3 className="text-lg font-bold text-[#141B21] dark:text-slate-100 mb-2">{card.title}</h3>

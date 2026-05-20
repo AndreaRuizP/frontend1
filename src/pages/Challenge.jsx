@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import UserHeader from "../components/UserHeader";
 import HamburgerMenu from "../components/HamburgerMenu";
 import Sidebar from "../components/Sidebar";
@@ -37,7 +37,7 @@ const challenges = [
 ];
 
 const difficultyStyle = {
-  Fácil: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400",
+  Fácil: "bg-green-50 text-green-700 dark:bg-green-950/40 dark:text-green-400",
   Media: "bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400",
   Difícil: "bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-400",
 };
@@ -83,7 +83,7 @@ export default function Challenge() {
                   onClick={() => setFiltro(tab)}
                   className={`flex-1 lg:flex-none lg:w-full py-2.5 px-4 rounded-xl border text-xs font-bold transition active:scale-95 focus:outline-none
                 ${filtro === tab
-                    ? "bg-emerald-600 text-white border-emerald-600 dark:bg-emerald-500 dark:border-emerald-500 shadow-sm"
+                    ? "bg-green-600 text-white border-green-600 dark:bg-green-500 dark:border-green-500 shadow-sm"
                     : "bg-white dark:bg-slate-900 text-[#141B21] dark:text-slate-300 border-[#E0E5EB] dark:border-slate-800 hover:bg-gray-50 dark:hover:bg-slate-800"
                     }`}
                   style={{ fontSize: 13, minHeight: 40 }}
@@ -131,7 +131,7 @@ export default function Challenge() {
 
                       <div className="w-full bg-gray-100 dark:bg-slate-950 h-2 rounded-full mb-3 overflow-hidden">
                         <div
-                          className="bg-emerald-500 dark:bg-emerald-400 h-2 rounded-full transition-all duration-500"
+                          className="bg-green-500 dark:bg-green-400 h-2 rounded-full transition-all duration-500"
                           style={{ width: `${porcentaje}%` }}
                         />
                       </div>
@@ -151,7 +151,7 @@ export default function Challenge() {
                         type="button"
                         className={`mt-4 w-full py-3 rounded-xl text-white font-bold text-sm transition-all active:scale-95 focus:outline-none shadow-sm ${
                           r.progreso > 0
-                            ? "bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600"
+                            ? "bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600"
                             : "bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-100"
                         }`}
                         style={{ minHeight: 44 }}

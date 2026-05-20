@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { sanitizeInput } from "../../utils/security";
 
 const initialChallenges = [
@@ -84,7 +84,7 @@ export default function ChallengesList() {
                                 </div>
                                 <div>
                                     <p className="font-bold text-[#141B21] dark:text-white">{c.title}</p>
-                                    <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${c.status === "active" ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400" : "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400"}`}>
+                                    <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${c.status === "active" ? "bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400" : "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400"}`}>
                                         {c.status === "active" ? "Activo" : "Inactivo"}
                                     </span>
                                 </div>
@@ -107,7 +107,7 @@ export default function ChallengesList() {
                 ))}
             </div>
 
-            <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-900/50 rounded-xl p-4">
+            <div className="bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-900/50 rounded-xl p-4">
                 <p className="text-[#199A61] font-semibold">Mostrando {filtered.length} de {challenges.length} retos</p>
             </div>
 

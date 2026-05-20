@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { sanitizeInput } from "../../utils/security";
 
 const initialContainers = [
@@ -12,7 +12,7 @@ const initialContainers = [
 const emptyForm = { name: "", location: "", type: "Reciclaje", capacity: "", qrCode: "", status: "active" };
 
 const statusConfig = {
-    active: { label: "Activo", classes: "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400" },
+    active: { label: "Activo", classes: "bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400" },
     full: { label: "Lleno", classes: "bg-amber-50 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400" },
     inactive: { label: "Inactivo", classes: "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400" },
 };

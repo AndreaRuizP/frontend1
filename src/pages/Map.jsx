@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Link } from "react-router-dom";
 import "leaflet/dist/leaflet.css";
@@ -147,11 +147,11 @@ export default function Map() {
             <div className="flex justify-start lg:justify-end">
               <Link
                 to="/scan"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 dark:bg-emerald-500 font-bold hover:bg-emerald-700 dark:hover:bg-emerald-600 transition text-white shadow-sm shadow-emerald-600/10"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-green-600 dark:bg-green-500 font-bold hover:bg-green-700 dark:hover:bg-green-600 transition text-white shadow-sm shadow-green-600/10"
                 style={{ minHeight: 44 }}
               >
                 <i className="bi bi-qr-code-scan" style={{ fontSize: 18, color: "#ffffff" }}></i>
-                Escaneear QR
+                Escanear QR
               </Link>
             </div>
           </div>
@@ -188,7 +188,7 @@ export default function Map() {
                 value={search}
                 onChange={handleSearch}
                 placeholder="Buscar contenedor"
-                className="w-full pl-9 pr-3 py-2 bg-[#F7FAFC] dark:bg-slate-900 border border-[#E0E5EB] dark:border-slate-800 rounded-xl text-[16px] text-slate-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent transition-all"
+                className="w-full pl-9 pr-3 py-2 bg-[#F7FAFC] dark:bg-slate-900 border border-[#E0E5EB] dark:border-slate-800 rounded-xl text-[16px] text-slate-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500 dark:focus:ring-green-400 focus:border-transparent transition-all"
               />
             </div>
           </div>
@@ -210,14 +210,14 @@ export default function Map() {
                 <div className="flex flex-col items-end ml-4 shrink-0">
                   <span className={`inline-block font-bold px-2.5 py-1 rounded-xl text-xs mb-2 text-white text-center shadow-sm
                   ${c.estado === "Disponible"
-                      ? "bg-emerald-600 dark:bg-emerald-500"
+                      ? "bg-green-600 dark:bg-green-500"
                       : "bg-red-500 dark:bg-red-600"}`}
                     style={{ minWidth: 84 }}
                   >
                     {c.estado}
                   </span>
                   <div className="flex items-center gap-1 text-xs font-medium text-gray-500 dark:text-slate-400">
-                    <i className="fi fi-rr-marker text-emerald-600 dark:text-emerald-400" />
+                    <i className="fi fi-rr-marker text-green-600 dark:text-green-400" />
                     <span>{c.km} km</span>
                   </div>
                 </div>

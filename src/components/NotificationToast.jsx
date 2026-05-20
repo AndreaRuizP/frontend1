@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 
 export default function NotificationToast({ message, type = "success", duration = 3000, onClose }) {
     const [isVisible, setIsVisible] = useState(true);
@@ -15,7 +15,7 @@ export default function NotificationToast({ message, type = "success", duration 
     const getStyles = (type) => {
         switch (type) {
             case "success":
-                return "bg-emerald-50 dark:bg-slate-900 border-emerald-200 dark:border-emerald-900/50 text-emerald-700 dark:text-emerald-400";
+                return "bg-green-50 dark:bg-slate-900 border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400";
             case "error":
                 return "bg-red-50 dark:bg-slate-900 border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400";
             case "warning":

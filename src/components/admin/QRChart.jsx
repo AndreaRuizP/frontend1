@@ -1,4 +1,4 @@
-export default function QRChart() {
+﻿export default function QRChart() {
     const data = [
         { day: "Lun", qrs: 2400 },
         { day: "Mar", qrs: 2800 },
@@ -21,7 +21,7 @@ export default function QRChart() {
                 {data.map((item, index) => (
                     <div key={index} className="flex-1 flex flex-col items-center gap-2">
                         <div 
-                            className="w-full bg-emerald-100 dark:bg-emerald-900/60 rounded-t-lg relative group transition-colors duration-300" 
+                            className="w-full bg-green-100 dark:bg-green-900/60 rounded-t-lg relative group transition-colors duration-300" 
                             style={{ height: `${(item.qrs / maxValue) * 100}%` }}
                         >
                             <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-[#141B21] dark:bg-slate-100 text-white dark:text-slate-900 text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap z-10">

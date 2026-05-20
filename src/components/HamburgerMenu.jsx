@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 
 export default function HamburgerMenu({ open, onClose }) {
@@ -61,7 +61,7 @@ export default function HamburgerMenu({ open, onClose }) {
 
                 <div className="pt-4 border-t border-gray-100 dark:border-slate-800">
                     <Link to="/profile" onClick={onClose} className="flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-slate-800/50 p-2 rounded-xl transition-colors">
-                        <div className="w-10 h-10 rounded-full bg-emerald-600 dark:bg-emerald-500 text-white flex items-center justify-center font-bold">
+                        <div className="w-10 h-10 rounded-full bg-green-600 dark:bg-green-500 text-white flex items-center justify-center font-bold">
                             U
                         </div>
                         <div>
@@ -80,9 +80,9 @@ function MenuLink({ to, label, icon: Icon, onClick }) {
         <Link 
             to={to} 
             onClick={onClick} 
-            className="flex items-center gap-4 px-3 py-3 rounded-xl text-gray-900 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-slate-800/60 transition focus:outline-none focus:ring-2 focus:ring-green-600"
+            className="flex items-center gap-4 px-3 py-3 rounded-xl text-gray-900 dark:text-slate-200 hover:bg-green-50 dark:hover:bg-slate-800/60 transition focus:outline-none focus:ring-2 focus:ring-green-600"
         >
-            <span className="text-emerald-600 dark:text-emerald-400 w-10 h-10 flex items-center justify-center bg-emerald-50/50 dark:bg-slate-800 rounded-xl shrink-0">
+            <span className="text-green-600 dark:text-green-400 w-10 h-10 flex items-center justify-center bg-green-50/50 dark:bg-slate-800 rounded-xl shrink-0">
                 <Icon />
             </span>
             <span className="text-base font-semibold">{label}</span>

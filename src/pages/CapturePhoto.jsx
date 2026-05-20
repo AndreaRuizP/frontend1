@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import HamburgerMenu from "../components/HamburgerMenu";
 import UserHeader from "../components/UserHeader";
@@ -49,7 +49,7 @@ function ContainerInfoCard({ info }) {
                 {rows.map(({ label, value, mono }) => (
                     <div key={label} className="flex gap-2 items-baseline">
                         <span className="text-xs font-semibold text-[#6B7280] dark:text-slate-400 w-24 shrink-0">{label}:</span>
-                        <span className={`text-xs text-[#141B21] dark:text-slate-200 ${mono ? "font-mono bg-gray-50 dark:bg-slate-800 px-1.5 py-0.5 rounded text-red-500 dark:text-emerald-400" : ""}`}>{value}</span>
+                        <span className={`text-xs text-[#141B21] dark:text-slate-200 ${mono ? "font-mono bg-gray-50 dark:bg-slate-800 px-1.5 py-0.5 rounded text-red-500 dark:text-green-400" : ""}`}>{value}</span>
                     </div>
                 ))}
             </div>

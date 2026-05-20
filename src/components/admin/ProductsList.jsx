@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { sanitizeInput } from "../../utils/security";
 
 const initialProducts = [
@@ -83,7 +83,7 @@ export default function ProductsList() {
                                 <td className="px-6 py-4"><span className="px-3 py-1 bg-gray-50 dark:bg-slate-800 border border-[#E0E5EB] dark:border-slate-700 rounded-full text-xs text-[#6B7280] dark:text-slate-400">{p.category}</span></td>
                                 <td className="px-6 py-4 font-bold text-[#199A61]">{p.pointsCost.toLocaleString()}</td>
                                 <td className={`px-6 py-4 font-semibold ${p.stock === 0 ? "text-red-500" : "text-[#141B21] dark:text-white"}`}>{p.stock}</td>
-                                <td className="px-6 py-4"><span className={`px-3 py-1 rounded-full text-xs ${p.status === "active" ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400" : "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400"}`}>{p.status === "active" ? "Activo" : "Inactivo"}</span></td>
+                                <td className="px-6 py-4"><span className={`px-3 py-1 rounded-full text-xs ${p.status === "active" ? "bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400" : "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400"}`}>{p.status === "active" ? "Activo" : "Inactivo"}</span></td>
                                 <td className="px-6 py-4 flex gap-3">
                                     <button onClick={() => openEdit(p)} className="text-[#199A61] font-semibold text-sm">Editar</button>
                                     <button onClick={() => setToDelete(p)} className="text-red-500 font-semibold text-sm">Eliminar</button>

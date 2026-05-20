@@ -1,14 +1,14 @@
-import { Link, useLocation } from "react-router-dom";
+﻿import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 export default function Sidebar() {
   const location = useLocation();
 
   const links = [
-    { to: "/dashboard", label: "Home", icon: "fi fi-rr-home text-emerald-600 dark:text-emerald-400" },
-    { to: "/map", label: "Mapa", icon: "fi fi-rr-map-marker text-emerald-600 dark:text-emerald-400" },
-    { to: "/retos", label: "Retos", icon: "fi fi-rr-flame text-emerald-600 dark:text-emerald-400" },
-    { to: "/marketplace", label: "Marketplace", icon: "fi fi-rr-shopping-cart text-emerald-600 dark:text-emerald-400" },
+    { to: "/dashboard", label: "Home", icon: "fi fi-rr-home text-green-600 dark:text-green-400" },
+    { to: "/map", label: "Mapa", icon: "fi fi-rr-map-marker text-green-600 dark:text-green-400" },
+    { to: "/retos", label: "Retos", icon: "fi fi-rr-flame text-green-600 dark:text-green-400" },
+    { to: "/marketplace", label: "Marketplace", icon: "fi fi-rr-shopping-cart text-green-600 dark:text-green-400" },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -28,7 +28,7 @@ export default function Sidebar() {
             to={link.to}
             className={`flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-base transition ${
               isActive(link.to)
-                ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400"
+                ? "bg-green-50 text-green-700 dark:bg-green-950/40 dark:text-green-400"
                 : "text-[#141B21] dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800/60"
             }`}
           >

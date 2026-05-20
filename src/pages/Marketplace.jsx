@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import UserHeader from "../components/UserHeader";
 import HamburgerMenu from "../components/HamburgerMenu";
 import Sidebar from "../components/Sidebar";
@@ -66,7 +66,7 @@ export default function Marketplace() {
                   Tu saldo disponible
                 </div>
                 <div className="flex items-baseline gap-1.5 mt-1">
-                  <span className="text-emerald-600 dark:text-emerald-400 font-black text-2xl" style={{ fontSize: 26 }}>
+                  <span className="text-green-600 dark:text-green-400 font-black text-2xl" style={{ fontSize: 26 }}>
                     350
                   </span>
                   <span className="text-gray-500 dark:text-slate-400 text-sm font-medium" style={{ fontSize: 14 }}>
@@ -98,7 +98,7 @@ export default function Marketplace() {
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 placeholder="Buscar producto..."
-                className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-900 border border-[#E0E5EB] dark:border-slate-800 rounded-xl text-sm text-slate-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:border-emerald-500 dark:focus:border-emerald-400 shadow-sm transition-all"
+                className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-900 border border-[#E0E5EB] dark:border-slate-800 rounded-xl text-sm text-slate-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:border-green-500 dark:focus:border-green-400 shadow-sm transition-all"
                 style={{ fontSize: 15 }}
               />
             </div>
@@ -110,7 +110,7 @@ export default function Marketplace() {
                   onClick={() => setFiltro(tab)}
                   className={`flex-1 lg:flex-none lg:w-full py-2.5 rounded-xl border text-xs font-bold transition active:scale-95 focus:outline-none
                 ${filtro === tab
-                      ? "bg-emerald-600 text-white border-emerald-600 dark:bg-emerald-500 dark:border-emerald-500 shadow-sm"
+                      ? "bg-green-600 text-white border-green-600 dark:bg-green-500 dark:border-green-500 shadow-sm"
                       : "bg-white dark:bg-slate-900 text-[#141B21] dark:text-slate-300 border-[#E0E5EB] dark:border-slate-800 hover:bg-gray-50 dark:hover:bg-slate-800"
                     }`}
                   style={{ fontSize: 13, minHeight: 40 }}
@@ -143,7 +143,7 @@ export default function Marketplace() {
                     </span>
                     
                     <button
-                      className="w-full py-2.5 rounded-xl bg-emerald-600 dark:bg-emerald-500 hover:bg-emerald-700 dark:hover:bg-emerald-600 text-white font-bold transition active:scale-95 shadow-sm focus:outline-none"
+                      className="w-full py-2.5 rounded-xl bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 text-white font-bold transition active:scale-95 shadow-sm focus:outline-none"
                       style={{ minHeight: 38, fontSize: 14 }}
                     >
                       Canjear

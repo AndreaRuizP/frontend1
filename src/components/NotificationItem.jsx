@@ -1,11 +1,11 @@
-export default function NotificationItem({ notification, onMarkAsRead, onDelete }) {
+﻿export default function NotificationItem({ notification, onMarkAsRead, onDelete }) {
     const getTypeStyles = (type) => {
         switch (type) {
             case "success":
                 return { 
-                    bg: "bg-emerald-50 dark:bg-emerald-950/40", 
-                    text: "text-emerald-700 dark:text-emerald-400", 
-                    icon: "text-emerald-600 dark:text-emerald-400" 
+                    bg: "bg-green-50 dark:bg-green-950/40", 
+                    text: "text-green-700 dark:text-green-400", 
+                    icon: "text-green-600 dark:text-green-400" 
                 };
             case "warning":
                 return { 
@@ -54,7 +54,7 @@ export default function NotificationItem({ notification, onMarkAsRead, onDelete 
                             </p>
                         </div>
                         {!notification.read && (
-                            <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-500 rounded-full shrink-0 mt-1"></div>
+                            <div className="w-2 h-2 bg-green-600 dark:bg-green-500 rounded-full shrink-0 mt-1"></div>
                         )}
                     </div>
                     <p className="text-[11px] sm:text-xs text-[#9CA3AF] dark:text-slate-500 mt-2">{notification.timestamp}</p>

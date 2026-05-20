@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+﻿import { useState, useEffect, useRef } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import { useNavigate } from "react-router-dom";
 import HamburgerMenu from "../components/HamburgerMenu";
@@ -111,7 +111,7 @@ export default function ScanQR() {
                         <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-[#E0E5EB] dark:border-slate-800 p-5 lg:p-6 transition-colors duration-300">
                             <div className="flex items-start justify-between gap-4 mb-5">
                                 <div>
-                                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">Lector QR</p>
+                                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-green-600 dark:text-green-400">Lector QR</p>
                                     {/* CORRECCIÓN: Título adaptable dark:text-slate-100 */}
                                     <h2 className="text-xl lg:text-2xl font-black text-[#141B21] dark:text-slate-100 mt-1">Escanea el Código QR</h2>
                                     {/* CORRECCIÓN: Texto descriptivo adaptable dark:text-slate-400 */}
@@ -120,15 +120,15 @@ export default function ScanQR() {
                                     </p>
                                 </div>
                                 {/* CORRECCIÓN: Icono superior derecho con soporte nocturno */}
-                                <div className="hidden sm:flex w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900/60 items-center justify-center shrink-0">
-                                    <i className="bi bi-qr-code-scan text-xl text-emerald-600 dark:text-emerald-400"></i>
+                                <div className="hidden sm:flex w-12 h-12 rounded-2xl bg-green-50 dark:bg-green-950/40 border border-green-100 dark:border-green-900/60 items-center justify-center shrink-0">
+                                    <i className="bi bi-qr-code-scan text-xl text-green-600 dark:text-green-400"></i>
                                 </div>
                             </div>
 
                             {!showScanner ? (
                                 <div className="rounded-3xl border border-dashed border-[#C9D3DD] dark:border-slate-700 bg-[#f8fafc] dark:bg-slate-950/50 px-5 py-8 lg:py-10 flex flex-col items-center text-center">
-                                    <div className="w-16 h-16 rounded-full bg-white dark:bg-slate-900 border border-emerald-100 dark:border-emerald-900/40 shadow-sm flex items-center justify-center mb-4">
-                                        <i className="bi bi-qr-code-scan text-3xl text-emerald-600 dark:text-emerald-400"></i>
+                                    <div className="w-16 h-16 rounded-full bg-white dark:bg-slate-900 border border-green-100 dark:border-green-900/40 shadow-sm flex items-center justify-center mb-4">
+                                        <i className="bi bi-qr-code-scan text-3xl text-green-600 dark:text-green-400"></i>
                                     </div>
                                     <p className="font-bold text-[#141B21] dark:text-slate-200 text-base lg:text-lg">Prepara tu cámara</p>
                                     <p className="text-sm text-[#6B7280] dark:text-slate-400 mt-1.5 max-w-md leading-5">
@@ -137,7 +137,7 @@ export default function ScanQR() {
 
                                     <button
                                         onClick={() => setShowScanner(true)}
-                                        className="mt-5 inline-flex items-center gap-2 rounded-xl bg-emerald-600 dark:bg-emerald-500 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-700 dark:hover:bg-emerald-600 active:scale-95"
+                                        className="mt-5 inline-flex items-center gap-2 rounded-xl bg-green-600 dark:bg-green-500 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-green-700 dark:hover:bg-green-600 active:scale-95"
                                         style={{ minHeight: 44 }}
                                     >
                                         <i className="bi bi-qr-code-scan text-base"></i>
@@ -183,11 +183,11 @@ export default function ScanQR() {
                             )}
 
                             {qrResult && (
-                                <div className="mt-5 rounded-2xl border border-green-100 dark:border-emerald-900/30 bg-green-50 dark:bg-emerald-950/20 px-4 py-3 flex items-center gap-3">
-                                    <i className="bi bi-patch-check-fill text-green-600 dark:text-emerald-400 text-xl shrink-0"></i>
+                                <div className="mt-5 rounded-2xl border border-green-100 dark:border-green-900/30 bg-green-50 dark:bg-green-950/20 px-4 py-3 flex items-center gap-3">
+                                    <i className="bi bi-patch-check-fill text-green-600 dark:text-green-400 text-xl shrink-0"></i>
                                     <div>
-                                        <p className="font-bold text-green-800 dark:text-emerald-400 text-sm">¡Contenedor detectado!</p>
-                                        <p className="text-xs text-green-700 dark:text-emerald-500/90 mt-0.5">Redirigiendo a captura de foto...</p>
+                                        <p className="font-bold text-green-800 dark:text-green-400 text-sm">¡Contenedor detectado!</p>
+                                        <p className="text-xs text-green-700 dark:text-green-500/90 mt-0.5">Redirigiendo a captura de foto...</p>
                                     </div>
                                 </div>
                             )}

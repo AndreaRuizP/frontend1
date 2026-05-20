@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+﻿import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserHeader from "../components/UserHeader";
 import HamburgerMenu from "../components/HamburgerMenu";
@@ -66,7 +66,7 @@ export default function Profile() {
           <div className="mb-4 lg:mb-6">
             <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-slate-800 flex flex-col items-center transition-colors duration-300">
               <div
-                className="w-20 h-20 bg-emerald-50 dark:bg-slate-950 rounded-full flex items-center justify-center mb-3 border-4 border-emerald-100 dark:border-slate-800 overflow-hidden relative cursor-pointer group"
+                className="w-20 h-20 bg-green-50 dark:bg-slate-950 rounded-full flex items-center justify-center mb-3 border-4 border-green-100 dark:border-slate-800 overflow-hidden relative cursor-pointer group"
                 onClick={() => fileInputRef.current?.click()}
                 role="button"
                 tabIndex={0}
@@ -79,20 +79,20 @@ export default function Profile() {
                 {profilePhoto ? (
                   <img src={profilePhoto} alt="Foto de perfil" className="w-full h-full object-cover" />
                 ) : (
-                  <i className="bi bi-person text-emerald-600 dark:text-emerald-400 text-3xl"></i>
+                  <i className="bi bi-person text-green-600 dark:text-green-400 text-3xl"></i>
                 )}
                 <span className="absolute bottom-0 left-0 right-0 h-6 bg-black/40 text-white text-[9px] font-bold flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   Editar
                 </span>
-                <span className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-white dark:bg-slate-800 shadow flex items-center justify-center border border-emerald-100 dark:border-slate-700">
-                  <i className="bi bi-camera text-emerald-600 dark:text-emerald-400 text-xs"></i>
+                <span className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-white dark:bg-slate-800 shadow flex items-center justify-center border border-green-100 dark:border-slate-700">
+                  <i className="bi bi-camera text-green-600 dark:text-green-400 text-xs"></i>
                 </span>
               </div>
               
               <h2 className="font-black text-slate-800 dark:text-slate-100 text-lg">Nombre_Usuario</h2>
               <p className="text-gray-400 dark:text-slate-400 text-xs mb-4">tu@gmail.com</p>
               
-              <span className="bg-emerald-600 dark:bg-emerald-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-sm">
+              <span className="bg-green-600 dark:bg-green-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-sm">
                 Nivel 3: Reciclador Activo
               </span>
               <input
@@ -129,7 +129,7 @@ export default function Profile() {
               
               <div className="h-2.5 bg-gray-100 dark:bg-slate-950 rounded-full overflow-hidden mb-2">
                 <div
-                  className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full"
+                  className="h-full bg-gradient-to-r from-green-400 to-green-500 rounded-full"
                   style={{ width: "70%" }}
                 />
               </div>
@@ -145,14 +145,14 @@ export default function Profile() {
             <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-800 divide-y divide-gray-50 dark:divide-slate-800/50 overflow-hidden transition-colors duration-300">
               {history.map(({ icon, label, time, points }, i) => (
                 <div key={i} className="flex items-center gap-3 px-4 py-3.5 hover:bg-gray-50/50 dark:hover:bg-slate-800/30 transition-colors">
-                  <div className="w-9 h-9 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <i className={`${icon} text-emerald-600 dark:text-emerald-400 text-base`}></i>
+                  <div className="w-9 h-9 bg-green-50 dark:bg-green-950/30 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i className={`${icon} text-green-600 dark:text-green-400 text-base`}></i>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-bold text-slate-800 dark:text-slate-100 truncate">{label}</p>
                     <p className="text-[10px] text-gray-400 dark:text-slate-400 font-medium mt-0.5">{time}</p>
                   </div>
-                  <span className="text-emerald-600 dark:text-emerald-400 font-black text-sm whitespace-nowrap">{points} pts</span>
+                  <span className="text-green-600 dark:text-green-400 font-black text-sm whitespace-nowrap">{points} pts</span>
                 </div>
               ))}
             </div>
