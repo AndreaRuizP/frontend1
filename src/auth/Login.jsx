@@ -83,6 +83,10 @@ export default function Login() {
         autoComplete="off"
         onSubmit={handleSubmit}
       >
+        <Link to="/" className="flex items-center gap-1 text-xs text-[#7D8797] dark:text-slate-500 hover:text-green-600 dark:hover:text-green-400 mb-6 transition-colors w-fit">
+          <i className="bi bi-arrow-left text-xs"></i>
+          Volver al inicio
+        </Link>
         <h1 className="text-2xl font-bold text-center text-green-600 dark:text-green-500 mb-1">
           CleanPoints
         </h1>

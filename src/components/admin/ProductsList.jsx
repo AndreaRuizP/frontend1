@@ -63,7 +63,7 @@ export default function ProductsList() {
                     <input type="text" placeholder="Buscar..." value={searchTerm} onChange={(e) => setSearchTerm(sanitizeInput(e.target.value))} className="w-full pl-12 pr-4 py-3 bg-white dark:bg-slate-900 border border-[#E0E5EB] dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-[#199A61] dark:text-white" />
                 </div>
                 <button onClick={openCreate} className="flex items-center gap-2 px-4 py-3 bg-[#199A61] hover:bg-[#178353] text-white font-semibold rounded-xl transition">
-                    <i className="bi bi-plus-lg"></i> Registrar
+                    <i className="bi bi-plus-lg"></i> Crear Producto
                 </button>
             </div>
 
