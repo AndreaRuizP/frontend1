@@ -2,10 +2,9 @@ import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import AdminRoute from "./auth/AdminRoute";
-
-const Home           = lazy(() => import("./pages/Home"));
-const Login          = lazy(() => import("./auth/Login"));
-const Registre       = lazy(() => import("./auth/Register"));
+import Home   from "./pages/Home";
+import Login  from "./auth/Login";
+import Registre from "./auth/Register";
 const DashboardHome  = lazy(() => import("./pages/DashboardHome"));
 const Map            = lazy(() => import("./pages/Map"));
 const Challenge      = lazy(() => import("./pages/Challenge"));
