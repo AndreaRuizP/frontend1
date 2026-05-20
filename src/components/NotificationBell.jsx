@@ -43,7 +43,7 @@ export default function NotificationBell() {
                 style={{ minWidth: 44, minHeight: 44 }}
                 aria-label="Notificaciones"
             >
-                <i className="bi bi-bell text-xl leading-none block"></i>
+                <i className="bi bi-bell text-xl leading-[0]"></i>
                 
                 {unreadCount > 0 && (
                     <span className="absolute top-1 right-1 w-5 h-5 bg-red-500 text-white text-[11px] font-bold rounded-full flex items-center justify-center leading-none ring-2 ring-white dark:ring-slate-900 transition-all">

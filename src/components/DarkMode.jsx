@@ -9,9 +9,9 @@ export default function DarkMode({ checked, onChange }) {
       aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
     >
       {isDark ? (
-        <i className="bi bi-moon-fill text-xl text-yellow-400 block min-w-[20px] min-h-[20px]"></i>
+        <i className="bi bi-moon-fill text-xl text-yellow-400 leading-[0]"></i>
       ) : (
-        <i className="bi bi-sun-fill text-xl text-[#FDB022] block min-w-[20px] min-h-[20px]"></i>
+        <i className="bi bi-sun-fill text-xl text-[#FDB022] leading-[0]"></i>
       )}
     </button>
   );

@@ -28,7 +28,7 @@ function UserHeader({
           className="flex items-center justify-center p-0 m-0 w-11 h-11 text-current hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
           style={{ minWidth: 44, minHeight: 44 }}
         >
-          <i className="fi fi-rr-menu-burger text-xl leading-none block"></i>
+          <i className="fi fi-rr-menu-burger text-xl leading-[0]"></i>
         </button>
       ) : (
         <div style={{ minWidth: 44, minHeight: 44 }} />
@@ -54,7 +54,7 @@ function UserHeader({
             className="flex items-center justify-center bg-transparent border-0 p-0 m-0 w-11 h-11 text-current hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-none leading-none"
             style={{ minWidth: 44, minHeight: 44 }}
           >
-            <i className="fi fi-rr-user text-xl leading-none block"></i>
+            <i className="fi fi-rr-user text-xl leading-[0]"></i>
           </button>
         )}
       </div>
