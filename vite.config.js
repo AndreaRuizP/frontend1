@@ -18,8 +18,6 @@ export default defineConfig({
     },
   },
   server: {
-    headers: {
-      'Content-Security-Policy': "default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https:; connect-src 'self' https:;",
-    },
+    headers: {},
   },
 })

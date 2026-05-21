@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { validateEmail, validatePassword, validateName, sanitizeInput, authStorage } from "../utils/security";
 import { ThemeContext } from "../context/ThemeContext";
+import { register as registerApi, login as loginApi } from "../api/auth";
 
 const HojaIcon = ({ className, style }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className} style={style}>
@@ -15,10 +16,12 @@ export default function Register() {
   const [pass, setPass] = useState("");
   const [pass2, setPass2] = useState("");
   const [errors, setErrors] = useState({});
+  const [apiError, setApiError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { darkMode } = useContext(ThemeContext);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const newErrors = {};
 
@@ -55,8 +58,19 @@ export default function Register() {
     }
 
     setErrors({});
-    authStorage.setSession("mock-jwt-token", { nombre: cleanNombre, email: cleanEmail });
-    navigate("/dashboard");
+    setApiError("");
+    setLoading(true);
+
+    try {
+      await registerApi(cleanNombre, cleanEmail, pass);
+      const { token, user } = await loginApi(cleanEmail, pass);
+      authStorage.setSession(token, { id: user.id, name: user.name, email: user.email, role: user.role });
+      navigate("/dashboard");
+    } catch (err) {
+      setApiError(err.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -170,11 +184,15 @@ export default function Register() {
         {errors.pass2 && (
           <p id="pass2-error" role="alert" className="text-red-500 dark:text-red-400 text-xs mb-4">{errors.pass2}</p>
         )}
+        {apiError && (
+          <p role="alert" className="text-red-500 dark:text-red-400 text-xs mb-3 text-center">{apiError}</p>
+        )}
         <button
           type="submit"
-          className="w-full h-11 bg-green-600 dark:bg-green-600 text-white font-semibold rounded-lg transition hover:bg-green-700 dark:hover:bg-green-700 mb-2"
+          disabled={loading}
+          className="w-full h-11 bg-green-600 dark:bg-green-600 text-white font-semibold rounded-lg transition hover:bg-green-700 dark:hover:bg-green-700 mb-2 disabled:opacity-60"
         >
-          Crear Cuenta
+          {loading ? "Creando cuenta..." : "Crear Cuenta"}
         </button>
         <div className="text-center text-sm text-slate-600 dark:text-slate-400">
           ¿Ya tienes cuenta?{" "}

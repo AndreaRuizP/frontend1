@@ -7,6 +7,37 @@ import ValidationResult from "../components/ValidationResult";
 import PhotoPreview from "../components/PhotoPreview";
 import CameraCapture from "../components/CameraCapture";
 import QRDetectedPrompt from "../components/QRDetectedPrompt";
+import { createReport } from "../api/reports";
+import { authStorage } from "../utils/security";
+
+function dataURLtoBlob(dataURL) {
+  const [header, base64] = dataURL.split(",");
+  const mime = header.match(/:(.*?);/)[1];
+  const binary = atob(base64);
+  const array = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) array[i] = binary.charCodeAt(i);
+  return new Blob([array], { type: mime });
+}
+
+function getCoords(qrCode) {
+  return new Promise((resolve) => {
+    // Try to extract from text-format QR first
+    const match = qrCode && qrCode.match(/Coordenadas:\s*([-\d.]+),\s*([-\d.]+)/i);
+    if (match) {
+      resolve({ lat: parseFloat(match[1]), lng: parseFloat(match[2]) });
+      return;
+    }
+    // Fall back to browser geolocation
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+        () => resolve({ lat: -11.003, lng: -77.008 })
+      );
+    } else {
+      resolve({ lat: -11.003, lng: -77.008 });
+    }
+  });
+}
 
 function parseContainerQR(text) {
     const extract = (label, nextLabels) => {
@@ -71,14 +102,35 @@ export default function CapturePhoto() {
 
     const handleValidatePhoto = async () => {
         setIsValidating(true);
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        setValidationResult({
-            success: true,
-            title: "¡Reciclaje Validado!",
-            points: 46,
-            message: "Material reciclable detectado correctamente"
-        });
-        setIsValidating(false);
+        try {
+            const { lat, lng } = await getCoords(qrCode);
+
+            const blob = dataURLtoBlob(photoCapture);
+            const formData = new FormData();
+            formData.append("image", blob, "photo.jpg");
+            formData.append("title", "Reciclaje validado");
+            formData.append("description", "Residuo depositado en contenedor");
+            formData.append("latitude", String(lat));
+            formData.append("longitude", String(lng));
+
+            const result = await createReport(formData);
+            const material = result.vision?.detectedMaterial || result.report?.detectedMaterial || "GENERAL_WASTE";
+            const points = result.report?.pointsEarned ?? 0;
+
+            setValidationResult({
+                title: "¡Reciclaje Validado!",
+                points,
+                message: `Material detectado: ${material}`,
+            });
+        } catch (err) {
+            setValidationResult({
+                title: "Validación fallida",
+                points: 0,
+                message: err.message || "La imagen no pudo ser validada. Intenta con una foto más clara del residuo.",
+            });
+        } finally {
+            setIsValidating(false);
+        }
     };
 
     return (

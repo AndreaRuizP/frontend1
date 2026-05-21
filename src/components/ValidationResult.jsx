@@ -4,7 +4,7 @@ export default function ValidationResult({ points = 46, title = "¡Reciclaje Val
     const navigate = useNavigate();
 
     const handleNewScan = () => {
-        navigate("/scan-qr");
+        navigate("/scan");
     };
 
     const handleGoHome = () => {
