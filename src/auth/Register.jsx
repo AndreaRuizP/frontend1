@@ -15,6 +15,8 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [pass2, setPass2] = useState("");
+  const [showPass, setShowPass] = useState(false);
+  const [showPass2, setShowPass2] = useState(false);
   const [errors, setErrors] = useState({});
   const [apiError, setApiError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -114,6 +116,10 @@ export default function Register() {
         autoComplete="off"
         onSubmit={handleSubmit}
       >
+        <Link to="/" className="inline-flex items-center gap-1.5 text-xs text-gray-400 dark:text-slate-500 hover:text-green-600 dark:hover:text-green-400 transition-colors mb-4">
+          <i className="bi bi-arrow-left text-xs"></i>
+          Volver al inicio
+        </Link>
         <h1 className="text-2xl font-bold text-center text-green-600 dark:text-green-500 mb-1">
           CleanPoints
         </h1>
@@ -155,32 +161,54 @@ export default function Register() {
         <label className="block text-black dark:text-slate-200 text-sm mb-1" htmlFor="password">
           Contraseña
         </label>
-        <input
-          className={`w-full px-4 py-2 border rounded-lg bg-[#F9FAFB] dark:bg-slate-950 text-base text-black dark:text-white placeholder-[#ADB5BD] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent ${errors.pass ? "border-red-400 mb-1" : "border-[#E0E5EB] dark:border-slate-800 mb-4"}`}
-          id="password"
-          type="password"
-          placeholder="••••••••"
-          value={pass}
-          onChange={e => setPass(e.target.value)}
-          aria-describedby={errors.pass ? "pass-error" : undefined}
-          aria-invalid={!!errors.pass}
-        />
+        <div className={`relative ${errors.pass ? "mb-1" : "mb-4"}`}>
+          <input
+            className={`w-full px-4 py-2 pr-10 border rounded-lg bg-[#F9FAFB] dark:bg-slate-950 text-base text-black dark:text-white placeholder-[#ADB5BD] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent ${errors.pass ? "border-red-400" : "border-[#E0E5EB] dark:border-slate-800"}`}
+            id="password"
+            type={showPass ? "text" : "password"}
+            placeholder="••••••••"
+            value={pass}
+            onChange={e => setPass(e.target.value)}
+            aria-describedby={errors.pass ? "pass-error" : undefined}
+            aria-invalid={!!errors.pass}
+          />
+          <button
+            type="button"
+            tabIndex={-1}
+            onClick={() => setShowPass(v => !v)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-300 transition-colors"
+            aria-label={showPass ? "Ocultar contraseña" : "Mostrar contraseña"}
+          >
+            <i className={`bi ${showPass ? "bi-eye-slash" : "bi-eye"} text-base`}></i>
+          </button>
+        </div>
         {errors.pass && (
           <p id="pass-error" role="alert" className="text-red-500 dark:text-red-400 text-xs mb-3">{errors.pass}</p>
         )}
         <label className="block text-black dark:text-slate-200 text-sm mb-1" htmlFor="password2">
           Confirmar contraseña
         </label>
-        <input
-          className={`w-full px-4 py-2 border rounded-lg bg-[#F9FAFB] dark:bg-slate-950 text-base text-black dark:text-white placeholder-[#ADB5BD] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent ${errors.pass2 ? "border-red-400 mb-1" : "border-[#E0E5EB] dark:border-slate-800 mb-6"}`}
-          id="password2"
-          type="password"
-          placeholder="••••••••"
-          value={pass2}
-          onChange={e => setPass2(e.target.value)}
-          aria-describedby={errors.pass2 ? "pass2-error" : undefined}
-          aria-invalid={!!errors.pass2}
-        />
+        <div className={`relative ${errors.pass2 ? "mb-1" : "mb-6"}`}>
+          <input
+            className={`w-full px-4 py-2 pr-10 border rounded-lg bg-[#F9FAFB] dark:bg-slate-950 text-base text-black dark:text-white placeholder-[#ADB5BD] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent ${errors.pass2 ? "border-red-400" : "border-[#E0E5EB] dark:border-slate-800"}`}
+            id="password2"
+            type={showPass2 ? "text" : "password"}
+            placeholder="••••••••"
+            value={pass2}
+            onChange={e => setPass2(e.target.value)}
+            aria-describedby={errors.pass2 ? "pass2-error" : undefined}
+            aria-invalid={!!errors.pass2}
+          />
+          <button
+            type="button"
+            tabIndex={-1}
+            onClick={() => setShowPass2(v => !v)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-300 transition-colors"
+            aria-label={showPass2 ? "Ocultar contraseña" : "Mostrar contraseña"}
+          >
+            <i className={`bi ${showPass2 ? "bi-eye-slash" : "bi-eye"} text-base`}></i>
+          </button>
+        </div>
         {errors.pass2 && (
           <p id="pass2-error" role="alert" className="text-red-500 dark:text-red-400 text-xs mb-4">{errors.pass2}</p>
         )}

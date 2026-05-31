@@ -13,6 +13,7 @@ const HojaIcon = ({ className, style }) => (
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [apiError, setApiError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -95,6 +96,10 @@ export default function Login() {
         autoComplete="off"
         onSubmit={handleSubmit}
       >
+        <Link to="/" className="inline-flex items-center gap-1.5 text-xs text-gray-400 dark:text-slate-500 hover:text-green-600 dark:hover:text-green-400 transition-colors mb-4">
+          <i className="bi bi-arrow-left text-xs"></i>
+          Volver al inicio
+        </Link>
         <h1 className="text-2xl font-bold text-center text-green-600 dark:text-green-500 mb-1">
           CleanPoints
         </h1>
@@ -121,17 +126,28 @@ export default function Login() {
         <label className="block text-black dark:text-slate-200 text-sm mb-1" htmlFor="password">
           Contraseña
         </label>
-        <input
-          className={`w-full px-4 py-2 border rounded-lg bg-[#F9FAFB] dark:bg-slate-950 text-base text-black dark:text-white placeholder-[#ADB5BD] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent ${errors.password ? "border-red-400 mb-1" : "border-[#E0E5EB] dark:border-slate-800 mb-6"}`}
-          id="password"
-          type="password"
-          autoComplete="current-password"
-          placeholder="••••••••"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          aria-describedby={errors.password ? "password-error" : undefined}
-          aria-invalid={!!errors.password}
-        />
+        <div className={`relative ${errors.password ? "mb-1" : "mb-6"}`}>
+          <input
+            className={`w-full px-4 py-2 pr-10 border rounded-lg bg-[#F9FAFB] dark:bg-slate-950 text-base text-black dark:text-white placeholder-[#ADB5BD] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent ${errors.password ? "border-red-400" : "border-[#E0E5EB] dark:border-slate-800"}`}
+            id="password"
+            type={showPassword ? "text" : "password"}
+            autoComplete="current-password"
+            placeholder="••••••••"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            aria-describedby={errors.password ? "password-error" : undefined}
+            aria-invalid={!!errors.password}
+          />
+          <button
+            type="button"
+            tabIndex={-1}
+            onClick={() => setShowPassword(v => !v)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-300 transition-colors"
+            aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+          >
+            <i className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"} text-base`}></i>
+          </button>
+        </div>
         {errors.password && (
           <p id="password-error" role="alert" className="text-red-500 dark:text-red-400 text-xs mb-4">{errors.password}</p>
         )}
