@@ -45,9 +45,19 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const { token, user } = await loginApi(cleanEmail, password);
-      authStorage.setSession(token, { id: user.id, name: user.name, email: user.email, role: user.role });
-      navigate(user.role === "admin" ? "/admin" : "/dashboard");
+      const response = await loginApi(cleanEmail, password);
+      const token = response.token || response;
+      
+      // Construir usuario si el backend no lo devuelve
+      const userData = response.user || {
+        id: null,
+        name: cleanEmail,
+        email: cleanEmail,
+        role: "citizen"
+      };
+      
+      authStorage.setSession(token, userData);
+      navigate(userData.role === "admin" ? "/admin" : "/dashboard");
     } catch (err) {
       setApiError(err.message);
     } finally {

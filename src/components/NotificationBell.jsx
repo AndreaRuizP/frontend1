@@ -16,12 +16,16 @@ export default function NotificationBell() {
   useEffect(() => {
     setLoading(true);
     getNotifications()
-      .then(({ notifications: ns }) => setNotifications(ns))
-      .catch(() => {})
+      .then((data) => {
+        // Manejar diferentes formatos de respuesta
+        const ns = data?.notifications || data || [];
+        setNotifications(Array.isArray(ns) ? ns : []);
+      })
+      .catch(() => setNotifications([]))
       .finally(() => setLoading(false));
   }, []);
 
-  const unreadCount = notifications.filter((n) => !n.read).length;
+  const unreadCount = Array.isArray(notifications) ? notifications.filter((n) => !n.read).length : 0;
 
   async function handleMarkAsRead(id) {
     setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));

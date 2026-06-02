@@ -65,8 +65,18 @@ export default function Register() {
 
     try {
       await registerApi(cleanNombre, cleanEmail, pass);
-      const { token, user } = await loginApi(cleanEmail, pass);
-      authStorage.setSession(token, { id: user.id, name: user.name, email: user.email, role: user.role });
+      const response = await loginApi(cleanEmail, pass);
+      const token = response.token || response;
+      
+      // Construir usuario si el backend no lo devuelve
+      const userData = response.user || {
+        id: null,
+        name: cleanNombre,
+        email: cleanEmail,
+        role: "citizen"
+      };
+      
+      authStorage.setSession(token, userData);
       navigate("/dashboard");
     } catch (err) {
       setApiError(err.message);
