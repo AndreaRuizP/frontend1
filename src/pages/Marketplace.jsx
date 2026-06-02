@@ -71,7 +71,7 @@ export default function Marketplace() {
   const canAfford = (cost) => balance !== null && balance.balance >= cost;
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col lg:flex-row transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-slate-950 flex flex-col lg:flex-row transition-colors duration-300">
       <Sidebar />
 
       {/* Toast */}
