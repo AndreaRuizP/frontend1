@@ -118,12 +118,14 @@ export default function CapturePhoto() {
             const points = result.report?.pointsEarned ?? 0;
 
             setValidationResult({
+                success: true,
                 title: "¡Reciclaje Validado!",
                 points,
                 message: `Material detectado: ${material}`,
             });
         } catch (err) {
             setValidationResult({
+                success: false,
                 title: "Validación fallida",
                 points: 0,
                 message: err.message || "La imagen no pudo ser validada. Intenta con una foto más clara del residuo.",
