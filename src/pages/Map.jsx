@@ -1,89 +1,13 @@
-<<<<<<< HEAD
-﻿import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-=======
 import { useEffect, useState, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
->>>>>>> prueba
 import { Link } from "react-router-dom";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import UserHeader from "../components/UserHeader";
 import HamburgerMenu from "../components/HamburgerMenu";
 import Sidebar from "../components/Sidebar";
 import { getContainers } from "../api/containers";
 
-<<<<<<< HEAD
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconUrl: markerIcon,
-  iconRetinaUrl: markerIcon2x,
-  shadowUrl: markerShadow,
-});
-
-const contenedores = [
-  {
-    nombre: "Contenedor Plaza Central",
-    direccion: "Cra. 5 con Calle 22",
-    km: 0.3,
-    estado: "Disponible",
-    tipo: "Plástico",
-    lat: 11.241210, lng: -74.211022
-  },
-  {
-    nombre: "Contenedor Parque Norte",
-    direccion: "Calle 29 con Cra. 4",
-    km: 0.7,
-    estado: "Disponible",
-    tipo: "Papel y Cartón",
-    lat: 11.244350, lng: -74.213100
-  },
-  {
-    nombre: "Contenedor Centro Comercial",
-    direccion: "Av. Libertador con Cra. 16",
-    km: 1.2,
-    estado: "Lleno",
-    tipo: "Vidrio",
-    lat: 11.243000, lng: -74.220200
-  },
-  {
-    nombre: "Contenedor Biblioteca Pública",
-    direccion: "Calle 17 con Cra. 3",
-    km: 1.5,
-    estado: "Disponible",
-    tipo: "Orgánicos",
-    lat: 11.246499, lng: -74.210140
-  },
-  {
-    nombre: "Contenedor Calle 10",
-    direccion: "Calle 10 con Av. El Rio",
-    km: 1.6,
-    estado: "Lleno",
-    tipo: "Plástico",
-    lat: 11.250000, lng: -74.218000
-  },
-  {
-    nombre: "Contenedor Calle 25",
-    direccion: "Calle 25 con Cra. 15",
-    km: 2.0,
-    estado: "Disponible",
-    tipo: "Vidrio",
-    lat: 11.255000, lng: -74.220000
-  },
-  {
-    nombre: "Contenedor Las Delicias",
-    direccion: "Cra. 12 con Calle 41",
-    km: 2.3,
-    estado: "Disponible",
-    tipo: "Orgánicos",
-    lat: 11.251150, lng: -74.212000
-  }
-];
-=======
 // Fix leaflet default marker icons (webpack/vite issue)
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -91,7 +15,6 @@ L.Icon.Default.mergeOptions({
   iconUrl:       "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
   shadowUrl:     "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
->>>>>>> prueba
 
 const SANTA_MARTA_CENTER = [11.2408, -74.2027];
 const PAGE_SIZE_MOBILE  = 3;
@@ -212,13 +135,8 @@ export default function Map() {
         <div className="flex justify-between items-center pt-3 px-4 lg:hidden">
           <UserHeader onMenu={() => setMenuOpen(true)} />
         </div>
-<<<<<<< HEAD
-        
-        <div className="hidden lg:flex items-center justify-end px-6 py-4 border-b border-[#E0E5EB] dark:border-slate-800">
-=======
 
         <div className="hidden lg:flex items-center justify-end px-4 lg:px-8 pt-4 pb-2">
->>>>>>> prueba
           <UserHeader onMenu={() => setMenuOpen(true)} showMenu={false} showDarkMode={true} />
         </div>
 
@@ -238,18 +156,6 @@ export default function Map() {
                   : `${containers.length} contenedor${containers.length !== 1 ? "es" : ""} en Santa Marta`}
               </div>
             </div>
-<<<<<<< HEAD
-            <div className="flex justify-start lg:justify-end">
-              <Link
-                to="/scan"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-green-600 dark:bg-green-500 font-bold hover:bg-green-700 dark:hover:bg-green-600 transition text-white shadow-sm shadow-green-600/10"
-                style={{ minHeight: 44 }}
-              >
-                <i className="bi bi-qr-code-scan" style={{ fontSize: 18, color: "#ffffff" }}></i>
-                Escanear QR
-              </Link>
-            </div>
-=======
             <Link
               to="/scan"
               className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 dark:bg-emerald-500 font-bold hover:bg-emerald-700 dark:hover:bg-emerald-600 transition text-white shadow-sm"
@@ -258,7 +164,6 @@ export default function Map() {
               <i className="bi bi-qr-code-scan" style={{ fontSize: 18 }}></i>
               Escanear QR
             </Link>
->>>>>>> prueba
           </div>
 
           {/* Mapa */}
@@ -301,13 +206,8 @@ export default function Map() {
                 type="text"
                 value={search}
                 onChange={handleSearch}
-<<<<<<< HEAD
-                placeholder="Buscar contenedor"
-                className="w-full pl-9 pr-3 py-2 bg-[#F7FAFC] dark:bg-slate-900 border border-[#E0E5EB] dark:border-slate-800 rounded-xl text-[16px] text-slate-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500 dark:focus:ring-green-400 focus:border-transparent transition-all"
-=======
                 placeholder="Buscar contenedor por nombre o tipo"
                 className="w-full pl-9 pr-3 py-2 bg-[#F7FAFC] dark:bg-slate-900 border border-[#E0E5EB] dark:border-slate-800 rounded-xl text-[16px] text-slate-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent transition-all"
->>>>>>> prueba
               />
             </div>
           </div>
@@ -342,30 +242,6 @@ export default function Map() {
                       </span>
                     </div>
                   </div>
-<<<<<<< HEAD
-                </div>
-                
-                <div className="flex flex-col items-end ml-4 shrink-0">
-                  <span className={`inline-block font-bold px-2.5 py-1 rounded-xl text-xs mb-2 text-white text-center shadow-sm
-                  ${c.estado === "Disponible"
-                      ? "bg-green-600 dark:bg-green-500"
-                      : "bg-red-500 dark:bg-red-600"}`}
-                    style={{ minWidth: 84 }}
-                  >
-                    {c.estado}
-                  </span>
-                  <div className="flex items-center gap-1 text-xs font-medium text-gray-500 dark:text-slate-400">
-                    <i className="fi fi-rr-marker text-green-600 dark:text-green-400" />
-                    <span>{c.km} km</span>
-                  </div>
-                </div>
-              </div>
-            )) : (
-              <div className="text-center text-gray-400 dark:text-slate-500 py-8 lg:col-span-2">Sin resultados</div>
-            )}
-          </div>
-=======
->>>>>>> prueba
 
                   <div className="flex flex-col items-end ml-4 shrink-0 gap-2">
                     <span className={`inline-block font-bold px-2.5 py-1 rounded-xl text-xs text-white shadow-sm ${statusColor(c.status)}`}

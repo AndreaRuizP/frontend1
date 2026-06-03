@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿import { useRef, useState } from "react";
-=======
 import { useRef, useState, useEffect } from "react";
->>>>>>> prueba
 import { useNavigate } from "react-router-dom";
 import UserHeader from "../components/UserHeader";
 import HamburgerMenu from "../components/HamburgerMenu";
@@ -151,13 +147,8 @@ export default function Profile() {
           <div className="mb-4 lg:mb-6">
             <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-slate-800 flex flex-col items-center transition-colors duration-300">
               <div
-<<<<<<< HEAD
-                className="w-20 h-20 bg-green-50 dark:bg-slate-950 rounded-full flex items-center justify-center mb-3 border-4 border-green-100 dark:border-slate-800 overflow-hidden relative cursor-pointer group"
-                onClick={() => fileInputRef.current?.click()}
-=======
                 className="w-20 h-20 bg-emerald-50 dark:bg-slate-950 rounded-full flex items-center justify-center mb-3 border-4 border-emerald-100 dark:border-slate-800 overflow-hidden relative cursor-pointer group"
                 onClick={() => !uploadingAvatar && fileInputRef.current?.click()}
->>>>>>> prueba
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => { if ((e.key === "Enter" || e.key === " ") && !uploadingAvatar) fileInputRef.current?.click(); }}
@@ -167,21 +158,6 @@ export default function Profile() {
                 ) : (
                   <i className="bi bi-person text-green-600 dark:text-green-400 text-3xl"></i>
                 )}
-<<<<<<< HEAD
-                <span className="absolute bottom-0 left-0 right-0 h-6 bg-black/40 text-white text-[9px] font-bold flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  Editar
-                </span>
-                <span className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-white dark:bg-slate-800 shadow flex items-center justify-center border border-green-100 dark:border-slate-700">
-                  <i className="bi bi-camera text-green-600 dark:text-green-400 text-xs"></i>
-                </span>
-              </div>
-              
-              <h2 className="font-black text-slate-800 dark:text-slate-100 text-lg">Nombre_Usuario</h2>
-              <p className="text-gray-400 dark:text-slate-400 text-xs mb-4">tu@gmail.com</p>
-              
-              <span className="bg-green-600 dark:bg-green-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-sm">
-                Nivel 3: Reciclador Activo
-=======
                 {uploadingAvatar ? (
                   <span className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-full">
                     <i className="bi bi-arrow-repeat text-white text-lg animate-spin"></i>
@@ -216,7 +192,6 @@ export default function Profile() {
 
               <span className="bg-emerald-600 dark:bg-emerald-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-sm">
                 {loading ? "Cargando…" : `Nivel ${lvl.level}: ${lvl.name}`}
->>>>>>> prueba
               </span>
 
               <input ref={fileInputRef} type="file" accept="image/*" onChange={handlePhotoChange} className="hidden" />
@@ -258,13 +233,8 @@ export default function Profile() {
 
               <div className="h-2.5 bg-gray-100 dark:bg-slate-950 rounded-full overflow-hidden mb-2">
                 <div
-<<<<<<< HEAD
-                  className="h-full bg-gradient-to-r from-green-400 to-green-500 rounded-full"
-                  style={{ width: "70%" }}
-=======
                   className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full transition-all duration-700"
                   style={{ width: `${loading ? 0 : pct}%` }}
->>>>>>> prueba
                 />
               </div>
               <div className="flex justify-between">
@@ -280,18 +250,6 @@ export default function Profile() {
           <div className="mb-6">
             <h3 className="font-bold text-slate-700 dark:text-slate-300 text-sm mb-2.5 px-1">Historial reciente</h3>
             <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-800 divide-y divide-gray-50 dark:divide-slate-800/50 overflow-hidden transition-colors duration-300">
-<<<<<<< HEAD
-              {history.map(({ icon, label, time, points }, i) => (
-                <div key={i} className="flex items-center gap-3 px-4 py-3.5 hover:bg-gray-50/50 dark:hover:bg-slate-800/30 transition-colors">
-                  <div className="w-9 h-9 bg-green-50 dark:bg-green-950/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <i className={`${icon} text-green-600 dark:text-green-400 text-base`}></i>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold text-slate-800 dark:text-slate-100 truncate">{label}</p>
-                    <p className="text-[10px] text-gray-400 dark:text-slate-400 font-medium mt-0.5">{time}</p>
-                  </div>
-                  <span className="text-green-600 dark:text-green-400 font-black text-sm whitespace-nowrap">{points} pts</span>
-=======
               {loading ? (
                 [1, 2, 3].map((i) => (
                   <div key={i} className="flex items-center gap-3 px-4 py-3.5 animate-pulse">
@@ -306,7 +264,6 @@ export default function Profile() {
               ) : transactions.length === 0 ? (
                 <div className="px-4 py-6 text-center text-sm text-gray-400 dark:text-slate-500">
                   Aún no hay actividad registrada
->>>>>>> prueba
                 </div>
               ) : (
                 transactions.map((tx, i) => {

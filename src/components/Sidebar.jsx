@@ -5,17 +5,10 @@ export default function Sidebar() {
   const location = useLocation();
 
   const links = [
-<<<<<<< HEAD
-    { to: "/dashboard", label: "Home", icon: "fi fi-rr-home text-green-600 dark:text-green-400" },
-    { to: "/map", label: "Mapa", icon: "fi fi-rr-map-marker text-green-600 dark:text-green-400" },
-    { to: "/retos", label: "Retos", icon: "fi fi-rr-flame text-green-600 dark:text-green-400" },
-    { to: "/marketplace", label: "Marketplace", icon: "fi fi-rr-shopping-cart text-green-600 dark:text-green-400" },
-=======
     { to: "/dashboard",   label: "Home",        icon: "fi fi-rr-home text-emerald-600 dark:text-emerald-400"          },
     { to: "/map",         label: "Mapa",        icon: "fi fi-rr-map-marker text-emerald-600 dark:text-emerald-400"    },
     { to: "/retos",       label: "Retos",       icon: "fi fi-rr-flame text-emerald-600 dark:text-emerald-400"         },
     { to: "/marketplace", label: "Marketplace", icon: "fi fi-rr-shopping-cart text-emerald-600 dark:text-emerald-400" },
->>>>>>> prueba
   ];
 
   const isActive = (path) => location.pathname === path;

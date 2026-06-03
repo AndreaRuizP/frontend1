@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿import { useState } from "react";
-=======
 import { useState, useEffect } from "react";
->>>>>>> prueba
 import { Link } from "react-router-dom";
 import HamburgerMenu from "../components/HamburgerMenu";
 import UserHeader from "../components/UserHeader";
@@ -83,13 +79,8 @@ export default function DashboardHome() {
     <div className="min-h-screen bg-white dark:bg-slate-950 flex flex-col lg:flex-row transition-colors duration-300">
       <Sidebar />
       <div className="flex-1 flex flex-col lg:ml-64">
-<<<<<<< HEAD
-        
-        <div className="flex justify-between items-center pt-3 px-4 lg:hidden">
-=======
 
         <div className="flex justify-between items-center pt-3 px-0 lg:hidden">
->>>>>>> prueba
           <UserHeader onMenu={() => setMenuOpen(true)} />
         </div>
 
@@ -102,20 +93,12 @@ export default function DashboardHome() {
         <main className="w-full max-w-md lg:max-w-6xl mx-auto px-4 lg:px-8 py-4 lg:py-6 flex-1">
           <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.95fr)] gap-6">
             <section className="space-y-4 lg:space-y-6">
-<<<<<<< HEAD
-              
-              <div className="rounded-3xl bg-gradient-to-r from-green-50 to-green-50 dark:from-slate-900 dark:to-green-950/30 border border-green-100 dark:border-green-900/30 shadow-sm px-5 py-5 lg:px-6 lg:py-6 flex items-center justify-between gap-4">
-=======
 
               {/* ── Balance y nivel ── */}
               <div className="rounded-3xl bg-gradient-to-r from-emerald-50 to-green-50 dark:from-slate-900 dark:to-emerald-950/30 border border-emerald-100 dark:border-emerald-900/30 shadow-sm px-5 py-5 lg:px-6 lg:py-6 flex items-center justify-between gap-4">
->>>>>>> prueba
                 <div>
                   <p className="text-sm text-[#58716a] dark:text-green-400 font-medium">Tu saldo actual</p>
                   <div className="mt-1 flex items-baseline gap-2">
-<<<<<<< HEAD
-                    <span className="text-[2.1rem] lg:text-[2.4rem] font-black text-green-600 dark:text-green-400 leading-none">150</span>
-=======
                     {loading ? (
                       <span className="w-20 h-9 bg-emerald-100 dark:bg-emerald-900/40 rounded animate-pulse inline-block" />
                     ) : (
@@ -123,22 +106,12 @@ export default function DashboardHome() {
                         {balance?.balance ?? 0}
                       </span>
                     )}
->>>>>>> prueba
                     <span className="text-lg lg:text-xl text-slate-700 dark:text-slate-300 font-semibold">CleanPoints</span>
                   </div>
                   <p className="mt-2 text-sm text-[#6b7280] dark:text-slate-400">
                     {lvl && !lvl.isMax ? `${lvl.ptsToNext} pts para el nivel ${lvl.level + 1}` : lvl?.isMax ? "¡Nivel máximo!" : ""}
                   </p>
                 </div>
-<<<<<<< HEAD
-                <span className="shrink-0 rounded-full border border-green-200 dark:border-green-800 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-bold text-green-700 dark:text-green-400 shadow-sm">
-                  Nivel 1
-                </span>
-              </div>
-
-              <div className="grid grid-cols-2 lg:grid-cols-2 gap-3 lg:gap-4">
-                <Link to="/map" className="flex flex-col bg-white dark:bg-slate-900 rounded-2xl border border-[#E0E5EB] dark:border-slate-800 shadow-sm items-center py-5 lg:py-6 px-3 lg:px-4 min-h-[104px] lg:min-h-[124px] justify-center transition hover:-translate-y-0.5 hover:shadow-md hover:bg-green-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100">
-=======
                 <span className="shrink-0 rounded-full border border-emerald-200 dark:border-emerald-800 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-bold text-emerald-700 dark:text-emerald-400 shadow-sm">
                   {lvl ? `Nivel ${lvl.level}` : "—"}
                 </span>
@@ -147,7 +120,6 @@ export default function DashboardHome() {
               {/* ── Botones de acceso rápido ── */}
               <div className="grid grid-cols-2 gap-3 lg:gap-4">
                 <Link to="/map" className="flex flex-col bg-white dark:bg-slate-900 rounded-2xl border border-[#E0E5EB] dark:border-slate-800 shadow-sm items-center py-5 lg:py-6 px-3 lg:px-4 min-h-[104px] lg:min-h-[124px] justify-center transition hover:-translate-y-0.5 hover:shadow-md hover:bg-emerald-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100">
->>>>>>> prueba
                   <i className="fi fi-rr-map text-2xl lg:text-4xl mb-2 text-green-600 dark:text-green-400"></i>
                   <span className="text-[15px] lg:text-base font-semibold text-center">Contenedores</span>
                   <span className="text-xs text-[#7D8797] dark:text-slate-400 text-center">cercanos</span>
@@ -214,41 +186,7 @@ export default function DashboardHome() {
                 </div>
               )}
 
-<<<<<<< HEAD
-                <div className="w-full bg-gray-200 dark:bg-slate-700 h-2 rounded mb-2">
-                  <div
-                    className="bg-green-500 h-2 rounded transition-all duration-300"
-                    style={{ width: `${progressPercent}%` }}
-                  />
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-[#7D8797] dark:text-slate-400 flex items-center gap-1" style={{ fontSize: 12 }}>
-                    <i className="fi fi-rr-clock-three text-xs"></i>
-                    {retoDestacado.diasRestantes} día{retoDestacado.diasRestantes !== 1 ? "s" : ""} restante{retoDestacado.diasRestantes !== 1 ? "s" : ""}
-                  </span>
-                  <span className="flex items-center gap-1 text-lg font-bold text-[#FFC400]" style={{ fontSize: 18 }}>
-                    <i className="bi bi-award" style={{ fontSize: 22 }}></i>
-                    +{retoDestacado.puntos} pts
-                  </span>
-                </div>
-
-                <button
-                  type="button"
-                  className={`mt-4 w-full py-3 rounded-lg text-white font-semibold text-sm transition active:scale-95 ${
-                    retoDestacado.progreso > 0
-                      ? "bg-green-600 hover:bg-green-700"
-                      : "bg-[#141B21] hover:bg-[#0f172a] dark:bg-green-600 dark:hover:bg-green-700"
-                  }`}
-                  style={{ minHeight: 44 }}
-                >
-                  {retoDestacado.progreso > 0 ? "Continuar Reto" : "Iniciar Reto"}
-                </button>
-              </div>
-
-=======
               {/* ── Tip móvil ── */}
->>>>>>> prueba
               <div className="bg-white dark:bg-slate-900 lg:hidden rounded-2xl shadow-sm border border-[#E0E5EB] dark:border-slate-800 px-5 py-4">
                 <div className="flex items-center gap-2 mb-1">
                   <i className="bi bi-lightbulb text-xl text-[#FFD300]"></i>

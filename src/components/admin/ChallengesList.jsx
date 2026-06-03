@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿import { useState } from "react";
-=======
 import { useState, useEffect } from "react";
->>>>>>> prueba
 import { sanitizeInput } from "../../utils/security";
 import { getChallengesAdmin, createChallenge, updateChallenge, deleteChallenge } from "../../api/admin";
 
@@ -134,15 +130,9 @@ export default function ChallengesList() {
                                     <i className="bi bi-trophy text-[#199A61] text-lg"></i>
                                 </div>
                                 <div>
-<<<<<<< HEAD
-                                    <p className="font-bold text-[#141B21] dark:text-white">{c.title}</p>
-                                    <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${c.status === "active" ? "bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400" : "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400"}`}>
-                                        {c.status === "active" ? "Activo" : "Inactivo"}
-=======
                                     <p className="font-bold text-[#141B21] dark:text-white">{c.name}</p>
                                     <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${c.active ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400" : "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400"}`}>
                                         {c.active ? "Activo" : "Inactivo"}
->>>>>>> prueba
                                     </span>
                                 </div>
                             </div>
@@ -164,15 +154,11 @@ export default function ChallengesList() {
                 ))}
             </div>
 
-<<<<<<< HEAD
-            <div className="bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-900/50 rounded-xl p-4">
-=======
             {filtered.length === 0 && (
                 <p className="text-center text-[#6B7280] dark:text-slate-400 py-8">No se encontraron retos</p>
             )}
 
             <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-900/50 rounded-xl p-4">
->>>>>>> prueba
                 <p className="text-[#199A61] font-semibold">Mostrando {filtered.length} de {challenges.length} retos</p>
             </div>
 

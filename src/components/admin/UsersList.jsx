@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿import { useState } from "react";
-=======
 import { useState, useEffect } from "react";
->>>>>>> prueba
 import { sanitizeInput } from "../../utils/security";
 import { getUsers, deleteUser } from "../../api/admin";
 
@@ -88,16 +84,6 @@ export default function UsersList() {
                                 </div>
                                 <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${role.cls}`}>{role.text}</span>
                             </div>
-<<<<<<< HEAD
-                            <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${user.status === "active" ? "bg-green-50 text-green-700 dark:bg-green-900/30" : "bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-slate-400"}`}>
-                                {user.status === "active" ? "Activo" : "Inactivo"}
-                            </span>
-                        </div>
-                        <div className="grid grid-cols-3 gap-2 mb-3 text-center">
-                            <div className="bg-[#F9FAFB] dark:bg-slate-800 rounded-xl p-2">
-                                <p className="text-xs text-[#6B7280] dark:text-slate-400">QR</p>
-                                <p className="font-bold text-[#199A61]">{user.qrsScanned}</p>
-=======
                             <div className="grid grid-cols-2 gap-2 mb-3 text-center">
                                 <div className="bg-[#F9FAFB] dark:bg-slate-800 rounded-xl p-2">
                                     <p className="text-xs text-[#6B7280] dark:text-slate-400">ID</p>
@@ -107,7 +93,6 @@ export default function UsersList() {
                                     <p className="text-xs text-[#6B7280] dark:text-slate-400">Registro</p>
                                     <p className="font-bold text-[#141B21] dark:text-white text-xs">{new Date(user.createdAt).toLocaleDateString("es-ES", { day: "2-digit", month: "2-digit", year: "2-digit" })}</p>
                                 </div>
->>>>>>> prueba
                             </div>
                             <div className="flex gap-3 border-t border-[#E0E5EB] dark:border-slate-800 pt-3">
                                 <button onClick={() => setSelectedUser(user)} className="flex-1 text-center text-[#199A61] font-semibold text-sm">Ver Detalles</button>
@@ -129,30 +114,6 @@ export default function UsersList() {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-[#E0E5EB] dark:divide-slate-800">
-<<<<<<< HEAD
-                            {filteredUsers.map(user => (
-                                <tr key={user.id} className="hover:bg-[#F9FAFB] dark:hover:bg-slate-800 transition">
-                                    <td className="px-6 py-4">
-                                        <p className="font-semibold text-[#141B21] dark:text-white">{user.name}</p>
-                                        <p className="text-sm text-[#6B7280] dark:text-slate-400">{user.email}</p>
-                                    </td>
-                                    <td className="px-6 py-4 font-semibold text-[#199A61]">{user.qrsScanned}</td>
-                                    <td className="px-6 py-4 font-semibold text-[#141B21] dark:text-white">{user.pointsEarned.toLocaleString()}</td>
-                                    <td className="px-6 py-4 text-[#6B7280] dark:text-slate-400">{new Date(user.joinDate).toLocaleDateString("es-ES")}</td>
-                                    <td className="px-6 py-4">
-                                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${user.status === "active" ? "bg-green-50 text-green-700 dark:bg-green-900/30" : "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400"}`}>
-                                            {user.status === "active" ? "Activo" : "Inactivo"}
-                                        </span>
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <div className="flex items-center gap-3">
-                                            <button onClick={() => setSelectedUser(user)} className="text-[#199A61] hover:text-[#178353] font-semibold text-sm">Ver Detalles</button>
-                                            <button onClick={() => setUserToDelete(user)} className="text-red-500 hover:text-red-700 font-semibold text-sm">Eliminar</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-=======
                             {filteredUsers.map(user => {
                                 const role = roleLabel(user.role);
                                 return (
@@ -172,7 +133,6 @@ export default function UsersList() {
                                     </tr>
                                 );
                             })}
->>>>>>> prueba
                         </tbody>
                     </table>
                 </div>
@@ -192,16 +152,6 @@ export default function UsersList() {
                             </button>
                         </div>
                         <div className="flex items-center gap-4 mb-6">
-<<<<<<< HEAD
-                            <div className="w-16 h-16 rounded-full bg-[#199A61]/10 dark:bg-green-900/30 flex items-center justify-center">
-                                <i className="bi bi-person text-3xl text-[#199A61]"></i>
-                            </div>
-                            <div>
-                                <p className="text-lg font-bold text-[#141B21] dark:text-white">{selectedUser.name}</p>
-                                <span className={`px-3 py-1 rounded-full text-xs font-semibold ${selectedUser.status === "active" ? "bg-green-50 text-green-700 dark:bg-green-900/30" : "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400"}`}>
-                                    {selectedUser.status === "active" ? "Activo" : "Inactivo"}
-                                </span>
-=======
                             {selectedUser.avatarUrl ? (
                                 <img src={selectedUser.avatarUrl} alt="" className="w-16 h-16 rounded-full object-cover" />
                             ) : (
@@ -212,7 +162,6 @@ export default function UsersList() {
                             <div>
                                 <p className="text-lg font-bold text-[#141B21] dark:text-white">{selectedUser.name}</p>
                                 <span className={`px-3 py-1 rounded-full text-xs font-semibold ${roleLabel(selectedUser.role).cls}`}>{roleLabel(selectedUser.role).text}</span>
->>>>>>> prueba
                             </div>
                         </div>
                         <div className="space-y-3">

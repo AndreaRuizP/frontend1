@@ -126,11 +126,7 @@ export default function Register() {
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-<<<<<<< HEAD
-        <Link to="/" className="flex items-center gap-1 text-xs text-[#7D8797] dark:text-slate-500 hover:text-green-600 dark:hover:text-green-400 mb-6 transition-colors w-fit">
-=======
         <Link to="/" className="inline-flex items-center gap-1.5 text-xs text-gray-400 dark:text-slate-500 hover:text-green-600 dark:hover:text-green-400 transition-colors mb-4">
->>>>>>> prueba
           <i className="bi bi-arrow-left text-xs"></i>
           Volver al inicio
         </Link>

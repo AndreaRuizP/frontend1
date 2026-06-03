@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿import { useState } from "react";
-=======
 import { useState, useEffect } from "react";
->>>>>>> prueba
 import UserHeader from "../components/UserHeader";
 import HamburgerMenu from "../components/HamburgerMenu";
 import Sidebar from "../components/Sidebar";
@@ -16,13 +12,8 @@ function getDifficulty(target) {
 }
 
 const difficultyStyle = {
-<<<<<<< HEAD
-  Fácil: "bg-green-50 text-green-700 dark:bg-green-950/40 dark:text-green-400",
-  Media: "bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400",
-=======
   Fácil:   "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400",
   Media:   "bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400",
->>>>>>> prueba
   Difícil: "bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-400",
 };
 
@@ -68,28 +59,6 @@ export default function Challenge() {
         <HamburgerMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
 
         <main className="w-full max-w-md lg:max-w-6xl mx-auto px-4 lg:px-8 pt-4 lg:pt-6 pb-6 flex-1">
-<<<<<<< HEAD
-            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-[#E0E5EB] dark:border-slate-800 px-5 py-3.5 mb-4 lg:mb-6 shadow-sm transition-colors duration-300">
-              <span className="font-bold text-[#141B21] dark:text-slate-200 flex items-center gap-2" style={{ fontSize: 15 }}>
-                Nivel 3: Reciclador Activo
-              </span>
-            </div>
-
-            <div className="flex gap-2 mb-4 lg:mb-6">
-              {["Todos", "Individuales", "Grupales", "Referidos"].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setFiltro(tab)}
-                  className={`flex-1 py-2.5 px-1 rounded-xl border font-bold transition active:scale-95 focus:outline-none
-                ${filtro === tab
-                    ? "bg-green-600 text-white border-green-600 dark:bg-green-500 dark:border-green-500 shadow-sm"
-                    : "bg-white dark:bg-slate-900 text-[#141B21] dark:text-slate-300 border-[#E0E5EB] dark:border-slate-800 hover:bg-gray-50 dark:hover:bg-slate-800"
-                    }`}
-                  style={{ fontSize: 12, minHeight: 40 }}
-                >
-                  {tab}
-                </button>
-=======
 
           {/* Banner de estado */}
           <div className="bg-white dark:bg-slate-900 rounded-2xl border border-[#E0E5EB] dark:border-slate-800 px-5 py-3.5 mb-4 lg:mb-6 shadow-sm flex items-center justify-between transition-colors duration-300">
@@ -127,7 +96,6 @@ export default function Challenge() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="bg-white dark:bg-slate-900 rounded-2xl border border-[#E0E5EB] dark:border-slate-800 h-52 animate-pulse" />
->>>>>>> prueba
               ))}
             </div>
           ) : resultado.length === 0 ? (
@@ -185,11 +153,7 @@ export default function Challenge() {
 
                       <div className="w-full bg-gray-100 dark:bg-slate-950 h-2 rounded-full mb-3 overflow-hidden">
                         <div
-<<<<<<< HEAD
-                          className="bg-green-500 dark:bg-green-400 h-2 rounded-full transition-all duration-500"
-=======
                           className={`h-2 rounded-full transition-all duration-500 ${completed ? "bg-emerald-500" : "bg-emerald-500 dark:bg-emerald-400"}`}
->>>>>>> prueba
                           style={{ width: `${porcentaje}%` }}
                         />
                       </div>
@@ -205,21 +169,12 @@ export default function Challenge() {
                         </span>
                       </div>
 
-<<<<<<< HEAD
-                      <button
-                        type="button"
-                        className={`mt-4 w-full py-3 rounded-xl text-white font-bold text-sm transition-all active:scale-95 focus:outline-none shadow-sm ${
-                          r.progreso > 0
-                            ? "bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600"
-                            : "bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-100"
-=======
                       <div className={`mt-4 w-full py-3 rounded-xl text-sm font-bold text-center
                         ${completed
                           ? "bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400"
                           : progress > 0
                           ? "bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 text-white cursor-default"
                           : "bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-100 cursor-default"
->>>>>>> prueba
                         }`}
                       >
                         {completed ? "✓ Completado" : progress > 0 ? "En progreso" : "Pendiente"}

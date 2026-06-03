@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿import { useState } from "react";
-=======
 import { useState, useEffect } from "react";
->>>>>>> prueba
 import UserHeader from "../components/UserHeader";
 import HamburgerMenu from "../components/HamburgerMenu";
 import Sidebar from "../components/Sidebar";
@@ -98,29 +94,12 @@ export default function Marketplace() {
         <HamburgerMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
 
         <main className="w-full max-w-md lg:max-w-6xl mx-auto px-4 lg:px-8 pt-4 lg:pt-6 pb-6 flex-1">
-<<<<<<< HEAD
-            
-            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-[#E0E5EB] dark:border-slate-800 px-5 py-4 flex items-center justify-between mb-4 lg:mb-6 transition-colors duration-300">
-              <div>
-                <div className="text-gray-500 dark:text-slate-400 font-medium text-sm" style={{ fontSize: 14 }}>
-                  Tu saldo disponible
-                </div>
-                <div className="flex items-baseline gap-1.5 mt-1">
-                  <span className="text-green-600 dark:text-green-400 font-black text-2xl" style={{ fontSize: 26 }}>
-                    350
-                  </span>
-                  <span className="text-gray-500 dark:text-slate-400 text-sm font-medium" style={{ fontSize: 14 }}>
-                    CleanPoints
-                  </span>
-                </div>
-=======
 
           {/* Balance */}
           <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-[#E0E5EB] dark:border-slate-800 px-5 py-4 flex items-center justify-between mb-4 lg:mb-6 transition-colors duration-300">
             <div>
               <div className="text-gray-500 dark:text-slate-400 font-medium" style={{ fontSize: 14 }}>
                 Tu saldo disponible
->>>>>>> prueba
               </div>
               <div className="flex items-baseline gap-1.5 mt-1">
                 {loading ? (
@@ -137,21 +116,6 @@ export default function Marketplace() {
                 )}
               </div>
             </div>
-<<<<<<< HEAD
-
-            <div className="mb-4 relative">
-              <span className="absolute left-3.5 top-3 text-gray-400 dark:text-slate-500">
-                <i className="bi bi-search text-sm"></i>
-              </span>
-              <input
-                type="text"
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                placeholder="Buscar producto..."
-                className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-900 border border-[#E0E5EB] dark:border-slate-800 rounded-xl text-sm text-slate-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:border-green-500 dark:focus:border-green-400 shadow-sm transition-all"
-                style={{ fontSize: 15 }}
-              />
-=======
             <div className="text-right">
               <div className="text-gray-400 dark:text-slate-500 font-medium" style={{ fontSize: 14 }}>
                 Acumulados
@@ -168,27 +132,9 @@ export default function Marketplace() {
                   </>
                 )}
               </div>
->>>>>>> prueba
             </div>
           </div>
 
-<<<<<<< HEAD
-            <div className="flex items-center gap-2 mb-4 lg:grid lg:grid-cols-4 lg:gap-3 lg:mb-6">
-              {["Todos", "Hogar", "Comida", "Moda"].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setFiltro(tab)}
-                  className={`flex-1 lg:flex-none lg:w-full py-2.5 rounded-xl border text-xs font-bold transition active:scale-95 focus:outline-none
-                ${filtro === tab
-                      ? "bg-green-600 text-white border-green-600 dark:bg-green-500 dark:border-green-500 shadow-sm"
-                      : "bg-white dark:bg-slate-900 text-[#141B21] dark:text-slate-300 border-[#E0E5EB] dark:border-slate-800 hover:bg-gray-50 dark:hover:bg-slate-800"
-                    }`}
-                  style={{ fontSize: 13, minHeight: 40 }}
-                >
-                  {tab}
-                </button>
-              ))}
-=======
           {/* Buscador */}
           <div className="mb-5 relative">
             <span className="absolute left-3.5 top-3 text-gray-400 dark:text-slate-500">
@@ -208,7 +154,6 @@ export default function Marketplace() {
           {loading ? (
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
               {[1, 2, 3, 4, 5, 6].map((i) => <SkeletonCard key={i} />)}
->>>>>>> prueba
             </div>
           ) : resultado.length === 0 ? (
             <div className="text-center py-16 text-slate-400 dark:text-slate-500">
@@ -223,20 +168,6 @@ export default function Marketplace() {
                 const isConfirm   = confirming === item.id;
                 const isRedeeming = redeeming === item.id;
 
-<<<<<<< HEAD
-                  <div>
-                    <span className="font-black text-amber-500 dark:text-amber-400 block mb-3 flex items-center gap-1" style={{ fontSize: 16 }}>
-                      <i className="bi bi-lightning-charge-fill text-sm"></i>
-                      {p.puntos} pts
-                    </span>
-                    
-                    <button
-                      className="w-full py-2.5 rounded-xl bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 text-white font-bold transition active:scale-95 shadow-sm focus:outline-none"
-                      style={{ minHeight: 38, fontSize: 14 }}
-                    >
-                      Canjear
-                    </button>
-=======
                 return (
                   <div
                     key={item.id}
@@ -309,7 +240,6 @@ export default function Marketplace() {
                         </button>
                       )}
                     </div>
->>>>>>> prueba
                   </div>
                 );
               })}

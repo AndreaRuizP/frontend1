@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿import { useState } from "react";
-=======
 import { useState, useEffect } from "react";
->>>>>>> prueba
 import { sanitizeInput } from "../../utils/security";
 import { getContainers, createContainer, updateContainer, deleteContainer } from "../../api/admin";
 
