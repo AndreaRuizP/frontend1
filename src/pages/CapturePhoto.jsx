@@ -39,6 +39,20 @@ function getCoords(qrCode) {
   });
 }
 
+const VALID_MATERIALS = [
+    "PLASTIC", "PLASTICO", "PLÁSTICO", "PET", "HDPE", "POLYPROPYLENE", "POLIETILENO",
+    "PAPER", "PAPEL", "CARDBOARD", "CARTON", "CARTÓN", "NEWSPAPER",
+    "GLASS", "VIDRIO",
+    "METAL", "ALUMINUM", "ALUMINIO", "STEEL", "ACERO", "COPPER", "COBRE",
+    "ELECTRONICS", "ELECTRONICO", "ELECTRÓNICO", "E_WASTE", "EWASTE",
+];
+
+function isMaterialValid(material) {
+    if (!material) return false;
+    const upper = material.toUpperCase().replace(/[_\s-]/g, "");
+    return VALID_MATERIALS.some((m) => upper.includes(m.replace(/[_\s-]/g, "")));
+}
+
 function parseContainerQR(text) {
     const extract = (label, nextLabels) => {
         const pattern = new RegExp(
@@ -114,11 +128,12 @@ export default function CapturePhoto() {
             formData.append("longitude", String(lng));
 
             const result = await createReport(formData);
-            const validated = result.vision?.validated ?? true;
+            const backendValidated = result.vision?.validated ?? true;
             const material = result.vision?.detectedMaterial || result.report?.detectedMaterial || "GENERAL_WASTE";
             const points = result.report?.pointsEarned ?? 0;
+            const isValid = backendValidated && isMaterialValid(material);
 
-            if (validated) {
+            if (isValid) {
                 setValidationResult({
                     success: true,
                     title: "¡Reciclaje Validado!",
@@ -128,9 +143,9 @@ export default function CapturePhoto() {
             } else {
                 setValidationResult({
                     success: false,
-                    title: "Material no válido",
+                    title: "Material no reciclable",
                     points: 0,
-                    message: `Se detectó: ${material}. Asegúrate de fotografiar un residuo reciclable directamente.`,
+                    message: `Se detectó: ${material}. Solo se aceptan: plástico, papel/cartón, vidrio, metal y electrónicos.`,
                 });
             }
         } catch (err) {
