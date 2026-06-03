@@ -165,18 +165,12 @@ export default function ScanQR() {
                                         </div>
                                     )}
 
-                                    <div className="flex flex-wrap items-center justify-center gap-3">
+                                    <div className="flex items-center justify-center">
                                         <button
                                             onClick={handleReset}
                                             className="inline-flex items-center gap-2 rounded-xl border border-[#D0D7DE] dark:border-slate-700 bg-white dark:bg-slate-900 px-5 py-2.5 text-sm font-bold text-[#374151] dark:text-slate-300 transition hover:bg-gray-50 dark:hover:bg-slate-800"
                                         >
                                             Cancelar
-                                        </button>
-                                        <button
-                                            onClick={() => handleQRDetected("Código Contenedor: C-000001 Nombre del Contenedor: Bahía - Comuna 2 Dirección: Cra. 1c #10c-18 a 10c-78 Sector: Comuna 2 - Santa Marta Coordenadas: 11.247087, -74.213905")}
-                                            className="inline-flex items-center gap-2 rounded-xl bg-[#141B21] dark:bg-slate-100 px-5 py-2.5 text-sm font-bold text-white dark:text-slate-950 transition hover:bg-black dark:hover:bg-white"
-                                        >
-                                            Simular lectura
                                         </button>
                                     </div>
                                 </div>

@@ -11,7 +11,7 @@ export default function Home() {
       <Header />
       
       <section className="w-full bg-[#eef9ef] dark:bg-slate-900 transition-colors duration-300">
-        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
           <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
             <div className="max-w-2xl text-center lg:text-left">
               <h1 className="mx-auto lg:mx-0 text-[clamp(2.2rem,4.8vw,4.1rem)] leading-[0.95] font-extrabold tracking-tight text-[#0f172a] dark:text-white max-w-xl">
@@ -41,7 +41,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="caracteristicas" className="w-full max-w-6xl mx-auto pt-10 md:pt-14 pb-8 md:pb-12 px-4 sm:px-6 lg:px-8 mb-4 md:mb-6">
+      <section id="caracteristicas" className="w-full max-w-7xl mx-auto pt-10 md:pt-14 pb-8 md:pb-12 px-4 sm:px-6 lg:px-8 mb-4 md:mb-6">
         <h2 className="text-[1.5rem] sm:text-[1.75rem] md:text-[2.25rem] font-bold text-center text-[#141B21] dark:text-white mb-3 leading-snug">
           Características Principales
         </h2>
@@ -50,7 +50,7 @@ export default function Home() {
         </p>
       </section>
 
-      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 md:pb-16">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 md:pb-16">
         <Cards />
       </section>
       

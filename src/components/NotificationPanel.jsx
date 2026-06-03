@@ -4,6 +4,7 @@ import NotificationItem from "./NotificationItem";
 export default function NotificationPanel({
     notifications,
     unreadCount,
+    loading = false,
     onMarkAsRead,
     onMarkAllAsRead,
     onDeleteNotification,
@@ -42,7 +43,11 @@ export default function NotificationPanel({
                 )}
             </div>
 
-            {notifications.length > 0 ? (
+            {loading ? (
+                <div className="flex items-center justify-center py-10 px-5">
+                    <div className="w-6 h-6 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
+                </div>
+            ) : notifications.length > 0 ? (
                 <div className={`flex-1 ${useScrollableList ? "max-h-72 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-800" : "overflow-visible"}`}>
                     {notifications.map(notification => (
                         <NotificationItem

@@ -2,6 +2,7 @@
 import { useState, useContext } from "react";
 import { validateEmail, sanitizeInput, authStorage } from "../utils/security";
 import { ThemeContext } from "../context/ThemeContext";
+import { login as loginApi } from "../api/auth";
 
 const HojaIcon = ({ className, style }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className} style={style}>
@@ -12,11 +13,14 @@ const HojaIcon = ({ className, style }) => (
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const [apiError, setApiError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { darkMode } = useContext(ThemeContext);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const newErrors = {};
 
@@ -37,9 +41,28 @@ export default function Login() {
     }
 
     setErrors({});
-    const role = cleanEmail === "admin@cleanpoints.com" ? "admin" : "user";
-    authStorage.setSession("mock-jwt-token", { email: cleanEmail, role });
-    navigate(role === "admin" ? "/admin" : "/dashboard");
+    setApiError("");
+    setLoading(true);
+
+    try {
+      const response = await loginApi(cleanEmail, password);
+      const token = response.token || response;
+      
+      // Construir usuario si el backend no lo devuelve
+      const userData = response.user || {
+        id: null,
+        name: cleanEmail,
+        email: cleanEmail,
+        role: "citizen"
+      };
+      
+      authStorage.setSession(token, userData);
+      navigate(userData.role === "admin" ? "/admin" : "/dashboard");
+    } catch (err) {
+      setApiError(err.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -83,7 +106,11 @@ export default function Login() {
         autoComplete="off"
         onSubmit={handleSubmit}
       >
+<<<<<<< HEAD
         <Link to="/" className="flex items-center gap-1 text-xs text-[#7D8797] dark:text-slate-500 hover:text-green-600 dark:hover:text-green-400 mb-6 transition-colors w-fit">
+=======
+        <Link to="/" className="inline-flex items-center gap-1.5 text-xs text-gray-400 dark:text-slate-500 hover:text-green-600 dark:hover:text-green-400 transition-colors mb-4">
+>>>>>>> prueba
           <i className="bi bi-arrow-left text-xs"></i>
           Volver al inicio
         </Link>
@@ -113,25 +140,40 @@ export default function Login() {
         <label className="block text-black dark:text-slate-200 text-sm mb-1" htmlFor="password">
           Contraseña
         </label>
-        <input
-          className={`w-full px-4 py-2 border rounded-lg bg-[#F9FAFB] dark:bg-slate-950 text-base text-black dark:text-white placeholder-[#ADB5BD] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent ${errors.password ? "border-red-400 mb-1" : "border-[#E0E5EB] dark:border-slate-800 mb-6"}`}
-          id="password"
-          type="password"
-          autoComplete="current-password"
-          placeholder="••••••••"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          aria-describedby={errors.password ? "password-error" : undefined}
-          aria-invalid={!!errors.password}
-        />
+        <div className={`relative ${errors.password ? "mb-1" : "mb-6"}`}>
+          <input
+            className={`w-full px-4 py-2 pr-10 border rounded-lg bg-[#F9FAFB] dark:bg-slate-950 text-base text-black dark:text-white placeholder-[#ADB5BD] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent ${errors.password ? "border-red-400" : "border-[#E0E5EB] dark:border-slate-800"}`}
+            id="password"
+            type={showPassword ? "text" : "password"}
+            autoComplete="current-password"
+            placeholder="••••••••"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            aria-describedby={errors.password ? "password-error" : undefined}
+            aria-invalid={!!errors.password}
+          />
+          <button
+            type="button"
+            tabIndex={-1}
+            onClick={() => setShowPassword(v => !v)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-300 transition-colors"
+            aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+          >
+            <i className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"} text-base`}></i>
+          </button>
+        </div>
         {errors.password && (
           <p id="password-error" role="alert" className="text-red-500 dark:text-red-400 text-xs mb-4">{errors.password}</p>
         )}
+        {apiError && (
+          <p role="alert" className="text-red-500 dark:text-red-400 text-xs mb-3 text-center">{apiError}</p>
+        )}
         <button
           type="submit"
-          className="w-full h-11 bg-green-600 dark:bg-green-600 text-white font-semibold rounded-lg transition hover:bg-green-700 dark:hover:bg-green-700 mb-2"
+          disabled={loading}
+          className="w-full h-11 bg-green-600 dark:bg-green-600 text-white font-semibold rounded-lg transition hover:bg-green-700 dark:hover:bg-green-700 mb-2 disabled:opacity-60"
         >
-          Iniciar Sesión
+          {loading ? "Ingresando..." : "Iniciar Sesión"}
         </button>
         <div className="text-center text-sm text-slate-600 dark:text-slate-400">
           ¿No tienes cuenta?{" "}

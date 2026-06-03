@@ -12,7 +12,8 @@ const Marketplace    = lazy(() => import("./pages/Marketplace"));
 const ScanQR         = lazy(() => import("./pages/ScanQR"));
 const CapturePhoto   = lazy(() => import("./pages/CapturePhoto"));
 const Profile        = lazy(() => import("./pages/Profile"));
-const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
+const AdminDashboard  = lazy(() => import("./pages/AdminDashboard"));
+const Notifications   = lazy(() => import("./pages/Notifications"));
 
 function PageLoader() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/scan"          element={<ProtectedRoute><ScanQR /></ProtectedRoute>} />
         <Route path="/capture-photo" element={<ProtectedRoute><CapturePhoto /></ProtectedRoute>} />
         <Route path="/profile"       element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="/notifications"  element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
         <Route path="/admin"         element={<AdminRoute><AdminDashboard /></AdminRoute>} />
         <Route path="*"              element={<h1>404 - Página no encontrada</h1>} />
       </Routes>

@@ -53,10 +53,10 @@ export default function HamburgerMenu({ open, onClose }) {
                 </header>
 
                 <nav className="flex-1 flex flex-col gap-2 -mt-2" aria-label="Enlaces principales">
-                    <MenuLink to="/dashboard" label="Inicio" icon={HomeIcon} onClick={onClose} />
-                    <MenuLink to="/map" label="Mapa" icon={MapIcon} onClick={onClose} />
-                    <MenuLink to="/retos" label="Retos" icon={FireIcon} onClick={onClose} />
-                    <MenuLink to="/marketplace" label="Marketplace" icon={CartIcon} onClick={onClose} />
+                    <MenuLink to="/dashboard"   label="Inicio"       icon={HomeIcon}  onClick={onClose} />
+                    <MenuLink to="/map"         label="Mapa"         icon={MapIcon}   onClick={onClose} />
+                    <MenuLink to="/retos"       label="Retos"        icon={FireIcon}  onClick={onClose} />
+                    <MenuLink to="/marketplace" label="Marketplace"  icon={CartIcon}  onClick={onClose} />
                 </nav>
 
                 <div className="pt-4 border-t border-gray-100 dark:border-slate-800">
@@ -104,4 +104,8 @@ function FireIcon() {
 
 function CartIcon() {
     return <i className="fi fi-rr-shopping-cart text-xl"></i>;
+}
+
+function BellIcon() {
+    return <i className="fi fi-rr-bell text-xl"></i>;
 }

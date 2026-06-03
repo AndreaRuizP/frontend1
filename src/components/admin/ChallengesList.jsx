@@ -1,73 +1,124 @@
+<<<<<<< HEAD
 ﻿import { useState } from "react";
+=======
+import { useState, useEffect } from "react";
+>>>>>>> prueba
 import { sanitizeInput } from "../../utils/security";
+import { getChallengesAdmin, createChallenge, updateChallenge, deleteChallenge } from "../../api/admin";
 
-const initialChallenges = [
-    { id: 1, title: "Recicla 10 veces", description: "Escanea 10 contenedores esta semana para ganar puntos extra.", points: 500, startDate: "2024-03-01", endDate: "2024-03-31", status: "active" },
-    { id: 2, title: "Madrugador Ecológico", description: "Realiza 3 escaneos antes de las 9am en un mismo día.", points: 300, startDate: "2024-03-01", endDate: "2024-03-15", status: "active" },
-    { id: 3, title: "Guerrero del Reciclaje", description: "Acumula 5000 puntos en el mes para obtener una recompensa especial.", points: 1000, startDate: "2024-02-01", endDate: "2024-02-29", status: "inactive" },
-    { id: 4, title: "Explora tu Ciudad", description: "Escanea contenedores en al menos 3 zonas diferentes.", points: 400, startDate: "2024-04-01", endDate: "2024-04-30", status: "active" },
-];
-
-const emptyForm = { title: "", description: "", points: "", startDate: "", endDate: "", status: "active" };
+const emptyForm = { name: "", description: "", pointsReward: "", criteria: "QR_SCAN", target: "", active: true };
 
 export default function ChallengesList() {
     const [searchTerm, setSearchTerm] = useState("");
-    const [challenges, setChallenges] = useState(initialChallenges);
+    const [challenges, setChallenges] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
     const [editing, setEditing] = useState(null);
     const [form, setForm] = useState(emptyForm);
     const [toDelete, setToDelete] = useState(null);
     const [errors, setErrors] = useState({});
+    const [saving, setSaving] = useState(false);
+    const [deleting, setDeleting] = useState(false);
+    const [apiError, setApiError] = useState("");
+
+    useEffect(() => {
+        getChallengesAdmin()
+            .then(setChallenges)
+            .catch(() => setApiError("No se pudieron cargar los retos"))
+            .finally(() => setLoading(false));
+    }, []);
 
     const filtered = challenges.filter(c =>
-        c.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         c.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const openCreate = () => { setEditing(null); setForm(emptyForm); setErrors({}); setShowForm(true); };
-    const openEdit = (challenge) => { setEditing(challenge); setForm({ ...challenge }); setErrors({}); setShowForm(true); };
+    const openCreate = () => { setEditing(null); setForm(emptyForm); setErrors({}); setApiError(""); setShowForm(true); };
+    const openEdit = (c) => {
+        setEditing(c);
+        setForm({ name: c.name, description: c.description, pointsReward: c.pointsReward, criteria: c.criteria, target: c.target, active: c.active });
+        setErrors({});
+        setApiError("");
+        setShowForm(true);
+    };
 
     const validate = () => {
         const e = {};
-        if (!form.title.trim()) e.title = "El título es requerido";
+        if (!form.name.trim()) e.name = "El nombre es requerido";
         if (!form.description.trim()) e.description = "La descripción es requerida";
-        if (!form.points || isNaN(form.points) || Number(form.points) <= 0) e.points = "Los puntos deben ser un número positivo";
-        if (!form.startDate) e.startDate = "La fecha de inicio es requerida";
-        if (!form.endDate) e.endDate = "La fecha de fin es requerida";
-        if (form.startDate && form.endDate && form.endDate < form.startDate) e.endDate = "La fecha de fin debe ser posterior a la de inicio";
+        if (!form.pointsReward || isNaN(form.pointsReward) || Number(form.pointsReward) <= 0) e.pointsReward = "Los puntos deben ser positivos";
+        if (!form.target || isNaN(form.target) || Number(form.target) <= 0) e.target = "El objetivo debe ser positivo";
         return e;
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
         const e = validate();
         if (Object.keys(e).length > 0) { setErrors(e); return; }
-        if (editing) {
-            setChallenges(prev => prev.map(c => c.id === editing.id ? { ...c, ...form, points: Number(form.points) } : c));
-        } else {
-            setChallenges(prev => [...prev, { id: Date.now(), ...form, points: Number(form.points) }]);
+        setSaving(true);
+        setApiError("");
+        const body = {
+            name: form.name.trim(),
+            description: form.description.trim(),
+            pointsReward: Number(form.pointsReward),
+            criteria: form.criteria,
+            target: Number(form.target),
+            active: Boolean(form.active),
+        };
+        try {
+            if (editing) {
+                const updated = await updateChallenge(editing.id, body);
+                setChallenges(prev => prev.map(c => c.id === editing.id ? { ...c, ...updated } : c));
+            } else {
+                const created = await createChallenge(body);
+                setChallenges(prev => [created, ...prev]);
+            }
+            setShowForm(false);
+        } catch {
+            setApiError("No se pudo guardar el reto");
+        } finally {
+            setSaving(false);
         }
-        setShowForm(false);
     };
 
-    const handleDelete = () => { setChallenges(prev => prev.filter(c => c.id !== toDelete.id)); setToDelete(null); };
+    const handleDelete = async () => {
+        setDeleting(true);
+        try {
+            await deleteChallenge(toDelete.id);
+            setChallenges(prev => prev.filter(c => c.id !== toDelete.id));
+            setToDelete(null);
+        } catch {
+            setApiError("No se pudo eliminar el reto");
+            setToDelete(null);
+        } finally {
+            setDeleting(false);
+        }
+    };
 
     const handleChange = (field, value) => {
-        setForm(prev => ({ ...prev, [field]: field === "startDate" || field === "endDate" ? value : sanitizeInput(value) }));
+        setForm(prev => ({ ...prev, [field]: field === "criteria" || field === "active" ? value : sanitizeInput(String(value)) }));
         if (errors[field]) setErrors(prev => ({ ...prev, [field]: undefined }));
     };
 
+    if (loading) {
+        return (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {Array(4).fill(null).map((_, i) => (
+                    <div key={i} className="h-36 bg-gray-100 dark:bg-slate-800 rounded-2xl animate-pulse" />
+                ))}
+            </div>
+        );
+    }
+
     return (
         <div className="space-y-6">
+            {apiError && (
+                <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-red-600 dark:text-red-400 text-sm">{apiError}</div>
+            )}
+
             <div className="flex items-center justify-between gap-3 flex-wrap">
                 <div className="relative flex-1 min-w-0">
                     <i className="bi bi-search absolute left-4 top-1/2 transform -translate-y-1/2 text-[#9CA3AF]"></i>
-                    <input
-                        type="text"
-                        placeholder="Buscar reto..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(sanitizeInput(e.target.value))}
-                        className="w-full pl-12 pr-4 py-3 bg-white dark:bg-slate-900 border border-[#E0E5EB] dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-[#199A61] dark:text-white"
-                    />
+                    <input type="text" placeholder="Buscar reto..." value={searchTerm} onChange={(e) => setSearchTerm(sanitizeInput(e.target.value))} className="w-full pl-12 pr-4 py-3 bg-white dark:bg-slate-900 border border-[#E0E5EB] dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-[#199A61] dark:text-white" />
                 </div>
                 <button onClick={openCreate} className="flex items-center gap-2 px-4 py-3 bg-[#199A61] hover:bg-[#178353] text-white font-semibold rounded-xl transition">
                     <i className="bi bi-plus-lg"></i> Crear Reto
@@ -83,21 +134,27 @@ export default function ChallengesList() {
                                     <i className="bi bi-trophy text-[#199A61] text-lg"></i>
                                 </div>
                                 <div>
+<<<<<<< HEAD
                                     <p className="font-bold text-[#141B21] dark:text-white">{c.title}</p>
                                     <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${c.status === "active" ? "bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400" : "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400"}`}>
                                         {c.status === "active" ? "Activo" : "Inactivo"}
+=======
+                                    <p className="font-bold text-[#141B21] dark:text-white">{c.name}</p>
+                                    <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${c.active ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400" : "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400"}`}>
+                                        {c.active ? "Activo" : "Inactivo"}
+>>>>>>> prueba
                                     </span>
                                 </div>
                             </div>
                             <div className="flex items-center gap-1 shrink-0">
-                                <span className="font-bold text-[#199A61]">{Number(c.points).toLocaleString()}</span>
+                                <span className="font-bold text-[#199A61]">{Number(c.pointsReward).toLocaleString()}</span>
                                 <span className="text-xs text-[#6B7280] dark:text-slate-400">pts</span>
                             </div>
                         </div>
                         <p className="text-sm text-[#6B7280] dark:text-slate-400">{c.description}</p>
                         <div className="flex items-center gap-4 text-xs text-[#6B7280] dark:text-slate-500">
-                            <span><i className="bi bi-calendar mr-1"></i>{new Date(c.startDate).toLocaleDateString("es-ES")}</span>
-                            <span><i className="bi bi-arrow-right mr-1"></i>{new Date(c.endDate).toLocaleDateString("es-ES")}</span>
+                            <span><i className="bi bi-qr-code mr-1"></i>{c.criteria}</span>
+                            <span><i className="bi bi-bullseye mr-1"></i>Meta: {c.target}</span>
                         </div>
                         <div className="flex items-center gap-3 pt-2 border-t border-[#E0E5EB] dark:border-slate-800">
                             <button onClick={() => openEdit(c)} className="text-[#199A61] font-semibold text-sm"><i className="bi bi-pencil mr-1"></i>Editar</button>
@@ -107,7 +164,15 @@ export default function ChallengesList() {
                 ))}
             </div>
 
+<<<<<<< HEAD
             <div className="bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-900/50 rounded-xl p-4">
+=======
+            {filtered.length === 0 && (
+                <p className="text-center text-[#6B7280] dark:text-slate-400 py-8">No se encontraron retos</p>
+            )}
+
+            <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-900/50 rounded-xl p-4">
+>>>>>>> prueba
                 <p className="text-[#199A61] font-semibold">Mostrando {filtered.length} de {challenges.length} retos</p>
             </div>
 
@@ -118,23 +183,51 @@ export default function ChallengesList() {
                             <h3 className="text-xl font-bold text-[#141B21] dark:text-white">{editing ? "Editar Reto" : "Crear Reto"}</h3>
                             <button onClick={() => setShowForm(false)} className="text-[#6B7280] dark:text-slate-400"><i className="bi bi-x-lg text-xl"></i></button>
                         </div>
+                        {apiError && <p className="mb-4 text-sm text-red-500">{apiError}</p>}
                         <div className="space-y-4">
                             <div>
-                                <label className="block text-sm font-semibold text-[#141B21] dark:text-white mb-1">Título *</label>
-                                <input value={form.title} onChange={(e) => handleChange("title", e.target.value)} className="w-full px-4 py-3 border border-[#E0E5EB] dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-white rounded-xl" />
+                                <label className="block text-sm font-semibold text-[#141B21] dark:text-white mb-1">Nombre *</label>
+                                <input value={form.name} onChange={(e) => handleChange("name", e.target.value)} className="w-full px-4 py-3 border border-[#E0E5EB] dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-white rounded-xl" />
+                                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                             </div>
                             <div>
                                 <label className="block text-sm font-semibold text-[#141B21] dark:text-white mb-1">Descripción *</label>
                                 <textarea value={form.description} onChange={(e) => handleChange("description", e.target.value)} className="w-full px-4 py-3 border border-[#E0E5EB] dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-white rounded-xl" rows={3} />
+                                {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description}</p>}
                             </div>
                             <div className="grid grid-cols-2 gap-4">
-                                <div><label className="block text-sm font-semibold text-[#141B21] dark:text-white mb-1">Puntos *</label><input type="number" value={form.points} onChange={(e) => handleChange("points", e.target.value)} className="w-full px-4 py-3 border border-[#E0E5EB] dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-white rounded-xl" /></div>
-                                <div><label className="block text-sm font-semibold text-[#141B21] dark:text-white mb-1">Estado</label><select value={form.status} onChange={(e) => setForm(p => ({...p, status: e.target.value}))} className="w-full px-4 py-3 border border-[#E0E5EB] dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-white rounded-xl"><option value="active">Activo</option><option value="inactive">Inactivo</option></select></div>
+                                <div>
+                                    <label className="block text-sm font-semibold text-[#141B21] dark:text-white mb-1">Puntos de recompensa *</label>
+                                    <input type="number" value={form.pointsReward} onChange={(e) => handleChange("pointsReward", e.target.value)} className="w-full px-4 py-3 border border-[#E0E5EB] dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-white rounded-xl" />
+                                    {errors.pointsReward && <p className="text-red-500 text-xs mt-1">{errors.pointsReward}</p>}
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-semibold text-[#141B21] dark:text-white mb-1">Meta (escaneos) *</label>
+                                    <input type="number" value={form.target} onChange={(e) => handleChange("target", e.target.value)} className="w-full px-4 py-3 border border-[#E0E5EB] dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-white rounded-xl" />
+                                    {errors.target && <p className="text-red-500 text-xs mt-1">{errors.target}</p>}
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-sm font-semibold text-[#141B21] dark:text-white mb-1">Criterio</label>
+                                    <select value={form.criteria} onChange={(e) => handleChange("criteria", e.target.value)} className="w-full px-4 py-3 border border-[#E0E5EB] dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-white rounded-xl">
+                                        <option value="QR_SCAN">QR_SCAN</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-semibold text-[#141B21] dark:text-white mb-1">Estado</label>
+                                    <select value={String(form.active)} onChange={(e) => handleChange("active", e.target.value === "true")} className="w-full px-4 py-3 border border-[#E0E5EB] dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-white rounded-xl">
+                                        <option value="true">Activo</option>
+                                        <option value="false">Inactivo</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div className="flex gap-3 mt-6">
-                            <button onClick={() => setShowForm(false)} className="flex-1 py-3 border border-[#E0E5EB] dark:border-slate-700 dark:text-white rounded-xl">Cancelar</button>
-                            <button onClick={handleSave} className="flex-1 py-3 bg-[#199A61] text-white rounded-xl">Guardar</button>
+                            <button onClick={() => setShowForm(false)} disabled={saving} className="flex-1 py-3 border border-[#E0E5EB] dark:border-slate-700 dark:text-white rounded-xl disabled:opacity-50">Cancelar</button>
+                            <button onClick={handleSave} disabled={saving} className="flex-1 py-3 bg-[#199A61] text-white rounded-xl disabled:opacity-50">
+                                {saving ? "Guardando..." : "Guardar"}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -144,10 +237,12 @@ export default function ChallengesList() {
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
                     <div className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-sm p-6 text-center">
                         <h3 className="text-xl font-bold text-[#141B21] dark:text-white mb-4">¿Eliminar Reto?</h3>
-                        <p className="text-[#6B7280] dark:text-slate-400 mb-6">¿Estás seguro de que deseas eliminar "{toDelete.title}"?</p>
+                        <p className="text-[#6B7280] dark:text-slate-400 mb-6">¿Estás seguro de eliminar "<strong>{toDelete.name}</strong>"?</p>
                         <div className="flex gap-3">
-                            <button onClick={() => setToDelete(null)} className="flex-1 py-3 border border-[#E0E5EB] dark:border-slate-700 dark:text-white rounded-xl">Cancelar</button>
-                            <button onClick={handleDelete} className="flex-1 py-3 bg-red-500 text-white rounded-xl">Eliminar</button>
+                            <button onClick={() => setToDelete(null)} disabled={deleting} className="flex-1 py-3 border border-[#E0E5EB] dark:border-slate-700 dark:text-white rounded-xl disabled:opacity-50">Cancelar</button>
+                            <button onClick={handleDelete} disabled={deleting} className="flex-1 py-3 bg-red-500 text-white rounded-xl disabled:opacity-50">
+                                {deleting ? "Eliminando..." : "Eliminar"}
+                            </button>
                         </div>
                     </div>
                 </div>
