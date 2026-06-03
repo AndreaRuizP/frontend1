@@ -114,15 +114,25 @@ export default function CapturePhoto() {
             formData.append("longitude", String(lng));
 
             const result = await createReport(formData);
+            const validated = result.vision?.validated ?? true;
             const material = result.vision?.detectedMaterial || result.report?.detectedMaterial || "GENERAL_WASTE";
             const points = result.report?.pointsEarned ?? 0;
 
-            setValidationResult({
-                success: true,
-                title: "¡Reciclaje Validado!",
-                points,
-                message: `Material detectado: ${material}`,
-            });
+            if (validated) {
+                setValidationResult({
+                    success: true,
+                    title: "¡Reciclaje Validado!",
+                    points,
+                    message: `Material detectado: ${material}`,
+                });
+            } else {
+                setValidationResult({
+                    success: false,
+                    title: "Material no válido",
+                    points: 0,
+                    message: `Se detectó: ${material}. Asegúrate de fotografiar un residuo reciclable directamente.`,
+                });
+            }
         } catch (err) {
             setValidationResult({
                 success: false,
