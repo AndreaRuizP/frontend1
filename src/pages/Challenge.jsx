@@ -17,7 +17,13 @@ const difficultyStyle = {
   Difícil: "bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-400",
 };
 
-const FILTERS = ["Todos", "Fácil", "Media", "Difícil"];
+const FILTERS = ["Todos", "Individuales", "Grupales", "Referidos"];
+
+const typeMap = {
+  Individuales: "individual",
+  Grupales:     "group",
+  Referidos:    "referral",
+};
 
 export default function Challenge() {
   const [menuOpen, setMenuOpen]   = useState(false);
@@ -38,7 +44,7 @@ export default function Challenge() {
 
   const resultado = challenges.filter((c) => {
     if (filtro === "Todos") return true;
-    return getDifficulty(c.challenge?.target ?? 1) === filtro;
+    return c.challenge?.type === typeMap[filtro];
   });
 
   const completados = challenges.filter((c) => c.completed).length;
@@ -60,10 +66,8 @@ export default function Challenge() {
 
         <main className="w-full max-w-md lg:max-w-6xl mx-auto px-4 lg:px-8 pt-4 lg:pt-6 pb-6 flex-1">
 
-          {/* Banner de estado */}
           <div className="bg-white dark:bg-slate-900 rounded-2xl border border-[#E0E5EB] dark:border-slate-800 px-5 py-3.5 mb-4 lg:mb-6 shadow-sm flex items-center justify-between transition-colors duration-300">
             <span className="font-bold text-[#141B21] dark:text-slate-200 flex items-center gap-2" style={{ fontSize: 15 }}>
-              <i className="bi bi-star-fill text-amber-500"></i>
               {loading ? "Cargando..." : `${completados} de ${challenges.length} retos completados`}
             </span>
             {balance && (
@@ -73,7 +77,6 @@ export default function Challenge() {
             )}
           </div>
 
-          {/* Filtros por dificultad */}
           <div className="flex items-center gap-2 mb-4 lg:grid lg:grid-cols-4 lg:gap-2 lg:mb-6">
             {FILTERS.map((tab) => (
               <button
@@ -91,7 +94,6 @@ export default function Challenge() {
             ))}
           </div>
 
-          {/* Lista de retos */}
           {loading ? (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {[1, 2, 3, 4].map((i) => (
