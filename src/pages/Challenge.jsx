@@ -77,17 +77,17 @@ export default function Challenge() {
             )}
           </div>
 
-          <div className="flex items-center gap-2 mb-4 lg:grid lg:grid-cols-4 lg:gap-2 lg:mb-6">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 mb-4 lg:mb-6 scrollbar-hide lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
             {FILTERS.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setFiltro(tab)}
-                className={`flex-1 lg:flex-none lg:w-full py-2.5 px-4 rounded-xl border text-xs font-bold transition active:scale-95 focus:outline-none
+                className={`shrink-0 lg:shrink lg:w-full py-2 px-4 rounded-xl border text-xs font-bold transition focus:outline-none
                   ${filtro === tab
                     ? "bg-emerald-600 text-white border-emerald-600 dark:bg-emerald-500 dark:border-emerald-500 shadow-sm"
                     : "bg-white dark:bg-slate-900 text-[#141B21] dark:text-slate-300 border-[#E0E5EB] dark:border-slate-800 hover:bg-gray-50 dark:hover:bg-slate-800"
                   }`}
-                style={{ fontSize: 13, minHeight: 40 }}
+                style={{ fontSize: 13, minHeight: 38 }}
               >
                 {tab}
               </button>
