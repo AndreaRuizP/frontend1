@@ -158,11 +158,11 @@ export default function Map() {
             </div>
             <Link
               to="/scan"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 dark:bg-emerald-500 font-bold hover:bg-emerald-700 dark:hover:bg-emerald-600 transition text-white shadow-sm"
-              style={{ minHeight: 44 }}
+              className="inline-flex items-center gap-2.5 self-start lg:self-auto px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 dark:from-emerald-500 dark:to-emerald-600 font-semibold text-sm text-white shadow-md hover:shadow-lg hover:from-emerald-600 hover:to-emerald-700 active:scale-95 transition-all duration-200"
             >
-              <i className="bi bi-qr-code-scan" style={{ fontSize: 18 }}></i>
+              <i className="bi bi-qr-code-scan text-base leading-none"></i>
               Escanear QR
+              <i className="bi bi-chevron-right text-xs leading-none opacity-70"></i>
             </Link>
           </div>
 
