@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-
 import UserHeader from "../components/UserHeader";
 import HamburgerMenu from "../components/HamburgerMenu";
 import Sidebar from "../components/Sidebar";
-import { getMarketplaceItems, redeemItem, getBalance, getTransactions } from "../api/gamification";
+import { getMarketplaceItems, redeemItem, getBalance } from "../api/gamification";
 
 function SkeletonCard() {
   return (
@@ -19,7 +18,6 @@ function SkeletonCard() {
 
 export default function Marketplace() {
   const [menuOpen, setMenuOpen]     = useState(false);
-  const [tab, setTab]               = useState("tienda");
   const [search, setSearch]         = useState("");
   const [items, setItems]           = useState([]);
   const [balance, setBalance]       = useState(null);
@@ -27,8 +25,6 @@ export default function Marketplace() {
   const [confirming, setConfirming] = useState(null);
   const [redeeming, setRedeeming]   = useState(null);
   const [toast, setToast]           = useState(null);
-  const [canjes, setCanjes]         = useState([]);
-  const [loadingCanjes, setLoadingCanjes] = useState(false);
 
   useEffect(() => {
     Promise.all([getMarketplaceItems(), getBalance()])
@@ -64,22 +60,6 @@ export default function Marketplace() {
       showToast("err", err.message || "No se pudo completar el canje");
     } finally {
       setRedeeming(null);
-    }
-  }
-
-  function handleTabChange(t) {
-    setTab(t);
-    if (t === "canjes" && canjes.length === 0) {
-      setLoadingCanjes(true);
-      getTransactions()
-        .then((txs) => {
-          const redeems = (Array.isArray(txs) ? txs : []).filter(
-            (tx) => tx.type === "redemption" || tx.type === "redeem"
-          );
-          setCanjes(redeems);
-        })
-        .catch(() => {})
-        .finally(() => setLoadingCanjes(false));
     }
   }
 
@@ -153,167 +133,105 @@ export default function Marketplace() {
             </div>
           </div>
 
-          <div className="flex gap-2 mb-5">
-            {["tienda", "canjes"].map((t) => (
-              <button
-                key={t}
-                onClick={() => handleTabChange(t)}
-                className={`flex items-center gap-1.5 px-4 py-2 rounded-xl border text-sm font-bold transition focus:outline-none
-                  ${tab === t
-                    ? "bg-emerald-600 text-white border-emerald-600 dark:bg-emerald-500 dark:border-emerald-500 shadow-sm"
-                    : "bg-white dark:bg-slate-900 text-[#141B21] dark:text-slate-300 border-[#E0E5EB] dark:border-slate-800 hover:bg-gray-50 dark:hover:bg-slate-800"
-                  }`}
-              >
-                <i className={`bi ${t === "tienda" ? "bi-shop" : "bi-bag-check"} text-sm`}></i>
-                {t === "tienda" ? "Tienda" : "Mis canjes"}
-              </button>
-            ))}
+          <div className="mb-5 relative">
+            <span className="absolute left-3.5 top-3 text-gray-400 dark:text-slate-500">
+              <i className="bi bi-search text-sm"></i>
+            </span>
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Buscar producto..."
+              className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-900 border border-[#E0E5EB] dark:border-slate-800 rounded-xl text-slate-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:border-emerald-500 dark:focus:border-emerald-400 shadow-sm transition-all"
+              style={{ fontSize: 15 }}
+            />
           </div>
 
-          {tab === "tienda" && (
-            <>
-              <div className="mb-5 relative">
-                <span className="absolute left-3.5 top-3 text-gray-400 dark:text-slate-500">
-                  <i className="bi bi-search text-sm"></i>
-                </span>
-                <input
-                  type="text"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Buscar producto..."
-                  className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-900 border border-[#E0E5EB] dark:border-slate-800 rounded-xl text-slate-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:border-emerald-500 dark:focus:border-emerald-400 shadow-sm transition-all"
-                  style={{ fontSize: 15 }}
-                />
-              </div>
+          {loading ? (
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+              {[1, 2, 3, 4, 5, 6].map((i) => <SkeletonCard key={i} />)}
+            </div>
+          ) : resultado.length === 0 ? (
+            <div className="text-center py-16 text-slate-400 dark:text-slate-500">
+              <i className="bi bi-shop text-4xl mb-3 block"></i>
+              <p className="font-medium">No hay productos disponibles</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 pb-6">
+              {resultado.map((item) => {
+                const outOfStock  = item.stock === 0;
+                const isConfirm   = confirming === item.id;
+                const isRedeeming = redeeming === item.id;
 
-              {loading ? (
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-                  {[1, 2, 3, 4, 5, 6].map((i) => <SkeletonCard key={i} />)}
-                </div>
-              ) : resultado.length === 0 ? (
-                <div className="text-center py-16 text-slate-400 dark:text-slate-500">
-                  <i className="bi bi-shop text-4xl mb-3 block"></i>
-                  <p className="font-medium">No hay productos disponibles</p>
-                </div>
-              ) : (
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 pb-6">
-                  {resultado.map((item) => {
-                    const outOfStock  = item.stock === 0;
-                    const isConfirm   = confirming === item.id;
-                    const isRedeeming = redeeming === item.id;
-
-                    return (
-                      <div
-                        key={item.id}
-                        className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-[#E0E5EB] dark:border-slate-800 p-3.5 flex flex-col justify-between transition-all duration-300"
-                      >
-                        <div>
-                          <div className="w-full bg-gray-50 dark:bg-slate-950/60 rounded-xl mb-3 flex items-center justify-center border border-gray-100 dark:border-slate-800/50" style={{ height: 120 }}>
-                            <i className="bi bi-leaf text-3xl text-emerald-300 dark:text-emerald-800"></i>
-                          </div>
-                          <span className="font-bold text-slate-800 dark:text-slate-100 leading-snug mb-1 block" style={{ fontSize: 15 }}>
-                            {item.name}
-                          </span>
-                          {item.description && (
-                            <span className="text-gray-400 dark:text-slate-400 block mb-2 font-medium leading-snug" style={{ fontSize: 12 }}>
-                              {item.description.length > 70 ? item.description.slice(0, 68) + "…" : item.description}
-                            </span>
-                          )}
-                        </div>
-
-                        <div>
-                          <div className="flex items-center justify-between mb-3">
-                            <span className="font-black text-amber-500 dark:text-amber-400 flex items-center gap-1" style={{ fontSize: 16 }}>
-                              <i className="bi bi-lightning-charge-fill text-sm"></i>
-                              {item.pointsCost} pts
-                            </span>
-                            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
-                              outOfStock
-                                ? "bg-red-50 text-red-500 dark:bg-red-950/30 dark:text-red-400"
-                                : "bg-gray-100 text-gray-500 dark:bg-slate-800 dark:text-slate-400"
-                            }`}>
-                              {outOfStock ? "Agotado" : `${item.stock} disp.`}
-                            </span>
-                          </div>
-
-                          {outOfStock ? (
-                            <div className="w-full py-2.5 rounded-xl bg-gray-100 dark:bg-slate-800 text-gray-400 dark:text-slate-500 font-bold text-center" style={{ fontSize: 14 }}>
-                              Sin stock
-                            </div>
-                          ) : !canAfford(item.pointsCost) ? (
-                            <div className="w-full py-2.5 rounded-xl bg-gray-100 dark:bg-slate-800 text-gray-400 dark:text-slate-500 font-bold text-center" style={{ fontSize: 14 }}>
-                              Puntos insuficientes
-                            </div>
-                          ) : (
-                            <button
-                              onClick={() => handleRedeem(item)}
-                              disabled={isRedeeming}
-                              className={`w-full py-2.5 rounded-xl font-bold transition active:scale-95 shadow-sm focus:outline-none text-white
-                                ${isConfirm
-                                  ? "bg-amber-500 hover:bg-amber-600 dark:bg-amber-500 dark:hover:bg-amber-600"
-                                  : "bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600"
-                                }`}
-                              style={{ minHeight: 38, fontSize: 14 }}
-                            >
-                              {isRedeeming ? "Canjeando…" : isConfirm ? "¿Confirmar?" : "Canjear"}
-                            </button>
-                          )}
-
-                          {isConfirm && (
-                            <button
-                              onClick={() => setConfirming(null)}
-                              className="w-full mt-1.5 py-1.5 rounded-xl text-xs font-medium text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200 transition"
-                            >
-                              Cancelar
-                            </button>
-                          )}
-                        </div>
+                return (
+                  <div
+                    key={item.id}
+                    className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-[#E0E5EB] dark:border-slate-800 p-3.5 flex flex-col justify-between transition-all duration-300"
+                  >
+                    <div>
+                      <div className="w-full bg-gray-50 dark:bg-slate-950/60 rounded-xl mb-3 flex items-center justify-center border border-gray-100 dark:border-slate-800/50" style={{ height: 120 }}>
+                        <i className="bi bi-leaf text-3xl text-emerald-300 dark:text-emerald-800"></i>
                       </div>
-                    );
-                  })}
-                </div>
-              )}
-            </>
-          )}
-
-          {tab === "canjes" && (
-            <div className="pb-6">
-              {loadingCanjes ? (
-                <div className="flex flex-col gap-3">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="bg-white dark:bg-slate-900 rounded-2xl border border-[#E0E5EB] dark:border-slate-800 h-20 animate-pulse" />
-                  ))}
-                </div>
-              ) : canjes.length === 0 ? (
-                <div className="text-center py-16 text-slate-400 dark:text-slate-500">
-                  <i className="bi bi-bag-x text-4xl mb-3 block"></i>
-                  <p className="font-medium">Aún no has realizado canjes</p>
-                </div>
-              ) : (
-                <div className="flex flex-col gap-3">
-                  {canjes.map((tx, i) => (
-                    <div key={i} className="bg-white dark:bg-slate-900 rounded-2xl border border-[#E0E5EB] dark:border-slate-800 px-5 py-4 flex items-center justify-between shadow-sm">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 flex items-center justify-center shrink-0">
-                          <i className="bi bi-bag-check-fill text-emerald-600 dark:text-emerald-400 text-base"></i>
-                        </div>
-                        <div>
-                          <p className="font-bold text-[#141B21] dark:text-slate-100 leading-tight" style={{ fontSize: 14 }}>
-                            {tx.description?.replace(/^Canje:\s*/i, "") ?? "Canje realizado"}
-                          </p>
-                          <p className="text-xs text-gray-400 dark:text-slate-500 mt-0.5">
-                            {tx.createdAt ? new Date(tx.createdAt).toLocaleDateString("es-CO", { day: "numeric", month: "short", year: "numeric" }) : ""}
-                          </p>
-                        </div>
-                      </div>
-                      <span className="font-black text-amber-500 dark:text-amber-400 flex items-center gap-1 shrink-0" style={{ fontSize: 15 }}>
-                        <i className="bi bi-lightning-charge-fill text-xs"></i>
-                        {Math.abs(tx.amount)} pts
+                      <span className="font-bold text-slate-800 dark:text-slate-100 leading-snug mb-1 block" style={{ fontSize: 15 }}>
+                        {item.name}
                       </span>
+                      {item.description && (
+                        <span className="text-gray-400 dark:text-slate-400 block mb-2 font-medium leading-snug" style={{ fontSize: 12 }}>
+                          {item.description.length > 70 ? item.description.slice(0, 68) + "…" : item.description}
+                        </span>
+                      )}
                     </div>
-                  ))}
-                </div>
-              )}
+
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="font-black text-amber-500 dark:text-amber-400 flex items-center gap-1" style={{ fontSize: 16 }}>
+                          <i className="bi bi-lightning-charge-fill text-sm"></i>
+                          {item.pointsCost} pts
+                        </span>
+                        <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
+                          outOfStock
+                            ? "bg-red-50 text-red-500 dark:bg-red-950/30 dark:text-red-400"
+                            : "bg-gray-100 text-gray-500 dark:bg-slate-800 dark:text-slate-400"
+                        }`}>
+                          {outOfStock ? "Agotado" : `${item.stock} disp.`}
+                        </span>
+                      </div>
+
+                      {outOfStock ? (
+                        <div className="w-full py-2.5 rounded-xl bg-gray-100 dark:bg-slate-800 text-gray-400 dark:text-slate-500 font-bold text-center" style={{ fontSize: 14 }}>
+                          Sin stock
+                        </div>
+                      ) : !canAfford(item.pointsCost) ? (
+                        <div className="w-full py-2.5 rounded-xl bg-gray-100 dark:bg-slate-800 text-gray-400 dark:text-slate-500 font-bold text-center" style={{ fontSize: 14 }}>
+                          Puntos insuficientes
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => handleRedeem(item)}
+                          disabled={isRedeeming}
+                          className={`w-full py-2.5 rounded-xl font-bold transition active:scale-95 shadow-sm focus:outline-none text-white
+                            ${isConfirm
+                              ? "bg-amber-500 hover:bg-amber-600 dark:bg-amber-500 dark:hover:bg-amber-600"
+                              : "bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600"
+                            }`}
+                          style={{ minHeight: 38, fontSize: 14 }}
+                        >
+                          {isRedeeming ? "Canjeando…" : isConfirm ? "¿Confirmar?" : "Canjear"}
+                        </button>
+                      )}
+
+                      {isConfirm && (
+                        <button
+                          onClick={() => setConfirming(null)}
+                          className="w-full mt-1.5 py-1.5 rounded-xl text-xs font-medium text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200 transition"
+                        >
+                          Cancelar
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           )}
         </main>
