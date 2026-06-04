@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { sanitizeInput } from "../../utils/security";
 
 export default function ReportsList() {
@@ -19,7 +19,7 @@ export default function ReportsList() {
         switch (status) {
             case "pending": return "bg-yellow-50 text-yellow-700 border-yellow-100 dark:bg-yellow-900/30 dark:text-yellow-400 dark:border-yellow-900/50";
             case "in-progress": return "bg-blue-50 text-blue-700 border-blue-100 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-900/50";
-            case "resolved": return "bg-green-50 text-green-700 border-green-100 dark:bg-green-900/30 dark:text-green-400 dark:border-green-900/50";
+            case "resolved": return "bg-emerald-50 text-emerald-700 border-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400 dark:border-emerald-900/50";
             default: return "bg-gray-50 text-gray-700 border-gray-100 dark:bg-slate-800 dark:text-slate-400";
         }
     };

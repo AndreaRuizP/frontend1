@@ -1,6 +1,6 @@
-﻿export default function StatCard({ title, value, icon, color, change }) {
+export default function StatCard({ title, value, icon, color, change }) {
     const colorStyles = {
-        emerald: "bg-green-50 text-green-600 border-green-100 dark:bg-green-950/40 dark:text-green-400 dark:border-green-900/50",
+        emerald: "bg-emerald-50 text-emerald-600 border-emerald-100 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-900/50",
         blue: "bg-blue-50 text-blue-600 border-blue-100 dark:bg-blue-950/40 dark:text-blue-400 dark:border-blue-900/50",
         yellow: "bg-yellow-50 text-yellow-600 border-yellow-100 dark:bg-yellow-950/40 dark:text-yellow-400 dark:border-yellow-900/50",
         purple: "bg-purple-50 text-purple-600 border-purple-100 dark:bg-purple-950/40 dark:text-purple-400 dark:border-purple-900/50"
