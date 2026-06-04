@@ -8,7 +8,6 @@ import HamburgerMenu from "../components/HamburgerMenu";
 import Sidebar from "../components/Sidebar";
 import { getContainers } from "../api/containers";
 
-// Fix leaflet default marker icons (webpack/vite issue)
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
@@ -47,7 +46,6 @@ function typeLabel(type) {
   return map[type] || type;
 }
 
-// Centres the map when selected container changes
 function MapFocus({ center }) {
   const map = useMap();
   useEffect(() => {
@@ -68,7 +66,6 @@ export default function Map() {
     typeof window !== "undefined" ? window.innerWidth >= 1024 : false
   );
 
-  // Get user geolocation
   useEffect(() => {
     navigator.geolocation?.getCurrentPosition(
       (pos) => setUserPos({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
@@ -76,7 +73,6 @@ export default function Map() {
     );
   }, []);
 
-  // Fetch containers
   useEffect(() => {
     getContainers()
       .then((data) => setContainers(Array.isArray(data) ? data : []))
@@ -92,7 +88,6 @@ export default function Map() {
 
   const pageSize = isDesktop ? PAGE_SIZE_DESKTOP : PAGE_SIZE_MOBILE;
 
-  // Enrich with distance and filter
   const enriched = containers.map((c) => ({
     ...c,
     km: userPos
@@ -144,7 +139,6 @@ export default function Map() {
 
         <main className="w-full max-w-md lg:max-w-6xl mx-auto px-4 lg:px-8 pt-4 lg:pt-6 pb-6 flex-1">
 
-          {/* Header */}
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-5">
             <div>
               <div className="font-bold text-[#141B21] dark:text-slate-100" style={{ fontSize: 22 }}>
@@ -158,15 +152,13 @@ export default function Map() {
             </div>
             <Link
               to="/scan"
-              className="inline-flex items-center gap-2.5 self-start lg:self-auto px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 dark:from-emerald-500 dark:to-emerald-600 font-semibold text-sm text-white shadow-md hover:shadow-lg hover:from-emerald-600 hover:to-emerald-700 active:scale-95 transition-all duration-200"
+              className="inline-flex items-center gap-2 self-start lg:self-auto px-5 py-2.5 rounded-xl bg-emerald-600 dark:bg-emerald-500 font-semibold text-sm text-white hover:bg-emerald-700 dark:hover:bg-emerald-600 transition-colors"
             >
               <i className="bi bi-qr-code-scan text-base leading-none"></i>
               Escanear QR
-              <i className="bi bi-chevron-right text-xs leading-none opacity-70"></i>
             </Link>
           </div>
 
-          {/* Mapa */}
           <div className="rounded-2xl overflow-hidden w-full mb-5 border border-[#E0E5EB] dark:border-slate-800 shadow-sm h-[210px] lg:h-[380px] dark:invert-[90%] dark:hue-rotate-180 transition-all duration-300">
             <MapContainer
               center={SANTA_MARTA_CENTER}
@@ -196,7 +188,6 @@ export default function Map() {
             </MapContainer>
           </div>
 
-          {/* Buscador */}
           <div className="mb-5">
             <div className="relative">
               <span className="absolute left-3 top-2.5 text-gray-400 dark:text-slate-500">
@@ -212,7 +203,6 @@ export default function Map() {
             </div>
           </div>
 
-          {/* Lista */}
           {loading ? (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {[1, 2, 3, 4].map((i) => (
@@ -264,7 +254,6 @@ export default function Map() {
             </div>
           )}
 
-          {/* Paginación */}
           {totalPages > 1 && (
             <div className="flex justify-center items-center gap-3 mb-6 mt-2">
               <button
