@@ -263,7 +263,7 @@ export default function Map() {
                   ${page === 1
                     ? "bg-gray-100 dark:bg-slate-800 text-gray-300 dark:text-slate-600 border-gray-200 dark:border-slate-700 cursor-not-allowed"
                     : "bg-white dark:bg-slate-900 text-[#141B21] dark:text-slate-200 border-[#E0E5EB] dark:border-slate-800 hover:bg-[#F7FAFC] dark:hover:bg-slate-800"}`}
-              >{"<"}</button>
+              ><i className="bi bi-chevron-left"></i></button>
               <span className="text-sm font-medium text-gray-600 dark:text-slate-400">{page} / {totalPages}</span>
               <button
                 disabled={page === totalPages}
@@ -272,7 +272,7 @@ export default function Map() {
                   ${page === totalPages
                     ? "bg-gray-100 dark:bg-slate-800 text-gray-300 dark:text-slate-600 border-gray-200 dark:border-slate-700 cursor-not-allowed"
                     : "bg-white dark:bg-slate-900 text-[#141B21] dark:text-slate-200 border-[#E0E5EB] dark:border-slate-800 hover:bg-[#F7FAFC] dark:hover:bg-slate-800"}`}
-              >{">"}</button>
+              ><i className="bi bi-chevron-right"></i></button>
             </div>
           )}
 
