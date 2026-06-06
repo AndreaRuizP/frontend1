@@ -131,7 +131,10 @@ export default function Login() {
           aria-invalid={!!errors.email}
         />
         {errors.email && (
-          <p id="email-error" role="alert" className="text-red-500 dark:text-red-400 text-xs mb-3">{errors.email}</p>
+          <div id="email-error" role="alert" className="flex items-center gap-2 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-lg px-3 py-2 mb-3">
+            <i className="bi bi-exclamation-circle-fill text-red-500 dark:text-red-400 text-xs shrink-0"></i>
+            <span className="text-red-600 dark:text-red-400 text-xs font-medium">{errors.email}</span>
+          </div>
         )}
         <label className="block text-black dark:text-slate-200 text-sm mb-1" htmlFor="password">
           Contraseña
@@ -159,10 +162,19 @@ export default function Login() {
           </button>
         </div>
         {errors.password && (
-          <p id="password-error" role="alert" className="text-red-500 dark:text-red-400 text-xs mb-4">{errors.password}</p>
+          <div id="password-error" role="alert" className="flex items-center gap-2 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-lg px-3 py-2 mb-4">
+            <i className="bi bi-exclamation-circle-fill text-red-500 dark:text-red-400 text-xs shrink-0"></i>
+            <span className="text-red-600 dark:text-red-400 text-xs font-medium">{errors.password}</span>
+          </div>
         )}
         {apiError && (
-          <p role="alert" className="text-red-500 dark:text-red-400 text-xs mb-3 text-center">{apiError}</p>
+          <div role="alert" className="flex items-start gap-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-xl px-4 py-3 mb-4">
+            <i className="bi bi-x-circle-fill text-red-500 dark:text-red-400 text-base mt-0.5 shrink-0"></i>
+            <div>
+              <p className="text-red-700 dark:text-red-300 text-sm font-bold leading-tight">Credenciales incorrectas</p>
+              <p className="text-red-600 dark:text-red-400 text-xs mt-0.5">{apiError}</p>
+            </div>
+          </div>
         )}
         <button
           type="submit"

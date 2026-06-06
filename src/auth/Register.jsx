@@ -150,7 +150,10 @@ export default function Register() {
           aria-invalid={!!errors.nombre}
         />
         {errors.nombre && (
-          <p id="nombre-error" role="alert" className="text-red-500 dark:text-red-400 text-xs mb-3">{errors.nombre}</p>
+          <div id="nombre-error" role="alert" className="flex items-center gap-2 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-lg px-3 py-2 mb-3">
+            <i className="bi bi-exclamation-circle-fill text-red-500 dark:text-red-400 text-xs shrink-0"></i>
+            <span className="text-red-600 dark:text-red-400 text-xs font-medium">{errors.nombre}</span>
+          </div>
         )}
         <label className="block text-black dark:text-slate-200 text-sm mb-1" htmlFor="email">
           Correo electrónico
@@ -166,7 +169,10 @@ export default function Register() {
           aria-invalid={!!errors.email}
         />
         {errors.email && (
-          <p id="email-error" role="alert" className="text-red-500 dark:text-red-400 text-xs mb-3">{errors.email}</p>
+          <div id="email-error" role="alert" className="flex items-center gap-2 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-lg px-3 py-2 mb-3">
+            <i className="bi bi-exclamation-circle-fill text-red-500 dark:text-red-400 text-xs shrink-0"></i>
+            <span className="text-red-600 dark:text-red-400 text-xs font-medium">{errors.email}</span>
+          </div>
         )}
         <label className="block text-black dark:text-slate-200 text-sm mb-1" htmlFor="password">
           Contraseña
@@ -193,7 +199,10 @@ export default function Register() {
           </button>
         </div>
         {errors.pass && (
-          <p id="pass-error" role="alert" className="text-red-500 dark:text-red-400 text-xs mb-3">{errors.pass}</p>
+          <div id="pass-error" role="alert" className="flex items-center gap-2 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-lg px-3 py-2 mb-3">
+            <i className="bi bi-exclamation-circle-fill text-red-500 dark:text-red-400 text-xs shrink-0"></i>
+            <span className="text-red-600 dark:text-red-400 text-xs font-medium">{errors.pass}</span>
+          </div>
         )}
         <label className="block text-black dark:text-slate-200 text-sm mb-1" htmlFor="password2">
           Confirmar contraseña
@@ -220,10 +229,19 @@ export default function Register() {
           </button>
         </div>
         {errors.pass2 && (
-          <p id="pass2-error" role="alert" className="text-red-500 dark:text-red-400 text-xs mb-4">{errors.pass2}</p>
+          <div id="pass2-error" role="alert" className="flex items-center gap-2 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-lg px-3 py-2 mb-4">
+            <i className="bi bi-exclamation-circle-fill text-red-500 dark:text-red-400 text-xs shrink-0"></i>
+            <span className="text-red-600 dark:text-red-400 text-xs font-medium">{errors.pass2}</span>
+          </div>
         )}
         {apiError && (
-          <p role="alert" className="text-red-500 dark:text-red-400 text-xs mb-3 text-center">{apiError}</p>
+          <div role="alert" className="flex items-start gap-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-xl px-4 py-3 mb-4">
+            <i className="bi bi-x-circle-fill text-red-500 dark:text-red-400 text-base mt-0.5 shrink-0"></i>
+            <div>
+              <p className="text-red-700 dark:text-red-300 text-sm font-bold leading-tight">No se pudo crear la cuenta</p>
+              <p className="text-red-600 dark:text-red-400 text-xs mt-0.5">{apiError}</p>
+            </div>
+          </div>
         )}
         <button
           type="submit"
