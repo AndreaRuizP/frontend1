@@ -106,7 +106,7 @@ export default function Challenge() {
           ) : resultado.length === 0 ? (
             <div className="text-center py-16 text-slate-400 dark:text-slate-500">
               <i className="bi bi-trophy text-4xl mb-3 block"></i>
-              <p className="font-medium">No hay retos en esta categoría</p>
+              <p className="font-medium"> hay retos en esta categoría</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 pb-6">
