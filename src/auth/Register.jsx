@@ -133,9 +133,23 @@ export default function Register() {
         <h1 className="text-2xl font-bold text-center text-green-600 dark:text-green-500 mb-1">
           CleanPoints
         </h1>
-        <p className="text-center text-[#7D8797] dark:text-slate-400 text-sm mb-8">
+        <p className="text-center text-[#7D8797] dark:text-slate-400 text-sm mb-6">
           Crea tu cuenta para comenzar
         </p>
+
+        {apiError && (
+          <div role="alert" className="flex items-start gap-3 bg-red-50 dark:bg-red-950/40 border-l-4 border-red-500 dark:border-red-400 rounded-xl px-4 py-4 mb-5 shadow-sm">
+            <i className="bi bi-shield-exclamation text-red-500 dark:text-red-400 text-xl mt-0.5 shrink-0"></i>
+            <div className="flex-1 min-w-0">
+              <p className="text-red-700 dark:text-red-300 text-sm font-bold">No se pudo crear la cuenta</p>
+              <p className="text-red-600 dark:text-red-400 text-sm mt-0.5 leading-snug">{apiError}</p>
+            </div>
+            <button type="button" onClick={() => setApiError("")} className="shrink-0 text-red-400 hover:text-red-600 dark:hover:text-red-200 transition-colors ml-1">
+              <i className="bi bi-x-lg text-sm"></i>
+            </button>
+          </div>
+        )}
+
         <label className="block text-black dark:text-slate-200 text-sm mb-1" htmlFor="nombre">
           Nombre completo
         </label>
@@ -232,18 +246,6 @@ export default function Register() {
           <div id="pass2-error" role="alert" className="flex items-center gap-2 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-lg px-3 py-2 mb-4">
             <i className="bi bi-exclamation-circle-fill text-red-500 dark:text-red-400 text-sm shrink-0"></i>
             <span className="text-red-600 dark:text-red-400 text-sm font-medium">{errors.pass2}</span>
-          </div>
-        )}
-        {apiError && (
-          <div role="alert" className="flex items-start gap-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-xl px-4 py-4 mb-4">
-            <i className="bi bi-x-circle-fill text-red-500 dark:text-red-400 text-lg mt-0.5 shrink-0"></i>
-            <div className="flex-1">
-              <p className="text-red-700 dark:text-red-300 text-sm font-bold leading-tight">No se pudo crear la cuenta</p>
-              <p className="text-red-600 dark:text-red-400 text-sm mt-1">{apiError}</p>
-            </div>
-            <button onClick={() => setApiError("")} className="shrink-0 text-red-400 hover:text-red-600 dark:hover:text-red-300 transition-colors">
-              <i className="bi bi-x text-lg leading-none"></i>
-            </button>
           </div>
         )}
         <button
