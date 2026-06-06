@@ -132,8 +132,8 @@ export default function Login() {
         />
         {errors.email && (
           <div id="email-error" role="alert" className="flex items-center gap-2 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-lg px-3 py-2 mb-3">
-            <i className="bi bi-exclamation-circle-fill text-red-500 dark:text-red-400 text-xs shrink-0"></i>
-            <span className="text-red-600 dark:text-red-400 text-xs font-medium">{errors.email}</span>
+            <i className="bi bi-exclamation-circle-fill text-red-500 dark:text-red-400 text-sm shrink-0"></i>
+            <span className="text-red-600 dark:text-red-400 text-sm font-medium">{errors.email}</span>
           </div>
         )}
         <label className="block text-black dark:text-slate-200 text-sm mb-1" htmlFor="password">
@@ -163,17 +163,20 @@ export default function Login() {
         </div>
         {errors.password && (
           <div id="password-error" role="alert" className="flex items-center gap-2 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-lg px-3 py-2 mb-4">
-            <i className="bi bi-exclamation-circle-fill text-red-500 dark:text-red-400 text-xs shrink-0"></i>
-            <span className="text-red-600 dark:text-red-400 text-xs font-medium">{errors.password}</span>
+            <i className="bi bi-exclamation-circle-fill text-red-500 dark:text-red-400 text-sm shrink-0"></i>
+            <span className="text-red-600 dark:text-red-400 text-sm font-medium">{errors.password}</span>
           </div>
         )}
         {apiError && (
-          <div role="alert" className="flex items-start gap-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-xl px-4 py-3 mb-4">
-            <i className="bi bi-x-circle-fill text-red-500 dark:text-red-400 text-base mt-0.5 shrink-0"></i>
-            <div>
+          <div role="alert" className="flex items-start gap-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-xl px-4 py-4 mb-4">
+            <i className="bi bi-x-circle-fill text-red-500 dark:text-red-400 text-lg mt-0.5 shrink-0"></i>
+            <div className="flex-1">
               <p className="text-red-700 dark:text-red-300 text-sm font-bold leading-tight">Credenciales incorrectas</p>
-              <p className="text-red-600 dark:text-red-400 text-xs mt-0.5">{apiError}</p>
+              <p className="text-red-600 dark:text-red-400 text-sm mt-1">{apiError}</p>
             </div>
+            <button onClick={() => setApiError("")} className="shrink-0 text-red-400 hover:text-red-600 dark:hover:text-red-300 transition-colors">
+              <i className="bi bi-x text-lg leading-none"></i>
+            </button>
           </div>
         )}
         <button
