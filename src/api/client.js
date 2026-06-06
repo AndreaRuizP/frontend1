@@ -19,7 +19,8 @@ api.interceptors.response.use(
   (error) => {
     const message = error.response?.data?.message || "Error de conexión con el servidor";
 
-    if (error.response?.status === 401) {
+    const isAuthRoute = error.config?.url?.includes("/auth/");
+    if (error.response?.status === 401 && !isAuthRoute) {
       authStorage.clear();
       window.location.href = "/login";
     }
