@@ -63,10 +63,16 @@ export default function Marketplace() {
     }
   }
 
-  const resultado = items.filter((it) =>
-    it.name.toLowerCase().includes(search.toLowerCase()) ||
-    (it.description || "").toLowerCase().includes(search.toLowerCase())
-  );
+  const resultado = items
+    .filter((it) =>
+      it.name.toLowerCase().includes(search.toLowerCase()) ||
+      (it.description || "").toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) => {
+      const aOk = balance !== null && balance.balance >= a.pointsCost && a.stock > 0;
+      const bOk = balance !== null && balance.balance >= b.pointsCost && b.stock > 0;
+      return aOk === bOk ? 0 : aOk ? -1 : 1;
+    });
 
   const canAfford = (cost) => balance !== null && balance.balance >= cost;
 
