@@ -41,7 +41,6 @@ export default function Login() {
     }
 
     setErrors({});
-    setApiError("");
     setLoading(true);
 
     try {

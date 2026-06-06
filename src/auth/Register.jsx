@@ -60,7 +60,6 @@ export default function Register() {
     }
 
     setErrors({});
-    setApiError("");
     setLoading(true);
 
     try {
