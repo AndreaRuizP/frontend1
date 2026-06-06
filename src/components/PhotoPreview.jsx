@@ -62,7 +62,6 @@ export default function PhotoPreview({ photo, qrCode, onRetake, onValidate, isVa
                             </>
                         ) : (
                             <>
-                                <i className="bi bi-check-lg"></i>
                                 Validar Reciclaje
                             </>
                         )}
