@@ -38,7 +38,7 @@ export default function Marketplace() {
 
   function showToast(type, msg) {
     setToast({ type, msg });
-    setTimeout(() => setToast(null), 3500);
+    setTimeout(() => setToast(null), 7000);
   }
 
   async function handleRedeem(item) {
@@ -75,9 +75,13 @@ export default function Marketplace() {
       <Sidebar />
 
       {toast && (
-        <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-2xl shadow-lg text-sm font-bold text-white transition-all
+        <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-4 py-3 rounded-2xl shadow-lg text-sm font-semibold text-white transition-all max-w-xs w-full
           ${toast.type === "ok" ? "bg-emerald-600" : "bg-red-500"}`}>
-          {toast.type === "ok" ? "✓ " : "✕ "}{toast.msg}
+          <i className={`bi ${toast.type === "ok" ? "bi-check-circle-fill" : "bi-x-circle-fill"} text-base shrink-0`}></i>
+          <span className="flex-1 leading-snug">{toast.msg}</span>
+          <button onClick={() => setToast(null)} className="shrink-0 opacity-70 hover:opacity-100 transition-opacity">
+            <i className="bi bi-x text-lg leading-none"></i>
+          </button>
         </div>
       )}
 
