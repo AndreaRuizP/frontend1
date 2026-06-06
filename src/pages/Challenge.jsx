@@ -43,10 +43,12 @@ export default function Challenge() {
       .finally(() => setLoading(false));
   }, []);
 
-  const resultado = challenges.filter((c) => {
-    if (filtro === "Todos") return true;
-    return c.challenge?.type === typeMap[filtro];
-  });
+  const resultado = challenges
+    .filter((c) => {
+      if (filtro === "Todos") return true;
+      return c.challenge?.type === typeMap[filtro];
+    })
+    .sort((a, b) => (a.completed === b.completed ? 0 : a.completed ? 1 : -1));
 
   const completados = challenges.filter((c) => c.completed).length;
 
