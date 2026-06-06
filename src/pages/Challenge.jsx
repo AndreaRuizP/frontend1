@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import UserHeader from "../components/UserHeader";
 import HamburgerMenu from "../components/HamburgerMenu";
 import Sidebar from "../components/Sidebar";
@@ -171,16 +172,23 @@ export default function Challenge() {
                         </span>
                       </div>
 
-                      <div className={`mt-4 w-full py-3 rounded-xl text-sm font-bold text-center
-                        ${completed
-                          ? "bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400"
-                          : progress > 0
-                          ? "bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 text-white cursor-default"
-                          : "bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-100 cursor-default"
-                        }`}
-                      >
-                        {completed ? "✓ Completado" : progress > 0 ? "En progreso" : "Pendiente"}
-                      </div>
+                      {completed ? (
+                        <div className="mt-4 w-full py-3 rounded-xl text-sm font-bold text-center bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400">
+                          ✓ Completado
+                        </div>
+                      ) : (
+                        <Link
+                          to="/scan"
+                          className={`mt-4 w-full py-3 rounded-xl text-sm font-bold text-center block text-white transition hover:opacity-90 active:scale-95
+                            ${progress > 0
+                              ? "bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600"
+                              : "bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700"
+                            }`}
+                        >
+                          <i className="bi bi-qr-code-scan mr-1.5"></i>
+                          {progress > 0 ? "Continuar reto" : "Iniciar reto"}
+                        </Link>
+                      )}
                     </div>
                   </div>
                 );
