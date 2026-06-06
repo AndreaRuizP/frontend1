@@ -1,5 +1,5 @@
 ﻿import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext, useEffect, useRef } from "react";
+import { useState, useContext } from "react";
 import { validateEmail, validatePassword, validateName, sanitizeInput, authStorage } from "../utils/security";
 import { ThemeContext } from "../context/ThemeContext";
 import { register as registerApi, login as loginApi } from "../api/auth";
@@ -22,15 +22,6 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { darkMode } = useContext(ThemeContext);
-  const errorTimer = useRef(null);
-
-  useEffect(() => {
-    if (apiError) {
-      clearTimeout(errorTimer.current);
-      errorTimer.current = setTimeout(() => setApiError(""), 30000);
-    }
-    return () => clearTimeout(errorTimer.current);
-  }, [apiError]);
 
   async function handleSubmit(e) {
     e.preventDefault();
