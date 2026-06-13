@@ -25,7 +25,7 @@ const typeMap = {
   Grupales:     "group",
   Referidos:    "referral",
 };
-
+ 
 export default function Challenge() {
   const [menuOpen, setMenuOpen]   = useState(false);
   const [filtro, setFiltro]       = useState("Todos");
