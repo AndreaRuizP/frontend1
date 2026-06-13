@@ -11,8 +11,14 @@ export default function AdminStats() {
 
     useEffect(() => {
         Promise.all([getKPIs(), getDailyStats(7)])
-            .then(([k, d]) => { setKpis(k); setDailyData(d); })
-            .catch(console.error)
+            .then(([k, d]) => {
+                console.log("Daily data received:", d);
+                setKpis(k);
+                setDailyData(d);
+            })
+            .catch(err => {
+                console.error("Error fetching stats:", err);
+            })
             .finally(() => setLoading(false));
     }, []);
 

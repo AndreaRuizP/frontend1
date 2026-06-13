@@ -37,7 +37,7 @@ export default function PointsChart({ data = [], loading = false }) {
             )}
 
             {!loading && data.every(d => d.pointsDistributed === 0) && (
-                <p className="text-center text-sm text-[#6B7280] dark:text-slate-400 -mt-48">Sin datos esta semana</p>
+                <p className="text-center text-sm text-[#6B7280] dark:text-slate-400 mt-8">Sin datos esta semana</p>
             )}
         </div>
     );
