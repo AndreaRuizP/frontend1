@@ -1,5 +1,4 @@
 export default function PointsChart({ data = [], loading = false }) {
-    console.log("PointsChart received:", { data, loading, dataType: typeof data, isArray: Array.isArray(data), length: data?.length });
     const maxValue = Math.max(...data.map(d => d.pointsDistributed), 1);
 
     return (
@@ -38,7 +37,7 @@ export default function PointsChart({ data = [], loading = false }) {
             )}
 
             {!loading && data.every(d => d.pointsDistributed === 0) && (
-                <p className="text-center text-sm text-[#6B7280] dark:text-slate-400 mt-8">Sin datos esta semana</p>
+                <p className="text-center text-sm text-[#6B7280] dark:text-slate-400 -mt-48">Sin datos esta semana</p>
             )}
         </div>
     );
