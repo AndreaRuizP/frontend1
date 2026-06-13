@@ -1,4 +1,4 @@
-// Sanitización de entradas para prevenir XSS 
+// Sanitización de entradas para prevenir XSS
 export function sanitizeInput(value) {
   return String(value)
     .replace(/&/g, '&amp;')
