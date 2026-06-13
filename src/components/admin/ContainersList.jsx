@@ -10,7 +10,7 @@ const statusConfig = {
     inactive: { label: "Inactivo", classes: "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400" },
 };
 
-const typeLabels = { recycling: "Reciclaje", organic: "Orgánico", general: "General" };
+const typeLabels = { recycling: "Reciclaje", organic: "Orgánico", general: "General" , paper: "Papel", plastic: "Plástico", glass: "Vidrio", metal: "Metal", other: "Otro" };
 
 export default function ContainersList() {
     const [searchTerm, setSearchTerm] = useState("");
