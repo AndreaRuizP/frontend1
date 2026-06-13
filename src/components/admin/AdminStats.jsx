@@ -13,6 +13,9 @@ export default function AdminStats() {
         Promise.all([getKPIs(), getDailyStats(7)])
             .then(([k, d]) => {
                 console.log("Daily data received:", d);
+                console.log("Is array:", Array.isArray(d));
+                console.log("Data length:", d?.length);
+                console.log("First item:", d?.[0]);
                 setKpis(k);
                 setDailyData(d);
             })

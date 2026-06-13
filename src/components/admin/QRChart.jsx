@@ -1,4 +1,5 @@
 export default function QRChart({ data = [], loading = false }) {
+    console.log("QRChart received:", { data, loading, dataType: typeof data, isArray: Array.isArray(data), length: data?.length });
     const maxValue = Math.max(...data.map(d => d.qrScans), 1);
 
     return (

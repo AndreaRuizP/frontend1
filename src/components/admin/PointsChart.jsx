@@ -1,4 +1,5 @@
 export default function PointsChart({ data = [], loading = false }) {
+    console.log("PointsChart received:", { data, loading, dataType: typeof data, isArray: Array.isArray(data), length: data?.length });
     const maxValue = Math.max(...data.map(d => d.pointsDistributed), 1);
 
     return (
