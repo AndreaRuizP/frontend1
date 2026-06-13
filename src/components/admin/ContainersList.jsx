@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { sanitizeInput } from "../../utils/security";
 import { getContainers, createContainer, updateContainer, deleteContainer } from "../../api/admin";
 
-const emptyForm = { name: "", type: "", capacity: "", latitude: "", longitude: "", status: "active" };
+const emptyForm = { name: "", type: "recycling", capacity: "", latitude: "", longitude: "", status: "active" };
 
 const statusConfig = {
     active: { label: "Activo", classes: "bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400" },
@@ -10,7 +10,7 @@ const statusConfig = {
     inactive: { label: "Inactivo", classes: "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400" },
 };
 
-const typeLabels = { recycling: "Reciclaje", organic: "Orgánico", general: "General" , paper: "Papel", plastic: "Plástico", glass: "Vidrio", metal: "Metal", other: "Otro" };
+const typeLabels = { recycling: "Reciclaje", organic: "Orgánico", general: "General" };
 
 export default function ContainersList() {
     const [searchTerm, setSearchTerm] = useState("");
